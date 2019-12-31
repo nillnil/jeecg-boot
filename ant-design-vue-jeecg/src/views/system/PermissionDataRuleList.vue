@@ -175,7 +175,7 @@ export default {
       }
     },
     getRowClassname(record) {
-      if (record.status !== 1) {
+      if (record.status != 1) {
         return 'data-rule-invalid'
       }
     }

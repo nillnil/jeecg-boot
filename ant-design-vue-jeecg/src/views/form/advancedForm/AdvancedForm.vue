@@ -9,13 +9,13 @@
 
     <!-- table -->
     <a-card>
-      <form :autoFormCreate="(form) => form = form">
+      <form :autoFormCreate="(form) => this.form = form">
         <a-table
           :columns="columns"
           :data-source="data"
           :pagination="false"
         >
-          <template v-for="(col, i) in ['name', 'workId', 'department']" :slot="col" slot-scope="text, record">
+          <template v-for="(col, i) in ['name', 'workId', 'department']" :slot="col" slot-scope="text, record, index">
             <a-input
               v-if="record.editable"
               :key="col"
@@ -26,7 +26,7 @@
             />
             <template v-else>{{ text }}</template>
           </template>
-          <template slot="operation" slot-scope="text, record">
+          <template slot="operation" slot-scope="text, record, index">
             <template v-if="record.editable">
               <span v-if="record.isNew">
                 <a @click="saveRow(record.key)">添加</a>

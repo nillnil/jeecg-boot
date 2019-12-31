@@ -28,7 +28,7 @@
                 <a-icon type="bulb" theme="twoTone" style="font-size:22px" :two-tone-color="getTipColor(record)" />
               </template>
 
-              <span slot="action">
+              <span slot="action" slot-scope="text, record">
                 <a @click="handleData">办理</a>
               </span>
 
@@ -62,7 +62,7 @@
                 <a-icon type="bulb" theme="twoTone" style="font-size:22px" :two-tone-color="getTipColor(record)" />
               </template>
 
-              <span slot="action">
+              <span slot="action" slot-scope="text, record">
                 <a @click="handleData">办理</a>
               </span>
 
@@ -97,7 +97,7 @@
                 <a-icon type="bulb" theme="twoTone" style="font-size:22px" :two-tone-color="getTipColor(record)" />
               </template>
 
-              <span slot="action">
+              <span slot="action" slot-scope="text, record">
                 <a @click="handleData">办理</a>
               </span>
 
@@ -128,7 +128,7 @@
                 <a-icon type="bulb" theme="twoTone" style="font-size:22px" :two-tone-color="getTipColor(record)" />
               </template>
 
-              <span slot="action">
+              <span slot="action" slot-scope="text, record">
                 <a @click="handleData">办理</a>
               </span>
 
@@ -286,7 +286,7 @@ export default {
 
     ifNullDataSource(ds, tb) {
       this.$nextTick(() => {
-        if (!ds || ds.length === 0) {
+        if (!ds || ds.length == 0) {
           var tmp = document.createElement('img')
           tmp.src = noDataPng
           tmp.width = 300
@@ -327,7 +327,7 @@ export default {
   .index-container-ty .ant-table-footer{text-align: right;padding:6px 12px 6px 6px;background: #fff;border-top: 2px solid #f7f1f1;}
 
   .index-md-title{
-    position: relative;
+    postion:relative;
     padding-left:24px;
     width: 100%;
     color: #fff;

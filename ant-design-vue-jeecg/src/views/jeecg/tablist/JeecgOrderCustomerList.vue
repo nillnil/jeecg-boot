@@ -67,12 +67,14 @@
 
 <script>
 import JeecgOrderCustomerModal from './form/JeecgOrderCustomerModal'
+import JeecgOrderDMainList from './JeecgOrderDMainList'
 import { JeecgListMixin } from '@/mixins/JeecgListMixin'
 import { getAction } from '@/api/manage'
 
 export default {
   name: 'JeecgOrderCustomerList',
   components: {
+    JeecgOrderDMainList,
     JeecgOrderCustomerModal
   },
   mixins: [JeecgListMixin],
@@ -93,9 +95,9 @@ export default {
           align: 'center',
           dataIndex: 'sex',
           customRender: function(text) {
-            if (text === 1) {
+            if (text == 1) {
               return '男'
-            } else if (text === 2) {
+            } else if (text == 2) {
               return '女'
             } else {
               return text

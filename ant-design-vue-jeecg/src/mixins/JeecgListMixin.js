@@ -198,7 +198,7 @@ export const JeecgListMixin = {
       // TODO 筛选
       if (Object.keys(sorter).length > 0) {
         this.isorter.column = sorter.field
-        this.isorter.order = sorter.order === 'ascend' ? 'asc' : 'desc'
+        this.isorter.order = sorter.order == 'ascend' ? 'asc' : 'desc'
       }
       this.ipagination = pagination
       this.loadData()
@@ -222,7 +222,7 @@ export const JeecgListMixin = {
       window.location.href = url
     },
     handleExportXls(fileName) {
-      if (!fileName || typeof fileName !== 'string') {
+      if (!fileName || typeof fileName != 'string') {
         fileName = '导出文件'
       }
       const param = { ...this.queryParam }

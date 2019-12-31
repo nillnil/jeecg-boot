@@ -50,7 +50,7 @@
         @change="handleTableChange"
       >
         <!-- 字符串超长截取省略号显示-->
-        <span slot="dataContent" slot-scope="text">
+        <span slot="dataContent" slot-scope="text, record">
           <j-ellipsis :value="text" :length="80" />
         </span>
       </a-table>
@@ -107,10 +107,10 @@ export default {
   },
   methods: {
     handleCompare: function() {
-      if (!this.selectionRows || this.selectionRows.length !== 2) {
+      if (!this.selectionRows || this.selectionRows.length != 2) {
         this.openNotifIcon('请选择两条数据')
         return false
-      } else if (this.selectionRows[0].dataId !== this.selectionRows[1].dataId) {
+      } else if (this.selectionRows[0].dataId != this.selectionRows[1].dataId) {
         this.openNotifIcon('请选择相同的数据库表和数据ID进行比较')
         return false
       } else {

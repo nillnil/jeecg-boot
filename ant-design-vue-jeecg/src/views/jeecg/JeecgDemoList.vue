@@ -108,7 +108,7 @@
                 <a-row>
                   <template v-for="(item,index) in defColumns">
                     <template v-if="item.key!='rowIndex'&& item.dataIndex!='action'">
-                      <a-col :key="'demo_list_' + index" :span="12"><a-checkbox :value="item.dataIndex">{{ item.title }}</a-checkbox></a-col>
+                      <a-col :span="12"><a-checkbox :value="item.dataIndex">{{ item.title }}</a-checkbox></a-col>
                     </template>
                   </template>
                 </a-row>
@@ -138,7 +138,7 @@
               <a-row>
                 <template v-for="(item,index) in defColumns">
                   <template v-if="item.key!='rowIndex'&& item.dataIndex!='action'">
-                    <a-col :key="'filter_demo_list_' + index" :span="12"><a-checkbox :value="item.dataIndex">{{ item.title }}</a-checkbox></a-col>
+                    <a-col :span="12"><a-checkbox :value="item.dataIndex">{{ item.title }}</a-checkbox></a-col>
                   </template>
                 </template>
               </a-row>
@@ -342,7 +342,7 @@ export default {
       Vue.ls.set(key, checkedValues, 7 * 24 * 60 * 60 * 1000)
       this.settingColumns = checkedValues
       const cols = this.defColumns.filter(item => {
-        if (item.key === 'rowIndex' || item.dataIndex === 'action') {
+        if (item.key == 'rowIndex' || item.dataIndex == 'action') {
           return true
         }
         if (this.settingColumns.includes(item.dataIndex)) {
@@ -358,7 +358,7 @@ export default {
 
       var key = this.$route.name + ':colsettings'
       const colSettings = Vue.ls.get(key)
-      if (colSettings == null || colSettings === undefined) {
+      if (colSettings == null || colSettings == undefined) {
         const allSettingColumns = []
         this.defColumns.forEach(function(item, i, array) {
           allSettingColumns.push(item.dataIndex)
@@ -368,7 +368,7 @@ export default {
       } else {
         this.settingColumns = colSettings
         const cols = this.defColumns.filter(item => {
-          if (item.key === 'rowIndex' || item.dataIndex === 'action') {
+          if (item.key == 'rowIndex' || item.dataIndex == 'action') {
             return true
           }
           if (colSettings.includes(item.dataIndex)) {

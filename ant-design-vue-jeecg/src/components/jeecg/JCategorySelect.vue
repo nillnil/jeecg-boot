@@ -108,9 +108,9 @@ export default {
         if (res.success && res.result) {
           for (const i of res.result) {
             i.value = i.key
-            if (i.leaf === false) {
+            if (i.leaf == false) {
               i.isLeaf = false
-            } else if (i.leaf === true) {
+            } else if (i.leaf == true) {
               i.isLeaf = true
             }
           }
@@ -123,7 +123,7 @@ export default {
 
     /** 数据回显*/
     loadItemByCode() {
-      if (!this.value || this.value === '0') {
+      if (!this.value || this.value == '0') {
         this.treeValue = []
       } else {
         getAction(this.view, { ids: this.value }).then(res => {
@@ -169,9 +169,9 @@ export default {
           if (res.success) {
             for (const i of res.result) {
               i.value = i.key
-              if (i.leaf === false) {
+              if (i.leaf == false) {
                 i.isLeaf = false
-              } else if (i.leaf === true) {
+              } else if (i.leaf == true) {
                 i.isLeaf = true
               }
             }
@@ -185,8 +185,8 @@ export default {
     addChildren(pid, children, treeArray) {
       if (treeArray && treeArray.length > 0) {
         for (const item of treeArray) {
-          if (item.key === pid) {
-            if (!children || children.length === 0) {
+          if (item.key == pid) {
+            if (!children || children.length == 0) {
               item.isLeaf = true
             } else {
               item.children = children
@@ -222,7 +222,7 @@ export default {
         } else {
           try {
             const test = JSON.parse(mycondition)
-            if (typeof test === 'object' && test) {
+            if (typeof test == 'object' && test) {
               resolve()
             } else {
               this.$message.error('组件JTreeSelect-condition传值有误，需要一个json字符串!')

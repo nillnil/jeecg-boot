@@ -42,29 +42,27 @@
       <a-button v-if="buttonSwitch.add" type="primary" icon="plus" @click="handleAdd">新增</a-button>
       <a-button v-if="buttonSwitch.import" type="primary" icon="upload" style="margin-left:8px" @click="handleImportXls">导入</a-button>
       <a-button v-if="buttonSwitch.export" type="primary" icon="download" style="margin-left:8px" @click="handleExportXls">导出</a-button>
-      <template v-for="(item,index) in cgButtonList">
-        <template v-if="cgButtonList && cgButtonList.length>0">
-          <a-button
-            v-if=" item.optType=='js' "
-            :key=" 'cgbtn'+index "
-            type="primary"
-            :icon="item.buttonIcon"
-            style="margin-left:8px"
-            @click="cgButtonJsHandler(item.buttonCode)"
-          >
-            {{ item.buttonName }}
-          </a-button>
-          <a-button
-            v-else-if=" item.optType=='action' "
-            :key=" 'cgbtn'+index "
-            type="primary"
-            :icon="item.buttonIcon"
-            style="margin-left:8px"
-            @click="cgButtonActionHandler(item.buttonCode)"
-          >
-            {{ item.buttonName }}
-          </a-button>
-        </template>
+      <template v-for="(item,index) in cgButtonList" v-if="cgButtonList && cgButtonList.length>0">
+        <a-button
+          v-if=" item.optType=='js' "
+          :key=" 'cgbtn'+index "
+          type="primary"
+          :icon="item.buttonIcon"
+          style="margin-left:8px"
+          @click="cgButtonJsHandler(item.buttonCode)"
+        >
+          {{ item.buttonName }}
+        </a-button>
+        <a-button
+          v-else-if=" item.optType=='action' "
+          :key=" 'cgbtn'+index "
+          type="primary"
+          :icon="item.buttonIcon"
+          style="margin-left:8px"
+          @click="cgButtonActionHandler(item.buttonCode)"
+        >
+          {{ item.buttonName }}
+        </a-button>
       </template>
 
       <!-- 高级查询 -->
@@ -182,15 +180,13 @@
                   </a-popconfirm>
                 </a-menu-item>
               </template>
-              <template v-for="(btnItem,btnIndex) in cgButtonLinkList">
-                <template v-if="cgButtonLinkList && cgButtonLinkList.length>0">
-                  <a-menu-item :key=" 'cgbtnLink'+btnIndex ">
-                    <a href="javascript:void(0);" @click="cgButtonLinkHandler(record,btnItem.buttonCode,btnItem.optType)">
-                      <a-icon v-if="btnItem.buttonIcon" :type="btnItem.buttonIcon" />
-                      {{ btnItem.buttonName }}
-                    </a>
-                  </a-menu-item>
-                </template>
+              <template v-for="(btnItem,btnIndex) in cgButtonLinkList" v-if="cgButtonLinkList && cgButtonLinkList.length>0">
+                <a-menu-item :key=" 'cgbtnLink'+btnIndex ">
+                  <a href="javascript:void(0);" @click="cgButtonLinkHandler(record,btnItem.buttonCode,btnItem.optType)">
+                    <a-icon v-if="btnItem.buttonIcon" :type="btnItem.buttonIcon" />
+                    {{ btnItem.buttonName }}
+                  </a>
+                </a-menu-item>
               </template>
 
             </a-menu>
@@ -405,13 +401,13 @@ export default {
       getAction(`${this.url.getColumns}${this.code}`).then((res) => {
         console.log('--onlineList-加载动态列>>', res)
         if (res.success) {
-          if (res.result.checkboxFlag === 'Y') {
+          if (res.result.checkboxFlag == 'Y') {
             this.checkboxFlag = true
           } else {
             this.checkboxFlag = false
           }
 
-          if (res.result.paginationFlag === 'Y') {
+          if (res.result.paginationFlag == 'Y') {
             this.table.pagination = { ...this.metaPagination }
           } else {
             this.table.pagination = false
@@ -441,7 +437,7 @@ export default {
               }
             }
           }
-          if (res.result.scrollFlag === 1) {
+          if (res.result.scrollFlag == 1) {
             this.table.scroll = { x: '115%' }
           } else {
             this.table.scroll = { x: false }
@@ -458,7 +454,7 @@ export default {
     },
     loadData(arg) {
       if (this.table.pagination) {
-        if (arg === 1) {
+        if (arg == 1) {
           this.table.pagination.current = 1
         }
         this.table.loading = true
@@ -523,7 +519,7 @@ export default {
       // TODO 筛选
       if (Object.keys(sorter).length > 0) {
         this.isorter.column = sorter.field
-        this.isorter.order = sorter.order === 'ascend' ? 'asc' : 'desc'
+        this.isorter.order = sorter.order == 'ascend' ? 'asc' : 'desc'
       }
       this.table.pagination = pagination
       this.loadData()
@@ -723,9 +719,9 @@ export default {
       if (btnList && btnList.length > 0) {
         for (let i = 0; i < btnList.length; i++) {
           const temp = btnList[i]
-          if (temp.buttonStyle === 'button') {
+          if (temp.buttonStyle == 'button') {
             buttonArr.push(temp)
-          } else if (temp.buttonStyle === 'link') {
+          } else if (temp.buttonStyle == 'link') {
             linkArr.push(temp)
           }
         }
@@ -740,7 +736,7 @@ export default {
     },
     cgButtonActionHandler(buttonCode) {
       // 处理自定义button的 需要配置该button自定义sql
-      if (!this.table.selectedRowKeys || this.table.selectedRowKeys.length === 0) {
+      if (!this.table.selectedRowKeys || this.table.selectedRowKeys.length == 0) {
         this.$message.warning('请先选中一条记录')
         return false
       }
@@ -764,11 +760,11 @@ export default {
       })
     },
     cgButtonLinkHandler(record, buttonCode, optType) {
-      if (optType === 'js') {
+      if (optType == 'js') {
         if (this.EnhanceJS[buttonCode]) {
           this.EnhanceJS[buttonCode](this, record)
         }
-      } else if (optType === 'action') {
+      } else if (optType == 'action') {
         const params = {
           formId: this.code,
           buttonCode: buttonCode,

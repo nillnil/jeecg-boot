@@ -99,7 +99,7 @@ export default {
           const json2 = JSON.parse(res.result[1].dataContent)
           for (var item1 in json1) {
             for (var item2 in json2) {
-              if (item1 === item2) {
+              if (item1 == item2) {
                 this.dataSource.push({
                   code: item1,
                   imgshow: '',
@@ -132,12 +132,12 @@ export default {
       const className = 'trcolor'
       const dataVersion1 = record.dataVersion1
       const dataVersion2 = record.dataVersion2
-      if (dataVersion1 !== dataVersion2) {
+      if (dataVersion1 != dataVersion2) {
         return className
       }
     },
     getAvatarView: function(avatar) {
-      if (avatar.dataVersion1 !== avatar.dataVersion2) {
+      if (avatar.dataVersion1 != avatar.dataVersion2) {
         return '/goright.png'
       } else {
         return ''

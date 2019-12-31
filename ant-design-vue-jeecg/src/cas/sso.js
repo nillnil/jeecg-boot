@@ -36,7 +36,7 @@ function getUrlParam(paraName) {
     for (var i = 0; i < arrPara.length; i++) {
       arr = arrPara[i].split('=')
 
-      if (arr != null && arr[0] === paraName) {
+      if (arr != null && arr[0] == paraName) {
         return arr[1]
       }
     }

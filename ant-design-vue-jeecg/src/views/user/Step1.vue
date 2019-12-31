@@ -74,7 +74,7 @@ export default {
           var params = {}
           var reg = /^[1-9]\d*$|^0$/
           var username = values.username
-          if (reg.test(username) === true) {
+          if (reg.test(username) == true) {
             params.phone = username
           } else {
             params.username = username
@@ -94,7 +94,7 @@ export default {
       })
     },
     validateInputCode(rule, value, callback) {
-      if (!value || this.verifiedCode === this.inputCodeContent) {
+      if (!value || this.verifiedCode == this.inputCodeContent) {
         callback()
       } else {
         callback(new Error('您输入的验证码不正确!'))
@@ -103,7 +103,7 @@ export default {
     inputCodeChange(e) {
       this.inputCodeContent = e.target.value
       console.log(this.inputCodeContent)
-      if (!e.target.value || e.target.value === 0) {
+      if (!e.target.value || e.target.value == 0) {
         this.inputCodeNull = true
       } else {
         this.inputCodeContent = this.inputCodeContent.toLowerCase()
@@ -134,9 +134,10 @@ export default {
           }
         })
       } else {
-        checkOnlyUser({
+        var params = {
           username: value
-        }).then((res) => {
+        }
+        checkOnlyUser(params).then((res) => {
           if (res.success) {
             callback('用户名不存在!')
           } else {

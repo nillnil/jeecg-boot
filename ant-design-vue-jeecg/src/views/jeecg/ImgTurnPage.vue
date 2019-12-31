@@ -10,7 +10,7 @@
           :selected-keys="selectedKeys"
           :style="{'height':'500px','border-right':'2px solid #c1c1c1','overflow-y':'auto'}"
           @expand="onExpand"
-          @select="onSelect"
+          @select="this.onSelect"
         />
       </a-col>
 
@@ -32,9 +32,13 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 
 export default {
   name: 'ImgTurnPage',
+  components: {
+    draggable
+  },
   data() {
     return {
       description: '图片翻页',

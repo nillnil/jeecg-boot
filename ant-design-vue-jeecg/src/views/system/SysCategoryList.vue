@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     loadData(arg) {
-      if (arg === 1) {
+      if (arg == 1) {
         this.ipagination.current = 1
       }
       this.loading = true
@@ -146,7 +146,7 @@ export default {
     getDataByResult(result) {
       return result.map(item => {
         // 判断是否标记了带有子节点
-        if (item[this.hasChildrenField] === '1') {
+        if (item[this.hasChildrenField] == '1') {
           const loadChild = { id: item.id + '_loadChild', name: 'loading...', isLoading: true }
           item.children = [loadChild]
         }
@@ -194,7 +194,7 @@ export default {
     editOk(formData, arr) {
       if (arr && arr.length > 0) {
         for (let i = 0; i < arr.length; i++) {
-          if (arr[i].id === formData.id) {
+          if (arr[i].id == formData.id) {
             arr[i] = formData
             break
           } else {
@@ -240,7 +240,7 @@ export default {
     getFormDataById(id, arr) {
       if (arr && arr.length > 0) {
         for (let i = 0; i < arr.length; i++) {
-          if (arr[i].id === id) {
+          if (arr[i].id == id) {
             this.parentFormData = arr[i]
           } else {
             this.getFormDataById(id, arr[i].children)

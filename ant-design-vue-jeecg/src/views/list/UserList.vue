@@ -81,7 +81,7 @@
       :width="800"
       @ok="handleOk"
     >
-      <a-form :auto-form-create="(form)=>{form = form}">
+      <a-form :auto-form-create="(form)=>{this.form = form}">
 
         <a-form-item
           :label-col="labelCol"

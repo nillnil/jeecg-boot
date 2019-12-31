@@ -154,7 +154,7 @@ export default {
     },
     randomCode() {
       return new Promise((resolve) => {
-        if (this.remote === true) {
+        if (this.remote == true) {
           getAction('/sys/getCheckCode').then(res => {
             console.log('aaaaa', res)
             if (res.success) {

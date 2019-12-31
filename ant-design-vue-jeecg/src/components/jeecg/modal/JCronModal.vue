@@ -246,7 +246,7 @@
         </a-tab-pane>
       </a-tabs>
       <div class="bottom">
-        <span class="value">{{ cron }}</span>
+        <span class="value">{{ this.cron }}</span>
       </div>
     </div>
   </a-modal>
@@ -718,7 +718,7 @@ export default {
           case days.includes('L'):
 
             // alert(days);
-            if (days.len === 1) {
+            if (days.len == 1) {
               day.cronEvery = '6'
               day.cronLastSpecificDomDay = '1'
             } else {

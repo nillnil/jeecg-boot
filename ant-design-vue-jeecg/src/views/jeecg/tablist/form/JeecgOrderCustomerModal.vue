@@ -79,7 +79,7 @@
           <a-input v-decorator="[ 'telphone', validatorRules.telphone]" :read-only="disableSubmit" />
         </a-form-item>
         <a-form-item
-          v-model="orderId"
+          v-model="this.orderId"
           :label-col="labelCol"
           :wrapper-col="wrapperCol"
           label="订单号码"
@@ -219,10 +219,10 @@ export default {
       this.edit(record, 'd')
     },
     edit(record, v) {
-      if (v === 'e') {
+      if (v == 'e') {
         this.hiding = false
         this.disableSubmit = false
-      } else if (v === 'd') {
+      } else if (v == 'd') {
         this.hiding = false
         this.disableSubmit = true
       } else {
@@ -340,17 +340,17 @@ export default {
 
 <style scoped>
   /* tile uploaded pictures */
-  .upload-list-inline >>> .ant-upload-list-item {
+  .upload-list-inline > > > .ant-upload-list-item {
     float: left;
     width: 200px;
     margin-right: 8px;
   }
 
-  .upload-list-inline >>> .ant-upload-animate-enter {
+  .upload-list-inline > > > .ant-upload-animate-enter {
     animation-name: uploadAnimateInlineIn;
   }
 
-  .upload-list-inline >>> .ant-upload-animate-leave {
+  .upload-list-inline > > > .ant-upload-animate-leave {
     animation-name: uploadAnimateInlineOut;
   }
 </style>

@@ -65,7 +65,7 @@
         <div><a-badge status="processing" style="vertical-align: middle;" /><span style="vertical-align: middle;">请求参数:{{ record.requestParam }}</span></div>
       </div>
       <!-- 字符串超长截取省略号显示-->
-      <span slot="logContent" slot-scope="text">
+      <span slot="logContent" slot-scope="text, record">
         <j-ellipsis :value="text" :length="40" />
       </span>
     </a-table>
@@ -199,10 +199,10 @@ export default {
     // 日志类型
     callback(key) {
       // 动态添加操作类型列
-      if (key === 2) {
+      if (key == 2) {
         this.tabKey = '2'
         this.columns.splice(7, 0, this.operateColumn)
-      } else if (this.columns.length === 9) {
+      } else if (this.columns.length == 9) {
         this.tabKey = '1'
         this.columns.splice(7, 1)
       }

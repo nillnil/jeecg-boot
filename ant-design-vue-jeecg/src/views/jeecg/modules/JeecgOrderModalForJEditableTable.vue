@@ -111,13 +111,14 @@
 import JEditableTable from '@/components/jeecg/JEditableTable'
 import { FormTypes, VALIDATE_NO_PASSED, getRefPromise, validateFormAndTables } from '@/utils/JEditableTableUtil'
 import { httpAction, getAction } from '@/api/manage'
+import JDate from '@/components/jeecg/JDate'
 import pick from 'lodash.pick'
 import moment from 'moment'
 
 export default {
   name: 'JeecgOrderModalForJEditableTable',
   components: {
-    JEditableTable
+    JDate, JEditableTable
   },
   data() {
     return {

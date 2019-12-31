@@ -163,7 +163,7 @@ export default {
       this.autoExpandParent = false
     },
     handleSubmit() {
-      if (!this.checkedKeys || this.checkedKeys.length === 0) {
+      if (!this.checkedKeys || this.checkedKeys.length == 0) {
         this.$emit('ok', '')
       } else {
         this.$emit('ok', this.checkedRows, this.checkedKeys.join(','))

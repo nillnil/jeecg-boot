@@ -27,7 +27,7 @@ export function filterNodePermission(el, binding, vnode) {
     if (obj) {
       const bpmList = obj.permissionList
       for (var bpm of bpmList) {
-        if (bpm.type !== '2') {
+        if (bpm.type != '2') {
           permissionList.push(bpm)
         }
       }
@@ -41,7 +41,7 @@ export function filterNodePermission(el, binding, vnode) {
   }
   const permissions = []
   for (var item of permissionList) {
-    if (item.type !== '2') {
+    if (item.type != '2') {
       permissions.push(item.action)
     }
   }
@@ -72,23 +72,23 @@ export function filterGlobalPermission(el, binding, vnode) {
   // let authList = Vue.ls.get(USER_AUTH);
   const authList = JSON.parse(sessionStorage.getItem(USER_AUTH) || '[]')
   for (var auth of authList) {
-    if (auth.type !== '2') {
+    if (auth.type != '2') {
       permissionList.push(auth)
     }
   }
   // console.log("页面权限--Global--",sessionStorage.getItem(SYS_BUTTON_AUTH));
   const allAuthList = JSON.parse(sessionStorage.getItem(SYS_BUTTON_AUTH) || '[]')
   for (var gauth of allAuthList) {
-    if (gauth.type !== '2') {
+    if (gauth.type != '2') {
       allPermissionList.push(gauth)
     }
   }
   // 设置全局配置是否有命中
   var invalidFlag = false// 无效命中
-  if (allPermissionList != null && allPermissionList !== '' && allPermissionList !== undefined && allPermissionList.length > 0) {
+  if (allPermissionList != null && allPermissionList != '' && allPermissionList != undefined && allPermissionList.length > 0) {
     for (var itemG of allPermissionList) {
       if (binding.value === itemG.action) {
-        if (itemG.status === '0') {
+        if (itemG.status == '0') {
           invalidFlag = true
           break
         }
@@ -104,7 +104,7 @@ export function filterGlobalPermission(el, binding, vnode) {
   }
   const permissions = []
   for (var item of permissionList) {
-    if (item.type !== '2') {
+    if (item.type != '2') {
       permissions.push(item.action)
     }
   }

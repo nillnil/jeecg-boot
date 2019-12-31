@@ -4,7 +4,7 @@
       :grid="{gutter: 24, lg: 3, md: 2, sm: 1, xs: 1}"
       :data-source="dataSource"
     >
-      <a-list-item slot="renderItem" slot-scope="item">
+      <a-list-item slot="renderItem" slot-scope="item, index">
         <template v-if="item === null">
           <a-button class="new-btn" type="dashed">
             <a-icon type="plus" />

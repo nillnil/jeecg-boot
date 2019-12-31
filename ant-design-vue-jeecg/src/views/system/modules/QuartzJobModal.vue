@@ -133,7 +133,7 @@ export default {
       this.form.validateFields((err, values) => {
         console.log('values', values)
         if (!err) {
-          if (typeof values.cronExpression === 'undefined' || Object.keys(values.cronExpression).length === 0) {
+          if (typeof values.cronExpression == 'undefined' || Object.keys(values.cronExpression).length == 0) {
             this.$message.warning('请输入cron表达式!')
             return false
           }
@@ -176,14 +176,14 @@ export default {
       })
 
       // console.log(Object.keys(data).length==0);
-      if (Object.keys(data).length === 0) {
+      if (Object.keys(data).length == 0) {
         this.$message.warning('请输入cron表达式!')
       }
     },
     validateCron(rule, value, callback) {
       if (!value) {
         callback()
-      } else if (Object.keys(value).length === 0) {
+      } else if (Object.keys(value).length == 0) {
         callback('请输入cron表达式!')
       }
     }

@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { httpAction } from '@/api/manage'
 
 export default {
   name: 'SuperQueryModal',

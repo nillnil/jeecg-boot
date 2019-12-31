@@ -319,7 +319,7 @@ export default {
       this.syncFormId = id
     },
     goPageOnline(rd) {
-      if (rd.isTree === 'Y') {
+      if (rd.isTree == 'Y') {
         this.$router.push({ path: '/online/cgformTreeList/' + rd.id })
       } else {
         this.$router.push({ path: '/online/cgformList/' + rd.id })
@@ -330,7 +330,7 @@ export default {
       this.onlineUrlVisible = false
     },
     handleOnlineUrlShow(record) {
-      if (record.isTree === 'Y') {
+      if (record.isTree == 'Y') {
         this.onlineUrl = `/online/cgformTreeList/${record.id}`
       } else {
         this.onlineUrl = `/online/cgformList/${record.id}`
@@ -357,28 +357,28 @@ export default {
       })
     },
     doEnhanceJs() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }
       this.$refs.ehjs.show(this.selectedRowKeys[0])
     },
     doEnhanceSql() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }
       this.$refs.ehsql.show(this.selectedRowKeys[0])
     },
     doEnhanceJava() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }
       this.$refs.ehjava.show(this.selectedRowKeys[0])
     },
     doCgformButton() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }
@@ -393,16 +393,16 @@ export default {
       this.loadData()
     },
     goGenerateCode() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }
       const row = this.selectedRows[0]
-      if (!row.isDbSynch || row.isDbSynch === 'N') {
+      if (!row.isDbSynch || row.isDbSynch == 'N') {
         this.$message.warning('请先同步数据库!')
         return
       }
-      if (row.tableType === 3) {
+      if (row.tableType == 3) {
         this.$message.warning('请选中该表对应的主表生成代码')
         return
       }

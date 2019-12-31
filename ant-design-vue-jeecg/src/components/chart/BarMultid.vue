@@ -61,7 +61,7 @@ export default {
       const dv = new DataSet.View().source(temp)
       dv.transform({
         type: 'fold',
-        fields: (!this.fields || this.fields.length === 0) ? fieldsConst : this.fields,
+        fields: (!this.fields || this.fields.length == 0) ? fieldsConst : this.fields,
         key: 'x',
         value: 'y'
       })

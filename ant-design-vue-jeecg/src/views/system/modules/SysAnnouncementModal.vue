@@ -279,7 +279,7 @@ export default {
       this.$refs.UserListModal.add(this.selectedUser, this.userIds)
     },
     chooseMsgType(value) {
-      if (value === 'USER') {
+      if (value == 'USER') {
         this.userType = true
       } else {
         this.userType = false

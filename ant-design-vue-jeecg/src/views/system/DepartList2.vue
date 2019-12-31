@@ -243,7 +243,7 @@ export default {
       // TODO 筛选
       if (Object.keys(sorter).length > 0) {
         this.isorter.column = sorter.field
-        this.isorter.order = sorter.order === 'ascend' ? 'asc' : 'desc'
+        this.isorter.order = sorter.order == 'ascend' ? 'asc' : 'desc'
       }
       /* this.ipagination = pagination;*/
       this.loadData()

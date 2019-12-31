@@ -245,12 +245,13 @@
         </a-tab-pane>
       </a-tabs>
       <div class="bottom">
-        <span class="value">{{ cron.label }}</span>
+        <span class="value">{{ this.cron.label }}</span>
       </div>
     </div>
   </a-modal>
 </template>
 <script>
+import pick from 'lodash.pick'
 export default {
   name: 'VueCron',
   props: ['data', 'i18n'],

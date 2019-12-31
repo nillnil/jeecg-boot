@@ -77,6 +77,7 @@
         </span>
         <a-table
           slot="expandedRowRender"
+          slot-scope="text"
           :columns="innerColumns"
           :data-source="innerData"
           size="middle"
@@ -121,9 +122,9 @@ export default {
           align: 'center',
           dataIndex: 'sex',
           customRender: function(text) {
-            if (text === 1) {
+            if (text == 1) {
               return '男'
-            } else if (text === 2) {
+            } else if (text == 2) {
               return '女'
             } else {
               return text

@@ -150,7 +150,7 @@
           <a-tab-pane key="1" loading="true" tab="业务流程限时监管">
 
             <a-table :data-source="dataSource1" size="default" row-key="id" :columns="columns" :pagination="ipagination1" @change="tableChange1">
-              <template slot="flowRate" slot-scope="text, record">
+              <template slot="flowRate" slot-scope="text, record, index">
                 <a-progress :stroke-color="getPercentColor(record.flowRate)" :format="getPercentFormat" :percent="getFlowRateNumber(record.flowRate)" style="width:80px" />
               </template>
             </a-table>
@@ -158,7 +158,7 @@
 
           <a-tab-pane key="2" loading="true" tab="业务节点限时监管">
             <a-table :data-source="dataSource2" size="default" row-key="id" :columns="columns2" :pagination="ipagination2" @change="tableChange2">
-              <template slot="flowRate" slot-scope="text, record">
+              <template slot="flowRate" slot-scope="text, record, index">
                 <span style="color: red;">{{ record.flowRate }}小时</span>
               </template>
             </a-table>
@@ -388,7 +388,7 @@ export default {
     },
     changeRegisterType(e) {
       this.indexRegisterType = e.target.value
-      if (this.indexBottomTab === '1') {
+      if (this.indexBottomTab == '1') {
         this.loadDataSource1()
       } else {
         this.loadDataSource2()
@@ -408,7 +408,7 @@ export default {
       return Number(value)
     },
     getPercentFormat(value) {
-      if (value === 100) {
+      if (value == 100) {
         return '超时'
       } else {
         return value + '%'
@@ -430,7 +430,7 @@ export default {
         if (!this.indexRegisterType) {
           return true
         }
-        return item.type === this.indexRegisterType
+        return item.type == this.indexRegisterType
       })
     },
     loadDataSource2() {
@@ -438,7 +438,7 @@ export default {
         if (!this.indexRegisterType) {
           return true
         }
-        return item.type === this.indexRegisterType
+        return item.type == this.indexRegisterType
       })
     }
   }

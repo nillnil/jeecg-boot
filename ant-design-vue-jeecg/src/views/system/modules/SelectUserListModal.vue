@@ -109,9 +109,9 @@ export default {
         align: 'center',
         dataIndex: 'sex',
         customRender: function(text) {
-          if (text === 1) {
+          if (text == 1) {
             return '男'
-          } else if (text === 2) {
+          } else if (text == 2) {
             return '女'
           } else {
             return text
@@ -130,9 +130,9 @@ export default {
         align: 'center',
         dataIndex: 'status',
         customRender: function(text) {
-          if (text === 1) {
+          if (text == 1) {
             return '正常'
-          } else if (text === 2) {
+          } else if (text == 2) {
             return '冻结'
           } else {
             return text
@@ -222,11 +222,11 @@ export default {
       this.selectedRowKeys = selectedRowKeys
     },
     onSelect(record, selected) {
-      if (selected === true) {
+      if (selected == true) {
         this.selectionRows.push(record)
       } else {
         this.selectionRows.forEach(function(item, index, arr) {
-          if (item.id === record.id) {
+          if (item.id == record.id) {
             arr.splice(index, 1)
           }
         })
@@ -245,7 +245,7 @@ export default {
       // TODO 筛选
       if (Object.keys(sorter).length > 0) {
         this.isorter.column = sorter.field
-        this.isorter.order = sorter.order === 'ascend' ? 'asc' : 'desc'
+        this.isorter.order = sorter.order == 'ascend' ? 'asc' : 'desc'
       }
       this.ipagination = pagination
       this.loadData()

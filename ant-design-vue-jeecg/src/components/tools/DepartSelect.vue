@@ -97,7 +97,7 @@ export default {
             const orgCode = res.result.orgCode
             if (departs && departs.length > 0) {
               for (const i of departs) {
-                if (i.orgCode === orgCode) {
+                if (i.orgCode == orgCode) {
                   this.currDepartName = i.departName
                   break
                 }

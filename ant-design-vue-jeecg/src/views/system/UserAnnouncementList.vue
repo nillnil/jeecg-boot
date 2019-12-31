@@ -51,9 +51,10 @@
 </template>
 
 <script>
+import { filterObj } from '@/utils/util'
+import { getAction, putAction } from '@/api/manage'
 import ShowAnnouncement from '@/components/tools/ShowAnnouncement'
 import { JeecgListMixin } from '@/mixins/JeecgListMixin'
-import { putAction } from '@/api/manage'
 
 export default {
   name: 'UserAnnouncementList',
@@ -74,9 +75,9 @@ export default {
         align: 'center',
         dataIndex: 'msgCategory',
         customRender: function(text) {
-          if (text === '1') {
+          if (text == '1') {
             return '通知公告'
-          } else if (text === '2') {
+          } else if (text == '2') {
             return '系统消息'
           } else {
             return text
@@ -95,11 +96,11 @@ export default {
         align: 'center',
         dataIndex: 'priority',
         customRender: function(text) {
-          if (text === 'L') {
+          if (text == 'L') {
             return '低'
-          } else if (text === 'M') {
+          } else if (text == 'M') {
             return '中'
-          } else if (text === 'H') {
+          } else if (text == 'H') {
             return '高'
           } else {
             return text
@@ -110,9 +111,9 @@ export default {
         align: 'center',
         dataIndex: 'readFlag',
         customRender: function(text) {
-          if (text === '0') {
+          if (text == '0') {
             return '未读'
-          } else if (text === '1') {
+          } else if (text == '1') {
             return '已读'
           } else {
             return text
@@ -124,7 +125,7 @@ export default {
         align: 'center',
         scopedSlots: { customRender: 'action' }
       }],
-      url: {
+		    url: {
         list: '/sys/sysAnnouncementSend/getMyAnnouncementSend',
         editCementSend: 'sys/sysAnnouncementSend/editByAnntIdAndUserId',
         readAllMsg: 'sys/sysAnnouncementSend/readAll'

@@ -170,7 +170,7 @@
           <a-tab-pane key="1" loading="true" tab="业务流程限时监管">
 
             <a-table :data-source="dataSource1" size="default" row-key="id" :columns="columns" :pagination="ipagination">
-              <template slot="flowRate" slot-scope="text, record">
+              <template slot="flowRate" slot-scope="text, record, index">
                 <a-progress :percent="getFlowRateNumber(record.flowRate)" style="width:80px" />
               </template>
             </a-table>
@@ -178,7 +178,7 @@
 
           <a-tab-pane key="2" loading="true" tab="业务节点限时监管">
             <a-table :data-source="dataSource2" size="default" row-key="id" :columns="columns2" :pagination="ipagination">
-              <template slot="flowRate" slot-scope="text, record">
+              <template slot="flowRate" slot-scope="text, record, index">
                 <span style="color: red;">{{ record.flowRate }}分钟</span>
               </template>
             </a-table>
@@ -198,9 +198,13 @@ import ATooltip from 'ant-design-vue/es/tooltip/Tooltip'
 import MiniArea from '@/components/chart/MiniArea'
 import MiniBar from '@/components/chart/MiniBar'
 import LineChartMultid from '@/components/chart/LineChartMultid'
+import AreaChartTy from '@/components/chart/AreaChartTy'
 import DashChartDemo from '@/components/chart/DashChartDemo'
 import BarMultid from '@/components/chart/BarMultid'
+import MiniProgress from '@/components/chart/MiniProgress'
+import RankList from '@/components/chart/RankList'
 import Bar from '@/components/chart/Bar'
+import Trend from '@/components/Trend'
 import { getAction } from '@/api/manage'
 import { filterObj } from '@/utils/util'
 import moment from 'dayjs'
@@ -335,8 +339,12 @@ export default {
     ChartCard,
     MiniArea,
     MiniBar,
+    MiniProgress,
+    RankList,
     Bar,
+    Trend,
     LineChartMultid,
+    AreaChartTy,
     DashChartDemo,
     BarMultid
   },
@@ -416,22 +424,22 @@ export default {
   },
   methods: {
     goPage(index) {
-      if (index === 0) {
+      if (index == 0) {
         this.$router.push({
           path: '/isps/registerStepForm',
           name: 'isps-registerStepForm'
         })
-      } else if (index === 1) {
+      } else if (index == 1) {
         this.$router.push({
           path: '/isps/registerList',
           name: 'isps-registerList'
         })
-      } else if (index === 2) {
+      } else if (index == 2) {
         this.$router.push({
           path: '/isps/fileManage',
           name: 'isps-fileManage'
         })
-      } else if (index === 3) {
+      } else if (index == 3) {
         this.$router.push({
           path: '/isps/infoSearch',
           name: 'isps-infoSearch'
@@ -457,12 +465,12 @@ export default {
       return filterObj(param)
     },
     formatRespectiveHoldCert(value) {
-      return (value === '1' || eval(value)) ? '是' : '否'
+      return (value == '1' || eval(value)) ? '是' : '否'
     },
     formatCertFormat(value) {
-      if (value === '1') {
+      if (value == '1') {
         return '单一版'
-      } else if (value === '2') {
+      } else if (value == '2') {
         return '集成版'
       } else {
         return value
@@ -472,20 +480,20 @@ export default {
       return Number(value)
     },
     getFlowPercent(record) {
-      if (record.flowStatus === '3') {
+      if (record.flowStatus == '3') {
         return 100
-      } else if (record.flowStatus === '0') {
+      } else if (record.flowStatus == '0') {
         return 0
       } else {
         return record.flowRate
       }
     },
     getFlowStatus(status) {
-      if (status === '4') {
+      if (status == '4') {
         return 'exception'
-      } else if (status === '0') {
+      } else if (status == '0') {
         return 'normal'
-      } else if (status === '3') {
+      } else if (status == '3') {
         return 'success'
       } else {
         return 'active'
@@ -512,14 +520,14 @@ export default {
               two = res.result[a].name
             }
           }
-          const ontItem = res.result.filter((item) => { return item.name === two })[0]
+          const ontItem = res.result.filter((item) => { return item.name == two })[0]
           ontItem.restPPT = ontItem.restPPT / 10
           this.diskInfo.push(ontItem)
 
           if (res.result.length > 1) {
             let one2 = 0; let two2 = ''
             for (const a in res.result) {
-              if (res.result[a].name === two) {
+              if (res.result[a].name == two) {
                 continue
               }
               const tempNum = Number(res.result[a].max)
@@ -528,7 +536,7 @@ export default {
                 two2 = res.result[a].name
               }
             }
-            const one2Item = res.result.filter((item) => { return item.name === two2 })[0]
+            const one2Item = res.result.filter((item) => { return item.name == two2 })[0]
             one2Item.restPPT = one2Item.restPPT / 10
             this.diskInfo.push(one2Item)
           }
@@ -545,7 +553,7 @@ export default {
             const dataStr = key
             const value = map[key]
             const today = moment(new Date()).format('YYYY-MM-DD')
-            if (dataStr === today) {
+            if (dataStr == today) {
               this.todaySll = map[today]
             }
             this.chartData.sll.push({
@@ -554,7 +562,7 @@ export default {
             })
           }
         }
-      })
+      }),
       getAction(this.url.countBjl).then((res) => {
         if (res.success) {
           const map = res.result
@@ -562,7 +570,7 @@ export default {
             const dataStr = key
             const value = map[key]
             const today = moment(new Date()).format('YYYY-MM-DD')
-            if (dataStr === today) {
+            if (dataStr == today) {
               this.todayBjl = map[today]
             }
             this.chartData.bjl.push({
@@ -571,7 +579,7 @@ export default {
             })
           }
         }
-      })
+      }),
       getAction(this.url.countISll).then((res) => {
         if (res.success) {
           const map = res.result
@@ -579,7 +587,7 @@ export default {
             const dataStr = key
             const value = map[key]
             const today = moment(new Date()).format('YYYY-MM-DD')
-            if (dataStr === today) {
+            if (dataStr == today) {
               this.todayISll = map[today]
             }
             this.chartData.isll.push({
@@ -588,7 +596,7 @@ export default {
             })
           }
         }
-      })
+      }),
       getAction(this.url.countIBjl).then((res) => {
         if (res.success) {
           const map = res.result
@@ -596,7 +604,7 @@ export default {
             const dataStr = key
             const value = map[key]
             const today = moment(new Date()).format('YYYY-MM-DD')
-            if (dataStr === today) {
+            if (dataStr == today) {
               this.todayIBjl = map[today]
             }
             this.chartData.ibjl.push({

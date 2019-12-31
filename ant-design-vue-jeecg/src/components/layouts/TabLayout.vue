@@ -109,7 +109,7 @@ export default {
     }
   },
   created() {
-    if (this.$route.path !== indexKey) {
+    if (this.$route.path != indexKey) {
       this.pageList.push({
         name: 'dashboard-analysis',
         path: indexKey,
@@ -138,7 +138,7 @@ export default {
       this[action](key)
     },
     remove(key) {
-      if (key === indexKey) {
+      if (key == indexKey) {
         this.$message.warning('首页不能关闭!')
         return
       }
@@ -194,7 +194,7 @@ export default {
     /* update_end author:wuxianquan date:20190828 for: 关闭当前tab页，供子页面调用->望菜单能配置外链，直接弹出新页面而不是嵌入iframe #428 */
     closeOthers(pageKey) {
       const index = this.linkList.indexOf(pageKey)
-      if (pageKey === indexKey || pageKey.indexOf('?ticke=') >= 0) {
+      if (pageKey == indexKey || pageKey.indexOf('?ticke=') >= 0) {
         this.linkList = this.linkList.slice(index, index + 1)
         this.pageList = this.pageList.slice(index, index + 1)
         this.activePage = this.linkList[0]
@@ -208,7 +208,7 @@ export default {
       }
     },
     closeLeft(pageKey) {
-      if (pageKey === indexKey) {
+      if (pageKey == indexKey) {
         return
       }
       const tempList = [...this.pageList]

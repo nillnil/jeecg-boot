@@ -207,7 +207,7 @@ export default {
           that.$message.success(res.message)
           if (this.selectedRowKeys.length > 0) {
             for (let i = 0; i < this.selectedRowKeys.length; i++) {
-              if (this.selectedRowKeys[i] === id) {
+              if (this.selectedRowKeys[i] == id) {
                 this.selectedRowKeys.splice(i, 1)
                 break
               }
@@ -236,7 +236,7 @@ export default {
       return true
     },
     handleAddUserDepart() {
-      if (this.currentDeptId === '') {
+      if (this.currentDeptId == '') {
         this.$message.error('请选择一个部门!')
       } else {
         this.$refs.selectUserModal.visible = true
@@ -249,7 +249,7 @@ export default {
       this.$refs.modalForm.edit(record)
     },
     handleAdd: function() {
-      if (this.currentDeptId === '') {
+      if (this.currentDeptId == '') {
         this.$message.error('请选择一个部门!')
       } else {
         this.$refs.modalForm.departDisabled = true

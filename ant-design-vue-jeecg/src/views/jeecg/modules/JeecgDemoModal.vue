@@ -128,7 +128,7 @@ export default {
       this.visible = true
       this.$nextTick(() => {
         this.form.setFieldsValue(pick(this.model, 'name', 'keyWord', 'sex', 'age', 'email', 'content'))
-        // 时间格式化
+		      // 时间格式化
         this.form.setFieldsValue({ punchTime: this.model.punchTime ? moment(this.model.punchTime, 'YYYY-MM-DD HH:mm:ss') : null })
         this.form.setFieldsValue({ birthday: this.model.birthday ? moment(this.model.birthday) : null })
       })

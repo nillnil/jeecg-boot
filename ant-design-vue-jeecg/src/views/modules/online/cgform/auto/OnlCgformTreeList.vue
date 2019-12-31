@@ -5,29 +5,27 @@
       <a-button v-if="buttonSwitch.add" type="primary" icon="plus" @click="handleAdd">新增</a-button>
       <a-button v-if="buttonSwitch.import" type="primary" icon="upload" style="margin-left:8px" @click="handleImportXls">导入</a-button>
       <a-button v-if="buttonSwitch.export" type="primary" icon="download" style="margin-left:8px" @click="handleExportXls">导出</a-button>
-      <template v-for="(item,index) in cgButtonList">
-        <template v-if="cgButtonList && cgButtonList.length>0">
-          <a-button
-            v-if=" item.optType=='js' "
-            :key=" 'cgbtn'+index "
-            type="primary"
-            :icon="item.buttonIcon"
-            style="margin-left:8px"
-            @click="cgButtonJsHandler(item.buttonCode)"
-          >
-            {{ item.buttonName }}
-          </a-button>
-          <a-button
-            v-else-if=" item.optType=='action' "
-            :key=" 'cgbtn'+index "
-            type="primary"
-            :icon="item.buttonIcon"
-            style="margin-left:8px"
-            @click="cgButtonActionHandler(item.buttonCode)"
-          >
-            {{ item.buttonName }}
-          </a-button>
-        </template>
+      <template v-for="(item,index) in cgButtonList" v-if="cgButtonList && cgButtonList.length>0">
+        <a-button
+          v-if=" item.optType=='js' "
+          :key=" 'cgbtn'+index "
+          type="primary"
+          :icon="item.buttonIcon"
+          style="margin-left:8px"
+          @click="cgButtonJsHandler(item.buttonCode)"
+        >
+          {{ item.buttonName }}
+        </a-button>
+        <a-button
+          v-else-if=" item.optType=='action' "
+          :key=" 'cgbtn'+index "
+          type="primary"
+          :icon="item.buttonIcon"
+          style="margin-left:8px"
+          @click="cgButtonActionHandler(item.buttonCode)"
+        >
+          {{ item.buttonName }}
+        </a-button>
       </template>
 
       <a-button
@@ -120,15 +118,13 @@
                 </a-popconfirm>
               </a-menu-item>
               <!-- 自定义按钮 -->
-              <template v-for="(btnItem,btnIndex) in cgButtonLinkList">
-                <template v-if="cgButtonLinkList && cgButtonLinkList.length>0">
-                  <a-menu-item :key=" 'cgbtnLink'+btnIndex ">
-                    <a href="javascript:void(0);" @click="cgButtonLinkHandler(record,btnItem.buttonCode,btnItem.optType)">
-                      <a-icon v-if="btnItem.buttonIcon" :type="btnItem.buttonIcon" />
-                      {{ btnItem.buttonName }}
-                    </a>
-                  </a-menu-item>
-                </template>
+              <template v-for="(btnItem,btnIndex) in cgButtonLinkList" v-if="cgButtonLinkList && cgButtonLinkList.length>0">
+                <a-menu-item :key=" 'cgbtnLink'+btnIndex ">
+                  <a href="javascript:void(0);" @click="cgButtonLinkHandler(record,btnItem.buttonCode,btnItem.optType)">
+                    <a-icon v-if="btnItem.buttonIcon" :type="btnItem.buttonIcon" />
+                    {{ btnItem.buttonName }}
+                  </a>
+                </a-menu-item>
               </template>
 
             </a-menu>
@@ -326,7 +322,7 @@ export default {
       for (let a = 0; a < currColumns.length; a++) {
         currColumns[a].align = 'left'
         // 找到显示列
-        if (this.textField === currColumns[a].dataIndex) {
+        if (this.textField == currColumns[a].dataIndex) {
           textFieldIndex = a
         }
         // 数据字典翻译
@@ -337,13 +333,13 @@ export default {
           }
         }
         // 判断是否有bpm_status
-        if (currColumns[a].dataIndex.toLowerCase() === 'bpm_status') {
+        if (currColumns[a].dataIndex.toLowerCase() == 'bpm_status') {
           hasBpmStatus = true
         }
       }
       this.hasBpmStatus = hasBpmStatus
 
-      if (textFieldIndex !== -1) {
+      if (textFieldIndex != -1) {
         const textFieldColumn = currColumns.splice(textFieldIndex, 1)
         currColumns.unshift(textFieldColumn[0])
       }
@@ -352,7 +348,7 @@ export default {
     },
     // 加载根节点
     loadData(arg) {
-      if (arg === 1) {
+      if (arg == 1) {
         this.pagination.current = 1
       }
       this.loading = true
@@ -368,7 +364,7 @@ export default {
             this.pagination.total = Number(result.total)
             const dataSource = res.result.records.map(item => {
               // 判断是否标记了带有子级
-              if (item[this.hasChildrenField] === true || item[this.hasChildrenField] === '1') {
+              if (item[this.hasChildrenField] === true || item[this.hasChildrenField] == '1') {
                 const loadChild = { id: `${item.id}_loadChild`, name: 'loading...', isLoading: true }
                 item.children = [loadChild]
               }
@@ -398,7 +394,7 @@ export default {
               if (Number(res.result.total) > 0) {
                 const dataSource = res.result.records.map(item => {
                   // 判断是否标记了带有子级
-                  if (item[this.hasChildrenField] === true || item[this.hasChildrenField] === '1') {
+                  if (item[this.hasChildrenField] === true || item[this.hasChildrenField] == '1') {
                     const loadChild = { id: `${item.id}_loadChild`, name: 'loading...', isLoading: true }
                     item.children = [loadChild]
                   }
@@ -433,9 +429,9 @@ export default {
       if (btnList && btnList.length > 0) {
         for (let i = 0; i < btnList.length; i++) {
           const temp = btnList[i]
-          if (temp.buttonStyle === 'button') {
+          if (temp.buttonStyle == 'button') {
             buttonArr.push(temp)
-          } else if (temp.buttonStyle === 'link') {
+          } else if (temp.buttonStyle == 'link') {
             linkArr.push(temp)
           }
         }
@@ -470,7 +466,7 @@ export default {
       // TODO 筛选
       if (Object.keys(sorter).length > 0) {
         this.isorter.column = sorter.field
-        this.isorter.order = sorter.order === 'ascend' ? 'asc' : 'desc'
+        this.isorter.order = sorter.order == 'ascend' ? 'asc' : 'desc'
       }
       this.pagination = pagination
       this.loadData()
@@ -593,11 +589,11 @@ export default {
 
     /* -------JS增强-begin----------*/
     cgButtonLinkHandler(record, buttonCode, optType) {
-      if (optType === 'js') {
+      if (optType == 'js') {
         if (this.EnhanceJS[buttonCode]) {
           this.EnhanceJS[buttonCode](this, record)
         }
-      } else if (optType === 'action') {
+      } else if (optType == 'action') {
         const params = {
           formId: this.code,
           buttonCode: buttonCode,
@@ -621,7 +617,7 @@ export default {
     },
     cgButtonActionHandler(buttonCode) {
       // 处理自定义button的 需要配置该button自定义sql
-      if (!this.selectedRowKeys || this.selectedRowKeys.length === 0) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length == 0) {
         this.$message.warning('请先选中一条记录')
         return false
       }
@@ -651,7 +647,7 @@ export default {
         return false
       } else {
         if (this.hasBpmStatus) {
-          if (record.bpm_status != null && record.bpm_status !== '' && record.bpm_status !== '1') {
+          if (record.bpm_status != null && record.bpm_status != '' && record.bpm_status != '1') {
             return false
           }
         }
@@ -660,7 +656,7 @@ export default {
     },
     showSubmitFlowButton(record) {
       if (this.hasBpmStatus) {
-        if (record.bpm_status == null || record.bpm_status === '' || record.bpm_status === '1') {
+        if (record.bpm_status == null || record.bpm_status == '' || record.bpm_status == '1') {
           return true
         }
       }
@@ -668,7 +664,7 @@ export default {
     },
     showViewFlowButton(record) {
       if (this.hasBpmStatus) {
-        if (record.bpm_status != null && record.bpm_status !== '' && record.bpm_status !== '1') {
+        if (record.bpm_status != null && record.bpm_status != '' && record.bpm_status != '1') {
           return true
         }
       }

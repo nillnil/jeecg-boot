@@ -4,7 +4,7 @@
       :grid="{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }"
       :data-source="dataSource"
     >
-      <a-list-item slot="renderItem" slot-scope="item">
+      <a-list-item slot="renderItem" slot-scope="item, index">
         <a-card :hoverable="true">
           <a-card-meta>
             <div slot="title" style="margin-bottom: 3px">{{ item.title }}</div>

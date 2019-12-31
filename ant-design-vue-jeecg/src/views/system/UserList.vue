@@ -111,7 +111,7 @@
         @change="handleTableChange"
       >
 
-        <template slot="avatarslot" slot-scope="text, record">
+        <template slot="avatarslot" slot-scope="text, record, index">
           <div class="anty-img-wrap">
             <a-avatar shape="square" :src="getAvatarView(record.avatar)" icon="user" />
           </div>
@@ -176,6 +176,7 @@
 <script>
 import UserModal from './modules/UserModal'
 import PasswordModal from './modules/PasswordModal'
+import { putAction } from '@/api/manage'
 import { frozenBatch } from '@/api/api'
 import { JeecgListMixin } from '@/mixins/JeecgListMixin'
 import SysUserAgentModal from './modules/SysUserAgentModal'
@@ -301,7 +302,7 @@ export default {
         const that = this
         let isAdmin = false
         that.selectionRows.forEach(function(row) {
-          if (row.username === 'admin') {
+          if (row.username == 'admin') {
             isAdmin = true
           }
         })
@@ -314,7 +315,7 @@ export default {
         })
         that.$confirm({
           title: '确认操作',
-          content: '是否' + (status === 1 ? '解冻' : '冻结') + '选中账号?',
+          content: '是否' + (status == 1 ? '解冻' : '冻结') + '选中账号?',
           onOk: function() {
             frozenBatch({ ids: ids, status: status }).then((res) => {
               if (res.success) {
@@ -330,18 +331,18 @@ export default {
       }
     },
     handleMenuClick(e) {
-      if (e.key === 1) {
+      if (e.key == 1) {
         this.batchDel()
-      } else if (e.key === 2) {
+      } else if (e.key == 2) {
         this.batchFrozen(2)
-      } else if (e.key === 3) {
+      } else if (e.key == 3) {
         this.batchFrozen(1)
       }
     },
     handleFrozen: function(id, status, username) {
       const that = this
       // TODO 后台校验管理员角色
-      if (username === 'admin') {
+      if (username == 'admin') {
         that.$message.warning('管理员账号不允许此操作！')
         return
       }

@@ -18,7 +18,7 @@ function nodeDisabledAuth(code, formData) {
     if (obj) {
       const bpmList = obj.permissionList
       for (var bpm of bpmList) {
-        if (bpm.type === '2') {
+        if (bpm.type == '2') {
           permissionList.push(bpm)
         }
       }
@@ -31,7 +31,7 @@ function nodeDisabledAuth(code, formData) {
   }
   const permissions = []
   for (var item of permissionList) {
-    if (item.type === '2') {
+    if (item.type == '2') {
       permissions.push(item.action)
     }
   }
@@ -58,24 +58,24 @@ function globalDisabledAuth(code) {
   // let authList = Vue.ls.get(USER_AUTH);
   const authList = JSON.parse(sessionStorage.getItem(USER_AUTH) || '[]')
   for (var auth of authList) {
-    if (auth.type === '2') {
+    if (auth.type == '2') {
       permissionList.push(auth)
     }
   }
   // console.log("页面禁用权限--Global--",sessionStorage.getItem(SYS_BUTTON_AUTH));
   const allAuthList = JSON.parse(sessionStorage.getItem(SYS_BUTTON_AUTH) || '[]')
   for (var gauth of allAuthList) {
-    if (gauth.type === '2') {
+    if (gauth.type == '2') {
       allPermissionList.push(gauth)
     }
   }
   // 设置全局配置是否有命中
   var gFlag = false// 禁用命中
   var invalidFlag = false// 无效命中
-  if (allPermissionList != null && allPermissionList !== '' && allPermissionList !== undefined && allPermissionList.length > 0) {
+  if (allPermissionList != null && allPermissionList != '' && allPermissionList != undefined && allPermissionList.length > 0) {
     for (var itemG of allPermissionList) {
       if (code === itemG.action) {
-        if (itemG.status === '0') {
+        if (itemG.status == '0') {
           invalidFlag = true
           break
         } else {
@@ -93,7 +93,7 @@ function globalDisabledAuth(code) {
   }
   const permissions = []
   for (var item of permissionList) {
-    if (item.type === '2') {
+    if (item.type == '2') {
       permissions.push(item.action)
     }
   }
@@ -139,7 +139,7 @@ function getNoAuthCols(pre) {
   const authList = JSON.parse(sessionStorage.getItem(USER_AUTH) || '[]')
   for (var auth of authList) {
     // 显示策略，有效状态
-    if (auth.type === '1' && startWith(auth.action, pre)) {
+    if (auth.type == '1' && startWith(auth.action, pre)) {
       permissionList.push(substrPre(auth.action, pre))
     }
   }
@@ -147,7 +147,7 @@ function getNoAuthCols(pre) {
   const allAuthList = JSON.parse(sessionStorage.getItem(SYS_BUTTON_AUTH) || '[]')
   for (var gauth of allAuthList) {
     // 显示策略，有效状态
-    if (gauth.type === '1' && gauth.status === '1' && startWith(gauth.action, pre)) {
+    if (gauth.type == '1' && gauth.status == '1' && startWith(gauth.action, pre)) {
       allPermissionList.push(substrPre(gauth.action, pre))
     }
   }
@@ -161,8 +161,8 @@ function getNoAuthCols(pre) {
 }
 
 function startWith(str, pre) {
-  if (pre == null || pre === '' || str == null || str === '' || str.length === 0 || pre.length > str.length) { return false }
-  if (str.substr(0, pre.length) === pre) { return true } else { return false }
+  if (pre == null || pre == '' || str == null || str == '' || str.length == 0 || pre.length > str.length) { return false }
+  if (str.substr(0, pre.length) == pre) { return true } else { return false }
 }
 
 function substrPre(str, pre) {

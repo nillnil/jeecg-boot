@@ -47,7 +47,7 @@ export function filterDictText(dictOptions, text) {
  * @return String
  */
 export function filterMultiDictText(dictOptions, text) {
-  if (!text || !dictOptions || dictOptions.length === 0) {
+  if (!text || !dictOptions || dictOptions.length == 0) {
     return ''
   }
   let re = ''
@@ -60,7 +60,7 @@ export function filterMultiDictText(dictOptions, text) {
       }
     }
   })
-  if (re === '') {
+  if (re == '') {
     return text
   }
   return re.substring(0, re.length - 1)

@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     loadViewInfo() {
-      if (!this.value || this.value === '0') {
+      if (!this.value || this.value == '0') {
         this.treeValue = null
       } else {
         const param = {
@@ -155,8 +155,8 @@ export default {
     addChildren(pid, children, treeArray) {
       if (treeArray && treeArray.length > 0) {
         for (const item of treeArray) {
-          if (item.key === pid) {
-            if (!children || children.length === 0) {
+          if (item.key == pid) {
+            if (!children || children.length == 0) {
               item.leaf = true
             } else {
               item.children = children
@@ -169,7 +169,7 @@ export default {
       }
     },
     handleTreeNodeValue(result) {
-      const storeField = this.field === 'code' ? 'code' : 'key'
+      const storeField = this.field == 'code' ? 'code' : 'key'
       for (const i of result) {
         i.value = i[storeField]
         i.isLeaf = !(!i.leaf)

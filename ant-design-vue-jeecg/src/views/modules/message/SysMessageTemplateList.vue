@@ -176,16 +176,16 @@ export default {
           align: 'center',
           dataIndex: 'templateType',
           customRender: function(text) {
-            if (text === '1') {
+            if (text == '1') {
               return '短信'
             }
-            if (text === '2') {
+            if (text == '2') {
               return '邮件'
             }
-            if (text === '3') {
+            if (text == '3') {
               return '微信'
             }
-            if (text === '4') {
+            if (text == '4') {
               return '系统'
             }
           }

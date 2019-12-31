@@ -83,20 +83,18 @@
       :show-alert-info="true"
       @onSelect="onChange"
     >
-      <template v-for="(col, index) in columns" :slot="col.dataIndex" slot-scope="text, record">
-        <template v-if="col.scopedSlots">
-          <div :key="index">
-            <a-input
-              v-if="record.editable"
-              style="margin: -5px 0"
-              :value="text"
-              @change="e => handleChange(e.target.value, record.key, col)"
-            />
-            <template v-else>{{ text }}</template>
-          </div>
-        </template>
+      <template v-for="(col, index) in columns" v-if="col.scopedSlots" :slot="col.dataIndex" slot-scope="text, record, index">
+        <div :key="index">
+          <a-input
+            v-if="record.editable"
+            style="margin: -5px 0"
+            :value="text"
+            @change="e => handleChange(e.target.value, record.key, col)"
+          />
+          <template v-else>{{ text }}</template>
+        </div>
       </template>
-      <template slot="action" slot-scope="text, record">
+      <template slot="action" slot-scope="text, record, index">
         <div class="editable-row-operations">
           <span v-if="record.editable">
             <a @click="() => save(record)">保存</a>

@@ -126,7 +126,7 @@ export default {
       this.stopTimer = false
       const myTimer = setInterval(() => {
         // 停止定时器
-        if (this.stopTimer === true) {
+        if (this.stopTimer == true) {
           clearInterval(myTimer)
           return
         }
@@ -209,10 +209,10 @@ export default {
     websocketOnmessage: function(e) {
       console.log('-----接收消息-------', e.data)
       var data = eval('(' + e.data + ')') // 解析对象
-      if (data.cmd === 'topic') {
+      if (data.cmd == 'topic') {
         // 系统通知
         this.loadData()
-      } else if (data.cmd === 'user') {
+      } else if (data.cmd == 'user') {
         // 用户消息
         this.loadData()
       }
@@ -277,6 +277,7 @@ export default {
           return this
         },
         start: function() {
+          var self = this
           this.timeoutObj = setTimeout(function() {
             // 这里发送一个心跳，后端收到后，返回一个心跳消息，
             // onmessage拿到返回的心跳就说明连接正常

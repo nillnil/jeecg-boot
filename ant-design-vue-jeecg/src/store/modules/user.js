@@ -65,7 +65,7 @@ const user = {
     Login({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
-          if (response.code === '200') {
+          if (response.code == '200') {
             const result = response.result
             const userInfo = result.userInfo
             Vue.ls.set(ACCESS_TOKEN, result.token, 7 * 24 * 60 * 60 * 1000)
@@ -88,7 +88,7 @@ const user = {
     PhoneLogin({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         phoneLogin(userInfo).then(response => {
-          if (response.code === '200') {
+          if (response.code == '200') {
             const result = response.result
             const userInfo = result.userInfo
             Vue.ls.set(ACCESS_TOKEN, result.token, 7 * 24 * 60 * 60 * 1000)

@@ -1,10 +1,10 @@
 <template>
   <div class="main user-layout-register">
     <h3><span>注册</span></h3>
-    <a-form id="formRegister" ref="formRegister" :auto-form-create="(form)=>{form = form}">
+    <a-form id="formRegister" ref="formRegister" :auto-form-create="(form)=>{this.form = form}">
       <a-form-item
         field-decorator-id="username"
-        :field-decorator-options="{rules: [{ required: true, message: '用户名不能为空'}, { validator: checkUsername }], validateTrigger: ['change', 'blur']}"
+        :field-decorator-options="{rules: [{ required: true, message: '用户名不能为空'}, { validator: this.checkUsername }], validateTrigger: ['change', 'blur']}"
       >
         <a-input size="large" type="text" autocomplete="false" placeholder="请输入用户名" />
       </a-form-item>
@@ -21,7 +21,7 @@
         </template>
         <a-form-item
           field-decorator-id="password"
-          :field-decorator-options="{rules: [{ required: false}, { validator: handlePasswordLevel }], validateTrigger: ['change', 'blur']}"
+          :field-decorator-options="{rules: [{ required: false}, { validator: this.handlePasswordLevel }], validateTrigger: ['change', 'blur']}"
         >
           <a-input size="large" type="password" autocomplete="false" placeholder="至少8位密码，区分大小写" @click="handlePasswordInputClick" />
         </a-form-item>
@@ -29,20 +29,20 @@
 
       <a-form-item
         field-decorator-id="password2"
-        :field-decorator-options="{rules: [{ required: true, message: '至少8位密码，区分大小写' }, { validator: handlePasswordCheck }], validateTrigger: ['change', 'blur']}"
+        :field-decorator-options="{rules: [{ required: true, message: '至少8位密码，区分大小写' }, { validator: this.handlePasswordCheck }], validateTrigger: ['change', 'blur']}"
       >
 
         <a-input size="large" type="password" autocomplete="false" placeholder="确认密码" />
       </a-form-item>
       <a-form-item
         field-decorator-id="email"
-        :field-decorator-options="{rules: [{ required: true, type: 'email', message: '请输入正确的邮箱地址' }, { validator: handleEmailCheck }], validateTrigger: ['change', 'blur']}"
+        :field-decorator-options="{rules: [{ required: true, type: 'email', message: '请输入正确的邮箱地址' }, { validator: this.handleEmailCheck }], validateTrigger: ['change', 'blur']}"
       >
         <a-input size="large" type="text" placeholder="邮箱" />
       </a-form-item>
       <a-form-item
         field-decorator-id="mobile"
-        :field-decorator-options="{rules: [{ required: true, pattern: /^1[3456789]\d{9}$/, message: '请输入正确的手机号' }, { validator: handlePhoneCheck } ], validateTrigger: ['change', 'blur'] }"
+        :field-decorator-options="{rules: [{ required: true, pattern: /^1[3456789]\d{9}$/, message: '请输入正确的手机号' }, { validator: this.handlePhoneCheck } ], validateTrigger: ['change', 'blur'] }"
       >
         <a-input size="large" placeholder="11 位手机号">
           <a-select slot="addonBefore" size="large" default-value="+86">
@@ -101,7 +101,8 @@
 
 <script>
 import { mixinDevice } from '@/utils/mixin.js'
-import { postAction } from '@/api/manage'
+import { getSmsCaptcha } from '@/api/login'
+import { getAction, postAction } from '@/api/manage'
 import { checkOnlyUser } from '@/api/api'
 
 const levelNames = {

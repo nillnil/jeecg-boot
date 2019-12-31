@@ -27,7 +27,7 @@ export default {
   },
   watch: {
     time: function(newVal, oldVal) {
-      if (newVal === 0) {
+      if (newVal == 0) {
         var params = {
           username: this.userList.username
         }

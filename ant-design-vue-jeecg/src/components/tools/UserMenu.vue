@@ -16,7 +16,7 @@
         @change="searchMethods"
         @blur="hiddenClick"
       >
-        <a-select-option v-for="(site, index) in search " :key="'use_menu_' + index" :value="site.id">{{ site.meta.title }}</a-select-option>
+        <a-select-option v-for="site in search " :value="site.id">{{ site.meta.title }}</a-select-option>
       </a-select>
     </span>
     <!-- update-end author:sunjianlei date:20191@20 for: 解决全局样式冲突的问题 -->
@@ -190,7 +190,7 @@ export default {
       return option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
     },
     searchMethods(value) {
-      const jump = this.search.filter(item => item.id === value)
+      const jump = this.search.filter(item => item.id == value)
       this.$router.push({ path: jump[0].path })
     }
     /* update_end author:zhaoxin date:20191129 for: 做头部菜单栏导航*/

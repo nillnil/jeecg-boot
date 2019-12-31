@@ -4,7 +4,7 @@
 
       <a-alert type="info" :show-icon="true">
         <div slot="message">
-          上次更新时间：{{ time }}
+          上次更新时间：{{ this.time }}
           <a-divider type="vertical" />
           <a @click="handleClickUpdate">立即更新</a>
         </div>

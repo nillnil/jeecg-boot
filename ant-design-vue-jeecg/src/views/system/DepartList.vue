@@ -18,15 +18,15 @@
           <a-alert type="info" :show-icon="true">
             <div slot="message">
               当前选择：
-              <a v-if="currSelected.title">{{ getCurrSelectedTitle() }}</a>
-              <a v-if="currSelected.title" style="margin-left: 10px" @click="onClearSelected">取消选择</a>
+              <a v-if="this.currSelected.title">{{ getCurrSelectedTitle() }}</a>
+              <a v-if="this.currSelected.title" style="margin-left: 10px" @click="onClearSelected">取消选择</a>
             </div>
           </a-alert>
           <a-input-search style="width:100%;margin-top: 10px" placeholder="请输入部门名称" @search="onSearch" />
           <!-- 树-->
           <a-col :md="10" :sm="24">
             <template>
-              <a-dropdown :trigger="[dropTrigger]" @visibleChange="dropStatus">
+              <a-dropdown :trigger="[this.dropTrigger]" @visibleChange="dropStatus">
                 <span style="user-select: none">
                   <a-tree
                     checkable
@@ -328,7 +328,7 @@ export default {
     },
     // 右键点击下拉框改变事件
     dropStatus(visible) {
-      if (visible === false) {
+      if (visible == false) {
         this.dropTrigger = ''
       }
     },
@@ -418,7 +418,7 @@ export default {
     },
     // 触发onSelect事件时,为部门树右侧的form表单赋值
     setValuesToForm(record) {
-      if (record.orgCategory === '1') {
+      if (record.orgCategory == '1') {
         this.orgCategoryDisabled = true
       } else {
         this.orgCategoryDisabled = false
@@ -480,10 +480,10 @@ export default {
       this.$refs.sysDirectiveModal.show()
     },
     handleAdd(num) {
-      if (num === 1) {
+      if (num == 1) {
         this.$refs.departModal.add()
         this.$refs.departModal.title = '新增'
-      } else if (num === 2) {
+      } else if (num == 2) {
         const key = this.currSelected.key
         if (!key) {
           this.$message.warning('请先选中一条记录!')
@@ -543,9 +543,9 @@ export default {
       this.checkedKeys = []
     },
     switchCheckStrictly(v) {
-      if (v === 1) {
+      if (v == 1) {
         this.checkStrictly = false
-      } else if (v === 2) {
+      } else if (v == 2) {
         this.checkStrictly = true
       }
     },

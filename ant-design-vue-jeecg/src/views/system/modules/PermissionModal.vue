@@ -293,8 +293,8 @@ export default {
       /* update_end author:wuxianquan date:20190908 for:编辑初始化数据*/
 
       // console.log('record.menuType', record.menuType);
-      this.show = record.menuType !== 2
-      this.menuLabel = record.menuType === 2 ? '按钮/权限' : '菜单名称'
+      this.show = record.menuType != 2
+      this.menuLabel = record.menuType == 2 ? '按钮/权限' : '菜单名称'
 
       if (this.model.parentId) {
         this.localMenuType = 1
@@ -329,7 +329,7 @@ export default {
           /* update_end author:wuxianquan date:20190908 for:获取值*/
 
           const formData = Object.assign(this.model, values)
-          if ((formData.menuType === 1 || formData.menuType === 2) && !formData.parentId) {
+          if ((formData.menuType == 1 || formData.menuType == 2) && !formData.parentId) {
             that.validateStatus = 'error'
             that.$message.error('请检查你填的类型以及信息是否正确！')
             return
@@ -371,7 +371,7 @@ export default {
     onChangeMenuType(e) {
       // console.log('localMenuType checked', e.target.value)
       this.localMenuType = e.target.value
-      if (e.target.value === 2) {
+      if (e.target.value == 2) {
         this.show = false
         this.menuLabel = '按钮/权限'
       } else {

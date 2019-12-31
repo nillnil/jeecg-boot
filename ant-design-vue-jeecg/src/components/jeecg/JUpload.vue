@@ -99,7 +99,7 @@ export default {
 
   methods: {
     initFileList(paths) {
-      if (!paths || paths.length === 0) {
+      if (!paths || paths.length == 0) {
         // return [];
         // update-begin- --- author:os_chengtgen ------ date:20190729 ---- for:issues:326,Jupload组件初始化bug
         this.fileList = []
@@ -125,7 +125,7 @@ export default {
     handlePathChange() {
       const uploadFiles = this.fileList
       let path = ''
-      if (!uploadFiles || uploadFiles.length === 0) {
+      if (!uploadFiles || uploadFiles.length == 0) {
         path = ''
       }
       const arr = []

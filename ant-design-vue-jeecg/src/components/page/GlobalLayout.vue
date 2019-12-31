@@ -9,7 +9,7 @@
         :closable="false"
         :visible="collapsed"
         width="200px"
-        @close="() => collapsed = false"
+        @close="() => this.collapsed = false"
       >
         <side-menu
           mode="inline"
@@ -40,7 +40,7 @@
         :closable="false"
         :visible="collapsed"
         width="200px"
-        @close="() => collapsed = false"
+        @close="() => this.collapsed = false"
       >
         <side-menu
           mode="inline"
@@ -161,7 +161,7 @@ export default {
     },
     findMenuBykey(menus, key) {
       for (const i of menus) {
-        if (i.path === key) {
+        if (i.path == key) {
           this.activeMenu = { ...i }
         } else if (i.children && i.children.length > 0) {
           this.findMenuBykey(i.children, key)

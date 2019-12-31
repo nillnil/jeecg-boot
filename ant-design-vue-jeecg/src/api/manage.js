@@ -92,7 +92,7 @@ export function getPermissions(parameter) {
 export function saveService(parameter) {
   return axios({
     url: api.service,
-    method: parameter.id === 0 ? 'post' : 'put',
+    method: parameter.id == 0 ? 'post' : 'put',
     data: parameter
   })
 }

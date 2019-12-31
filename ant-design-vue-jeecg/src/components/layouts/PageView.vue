@@ -52,7 +52,7 @@ export default {
         this.description = content.description
         this.linkList = content.linkList
         this.extraImage = content.extraImage
-        this.search = content.search === true
+        this.search = content.search == true
         this.tabs = content.tabs
       }
     }

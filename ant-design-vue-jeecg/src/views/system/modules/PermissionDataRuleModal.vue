@@ -160,14 +160,14 @@ export default {
       this.close()
     },
     initRuleCondition() {
-      if (this.model.ruleConditions && this.model.ruleConditions === 'USE_SQL_RULES') {
+      if (this.model.ruleConditions && this.model.ruleConditions == 'USE_SQL_RULES') {
         this.showRuleColumn = false
       } else {
         this.showRuleColumn = true
       }
     },
     handleChangeRuleCondition(val) {
-      if (val === 'USE_SQL_RULES') {
+      if (val == 'USE_SQL_RULES') {
         this.form.setFieldsValue({
           ruleColumn: ''
         })

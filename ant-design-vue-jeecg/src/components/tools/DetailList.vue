@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { Col } from 'ant-design-vue/es/grid/'
 
 const Item = {
   name: 'DetailListItem',
@@ -43,6 +44,9 @@ const responsive = {
 export default {
   name: 'DetailList',
   Item: Item,
+  components: {
+    Col
+  },
   props: {
     title: {
       type: String,

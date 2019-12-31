@@ -8,7 +8,7 @@
       </a-col>
       <a-col :md="24" :sm="24">
         <a-form-item label="Gender" :label-col="{ span: 7 }" :wrapper-col="{ span: 15 }">
-          <a-select v-decorator="['gender',{rules: [{ required: true, message: 'Please select your gender!' }]}]" placeholder="Select a option and change input text above" @change="handleSelectChange">
+          <a-select v-decorator="['gender',{rules: [{ required: true, message: 'Please select your gender!' }]}]" placeholder="Select a option and change input text above" @change="this.handleSelectChange">
             <a-select-option value="male">male</a-select-option>
             <a-select-option value="female">female</a-select-option>
           </a-select>

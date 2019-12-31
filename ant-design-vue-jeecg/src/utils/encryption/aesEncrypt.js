@@ -205,7 +205,7 @@ var CryptoJS = CryptoJS || (function(Math, undefined) {
     init: function(words, sigBytes) {
       words = this.words = words || []
 
-      if (sigBytes !== undefined) {
+      if (sigBytes != undefined) {
         this.sigBytes = sigBytes
       } else {
         this.sigBytes = words.length * 4
@@ -544,7 +544,7 @@ var CryptoJS = CryptoJS || (function(Math, undefined) {
      */
     _append: function(data) {
       // Convert string to WordArray, else assume WordArray already
-      if (typeof data === 'string') {
+      if (typeof data == 'string') {
         data = Utf8.parse(data)
       }
 
@@ -1575,7 +1575,7 @@ var CryptoJS = CryptoJS || (function(Math, undefined) {
 
 (function() {
   // Check if typed arrays are supported
-  if (typeof ArrayBuffer !== 'function') {
+  if (typeof ArrayBuffer != 'function') {
     return
   }
 
@@ -1901,7 +1901,7 @@ var CryptoJS = CryptoJS || (function(Math, undefined) {
       hasher = this._hasher = new hasher.init()
 
       // Convert string to WordArray, else assume WordArray already
-      if (typeof key === 'string') {
+      if (typeof key == 'string') {
         key = Utf8.parse(key)
       }
 
@@ -3431,7 +3431,7 @@ CryptoJS.lib.Cipher || (function(undefined) {
      */
     _createHelper: (function() {
       function selectCipherStrategy(key) {
-        if (typeof key === 'string') {
+        if (typeof key == 'string') {
           return PasswordBasedCipher
         } else {
           return SerializableCipher
@@ -3979,7 +3979,7 @@ CryptoJS.lib.Cipher || (function(undefined) {
      *     var ciphertextParams = CryptoJS.lib.SerializableCipher._parse(ciphertextStringOrParams, format);
      */
     _parse: function(ciphertext, format) {
-      if (typeof ciphertext === 'string') {
+      if (typeof ciphertext == 'string') {
         return format.parse(ciphertext, this)
       } else {
         return ciphertext

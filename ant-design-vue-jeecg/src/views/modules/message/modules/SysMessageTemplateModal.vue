@@ -135,7 +135,7 @@ export default {
     edit(record) {
       this.form.resetFields()
       this.model = Object.assign({}, record)
-      this.useEditor = (record.templateType === 2 || record.templateType === 4)
+      this.useEditor = (record.templateType == 2 || record.templateType == 4)
       if (this.useEditor) {
         this.templateEditorContent = record.templateContent
       } else {
@@ -212,7 +212,7 @@ export default {
     },
     handleChangeTemplateType(value) {
       // 如果是邮件类型那么则改变模板内容是富文本编辑器
-      this.useEditor = (value === 2 || value === 4)
+      this.useEditor = (value == 2 || value == 4)
     }
 
   }

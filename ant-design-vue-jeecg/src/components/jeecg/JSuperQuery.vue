@@ -270,7 +270,7 @@ export default {
 
   methods: {
     show() {
-      if (!this.queryParamsModel || this.queryParamsModel.length === 0) {
+      if (!this.queryParamsModel || this.queryParamsModel.length == 0) {
         this.queryParamsModel = [{}]
       }
       this.visible = true

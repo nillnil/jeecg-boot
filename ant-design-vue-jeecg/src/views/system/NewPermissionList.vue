@@ -96,11 +96,11 @@ const columns = [
     dataIndex: 'menuType',
     key: 'menuType',
     customRender: function(text) {
-      if (text === 0) {
+      if (text == 0) {
         return '菜单'
-      } else if (text === 1) {
+      } else if (text == 1) {
         return '菜单'
-      } else if (text === 2) {
+      } else if (text == 2) {
         return '按钮/权限'
       } else {
         return text

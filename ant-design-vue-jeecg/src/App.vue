@@ -22,8 +22,9 @@ export default {
       if (deviceType === 0) {
         that.$store.commit('TOGGLE_DEVICE', 'mobile')
         that.$store.dispatch('setSidebar', false)
-      } else if (deviceType === 1) {
-        // mobile
+      }
+      // mobile
+      else if (deviceType === 1) {
         that.$store.commit('TOGGLE_DEVICE', 'mobile')
         that.$store.dispatch('setSidebar', false)
       } else {

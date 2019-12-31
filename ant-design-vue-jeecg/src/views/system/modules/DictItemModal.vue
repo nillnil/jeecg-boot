@@ -98,7 +98,7 @@ export default {
     edit(record) {
       if (record.id) {
         this.dictId = record.dictId
-        this.visibleCheck = (record.status === 1)
+        this.visibleCheck = (record.status == 1)
       }
       this.form.resetFields()
       this.model = Object.assign({}, record)

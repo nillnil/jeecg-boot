@@ -74,7 +74,7 @@ export default {
       })
     },
     saveDataruleForRole() {
-      if (!this.dataruleChecked || this.dataruleChecked.length === 0) {
+      if (!this.dataruleChecked || this.dataruleChecked.length == 0) {
         this.$message.warning('请注意，现未勾选任何数据权限!')
       }
       const params = {

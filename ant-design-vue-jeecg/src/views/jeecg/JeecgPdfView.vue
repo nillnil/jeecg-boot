@@ -6,7 +6,7 @@
         :tree-data="treeData"
         :default-expand-all="defaultExpandAll"
         style="height: 500px;overflow-y: auto;"
-        @select="onSelect"
+        @select="this.onSelect"
       />
     </a-col>
     <!-- 中间面板 -->

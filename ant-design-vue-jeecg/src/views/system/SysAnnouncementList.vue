@@ -145,9 +145,9 @@ export default {
           align: 'center',
           dataIndex: 'msgCategory',
           customRender: function(text) {
-            if (text === '1') {
+            if (text == '1') {
               return '通知公告'
-            } else if (text === '2') {
+            } else if (text == '2') {
               return '系统消息'
             } else {
               return text
@@ -174,11 +174,11 @@ export default {
           align: 'center',
           dataIndex: 'priority',
           customRender: function(text) {
-            if (text === 'L') {
+            if (text == 'L') {
               return '低'
-            } else if (text === 'M') {
+            } else if (text == 'M') {
               return '中'
-            } else if (text === 'H') {
+            } else if (text == 'H') {
               return '高'
             } else {
               return text
@@ -190,9 +190,9 @@ export default {
           align: 'center',
           dataIndex: 'msgType',
           customRender: function(text) {
-            if (text === 'USER') {
+            if (text == 'USER') {
               return '指定用户'
-            } else if (text === 'ALL') {
+            } else if (text == 'ALL') {
               return '全体用户'
             } else {
               return text
@@ -204,11 +204,11 @@ export default {
           align: 'center',
           dataIndex: 'sendStatus',
           customRender: function(text) {
-            if (text === 0) {
+            if (text == 0) {
               return '未发布'
-            } else if (text === 1) {
+            } else if (text == 1) {
               return '已发布'
-            } else if (text === 2) {
+            } else if (text == 2) {
               return '已撤销'
             } else {
               return text

@@ -34,7 +34,7 @@
           <j-date v-decorator="['tickectDate',{rules:[{ required: true,message: '请输入航班号!'}]}]" :trigger-change="true" />
         </a-form-item>
         <a-form-item
-          v-model="orderId"
+          v-model="this.orderId"
           :label-col="labelCol"
           :wrapper-col="wrapperCol"
           label="订单号码"
@@ -118,10 +118,10 @@ export default {
       this.edit(record, 'd')
     },
     edit(record, v) {
-      if (v === 'e') {
+      if (v == 'e') {
         this.hiding = false
         this.disableSubmit = false
-      } else if (v === 'd') {
+      } else if (v == 'd') {
         this.hiding = false
         this.disableSubmit = true
       } else {

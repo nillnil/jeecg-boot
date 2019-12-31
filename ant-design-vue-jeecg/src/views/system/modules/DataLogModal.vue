@@ -124,8 +124,8 @@ export default {
           this.DataVersionList = res.result
         } else {
           this.DataVersionList = []
-          this.dataId1 = ''
-          this.dataId2 = ''
+          this.dataId1 = '',
+          this.dataId2 = '',
           console.log(res.message)
         }
       })

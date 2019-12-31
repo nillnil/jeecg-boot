@@ -143,9 +143,9 @@ export default {
       this.checkedKeys = []
     },
     switchCheckStrictly(v) {
-      if (v === 1) {
+      if (v == 1) {
         this.checkStrictly = false
-      } else if (v === 2) {
+      } else if (v == 2) {
         this.checkStrictly = true
       }
     },

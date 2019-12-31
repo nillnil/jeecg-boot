@@ -244,7 +244,7 @@ export default {
     },
 
     goPageOnline(rd) {
-      if (rd.isTree === 'Y') {
+      if (rd.isTree == 'Y') {
         this.$router.push({ path: '/online/cgformTreeList/' + rd.id })
       } else {
         this.$router.push({ path: '/online/cgformList/' + rd.id })
@@ -255,7 +255,7 @@ export default {
       this.onlineUrlVisible = false
     },
     handleOnlineUrlShow(record) {
-      if (record.isTree === 'Y') {
+      if (record.isTree == 'Y') {
         this.onlineUrl = `/online/cgformTreeList/${record.id}`
       } else {
         this.onlineUrl = `/online/cgformList/${record.id}`
@@ -282,28 +282,28 @@ export default {
       })
     },
     doEnhanceJs() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }
       this.$refs.ehjs.show(this.selectedRowKeys[0])
     },
     doEnhanceSql() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }
       this.$refs.ehsql.show(this.selectedRowKeys[0])
     },
     doEnhanceJava() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }
       this.$refs.ehjava.show(this.selectedRowKeys[0])
     },
     doCgformButton() {
-      if (!this.selectedRowKeys || this.selectedRowKeys.length !== 1) {
+      if (!this.selectedRowKeys || this.selectedRowKeys.length != 1) {
         this.$message.warning('请先选中一条记录')
         return
       }

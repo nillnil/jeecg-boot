@@ -131,7 +131,7 @@ export default {
     // 计算属性的 getter
     getType: function() {
       console.log('multi: ', this.multi)
-      return this.multi === true ? 'checkbox' : 'radio'
+      return this.multi == true ? 'checkbox' : 'radio'
     }
   },
   watch: {

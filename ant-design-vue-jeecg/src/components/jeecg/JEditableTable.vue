@@ -1316,7 +1316,7 @@ export default {
           } else if (column.type === FormTypes.sel_search) {
             value[column.key] = this.searchSelectValues[inputId]
           } else if (column.type === FormTypes.list_multi) {
-            if (!this.multiSelectValues[inputId] || this.multiSelectValues[inputId].length === 0) {
+            if (!this.multiSelectValues[inputId] || this.multiSelectValues[inputId].length == 0) {
               value[column.key] = ''
             } else {
               value[column.key] = this.multiSelectValues[inputId].join(',')
@@ -1899,7 +1899,7 @@ export default {
       if (column.responseName && file.response) {
         value['responseName'] = file.response[column.responseName]
       }
-      if (file.status === 'done') {
+      if (file.status == 'done') {
         value['path'] = file.response[column.responseName]
       }
       this.uploadValues = this.bindValuesChange(value, id, 'uploadValues')

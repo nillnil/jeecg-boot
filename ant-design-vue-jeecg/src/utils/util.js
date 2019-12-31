@@ -29,13 +29,13 @@ export function triggerWindowResizeEvent() {
  * @returns {*}
  */
 export function filterObj(obj) {
-  if (!(typeof obj === 'object')) {
+  if (!(typeof obj == 'object')) {
     return
   }
 
   for (var key in obj) {
     if (obj.hasOwnProperty(key) &&
-      (obj[key] == null || obj[key] === undefined || obj[key] === '')) {
+      (obj[key] == null || obj[key] == undefined || obj[key] === '')) {
       delete obj[key]
     }
   }
@@ -232,7 +232,7 @@ export function underLine2CamelCase(string) {
  * @returns {*}
  */
 export function showDealBtn(bpmStatus) {
-  if (bpmStatus !== '1' && bpmStatus !== '3' && bpmStatus !== '4') {
+  if (bpmStatus != '1' && bpmStatus != '3' && bpmStatus != '4') {
     return true
   }
   return false

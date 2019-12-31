@@ -9,7 +9,7 @@
         <a-tab-pane key="tab1" tab="账号密码登陆">
           <a-form-item>
             <a-input
-              v-decorator="['username',validatorRules.username,{ validator: handleUsernameOrEmail }]"
+              v-decorator="['username',validatorRules.username,{ validator: this.handleUsernameOrEmail }]"
               size="large"
               type="text"
               placeholder="请输入帐户名 / jeecg"
@@ -175,6 +175,7 @@
 
 <script>
 // import md5 from "md5"
+import api from '@/api'
 import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
@@ -183,7 +184,7 @@ import { ACCESS_TOKEN, ENCRYPTED_STRING } from '@/store/mutation-types'
 import JGraphicCode from '@/components/jeecg/JGraphicCode'
 import { putAction } from '@/api/manage'
 import { postAction } from '@/api/manage'
-import { getEncryptedString } from '@/utils/encryption/aesEncrypt'
+import { encryption, getEncryptedString } from '@/utils/encryption/aesEncrypt'
 import store from '@/store/'
 import { USER_INFO } from '@/store/mutation-types'
 
@@ -377,7 +378,7 @@ export default {
       }
     },
     validateInputCode(rule, value, callback) {
-      if (!value || this.verifiedCode === this.inputCodeContent) {
+      if (!value || this.verifiedCode == this.inputCodeContent) {
         callback()
       } else {
         callback('您输入的验证码不正确!')
@@ -388,7 +389,7 @@ export default {
     },
     inputCodeChange(e) {
       this.inputCodeContent = e.target.value
-      if (!e.target.value || e.target.value === 0) {
+      if (!e.target.value || e.target.value == 0) {
         this.inputCodeNull = true
       } else {
         this.inputCodeContent = this.inputCodeContent.toLowerCase()
@@ -399,14 +400,14 @@ export default {
       if (res.success) {
         const multi_depart = res.result.multi_depart
         // 0:无部门 1:一个部门 2:多个部门
-        if (multi_depart === 0) {
+        if (multi_depart == 0) {
           this.loginSuccess()
           this.$notification.warn({
             message: '提示',
             description: `您尚未归属部门,请确认账号信息`,
             duration: 3
           })
-        } else if (multi_depart === 2) {
+        } else if (multi_depart == 2) {
           this.departVisible = true
           this.currentUsername = this.form.getFieldValue('username')
           this.departList = res.result.departs

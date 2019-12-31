@@ -88,7 +88,7 @@
         <role-modal ref="modalForm" @ok="modalFormOk" />
       </a-card>
     </a-col>
-    <a-col v-if="rightcolval == 1" :md="rightColMd" :sm="24">
+    <a-col v-if="this.rightcolval == 1" :md="rightColMd" :sm="24">
       <a-card :bordered="false">
         <div style="text-align: right;">
           <a-icon type="close-circle" @click="hideUserList" />
@@ -375,7 +375,7 @@ export default {
       this.$refs.modalForm2.edit(record)
     },
     handleAdd2: function() {
-      if (this.currentRoleId === '') {
+      if (this.currentRoleId == '') {
         this.$message.error('请选择一个角色!')
       } else {
         this.$refs.modalForm2.roleDisabled = true
@@ -482,7 +482,7 @@ export default {
     },
 
     handleAddUserRole() {
-      if (this.currentRoleId === '') {
+      if (this.currentRoleId == '') {
         this.$message.error('请选择一个角色!')
       } else {
         this.$refs.selectUserModal.visible = true
@@ -516,7 +516,7 @@ export default {
       // TODO 筛选
       if (Object.keys(sorter).length > 0) {
         this.isorter2.column = sorter.field
-        this.isorter2.order = sorter.order === 'ascend' ? 'asc' : 'desc'
+        this.isorter2.order = sorter.order == 'ascend' ? 'asc' : 'desc'
       }
       this.ipagination2 = pagination
       this.loadData2()

@@ -98,8 +98,8 @@ export default {
       this.form.validateFields((err, values) => {
         console.log(values)
         if (!err) {
-          if (that.dropList === '0') {
-            if (values.captcha === undefined) {
+          if (that.dropList == '0') {
+            if (values.captcha == undefined) {
               this.cmsFailed('请输入短信验证码!')
             } else {
               var params = {}
@@ -163,7 +163,7 @@ export default {
     handleChangeSelect(value) {
       var that = this
       console.log(value)
-      if (value === 0) {
+      if (value == 0) {
         that.dropList = '0'
         that.show = true
       } else {

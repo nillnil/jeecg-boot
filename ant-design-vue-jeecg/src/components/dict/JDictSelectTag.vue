@@ -62,7 +62,7 @@ export default {
     },
     handleInput(e) {
       let val
-      if (this.tagType === 'radio') {
+      if (this.tagType == 'radio') {
         val = e.target.value
       } else {
         val = e

@@ -92,7 +92,7 @@ export default {
   methods: {
     initSelectValue() {
       if (this.async) {
-        if (!this.selectedAsyncValue || !this.selectedAsyncValue.key || this.selectedAsyncValue.key !== this.value) {
+        if (!this.selectedAsyncValue || !this.selectedAsyncValue.key || this.selectedAsyncValue.key != this.value) {
           console.log('这才请求后台')
           getAction(`/sys/dict/loadDictItem/${this.dict}`, { key: this.value }).then(res => {
             if (res.success) {
@@ -118,7 +118,7 @@ export default {
       getAction(`/sys/dict/loadDict/${this.dict}`, { keyword: value }).then(res => {
         this.loading = false
         if (res.success) {
-          if (currentLoad !== this.lastLoad) {
+          if (currentLoad != this.lastLoad) {
             return
           }
           this.options = res.result

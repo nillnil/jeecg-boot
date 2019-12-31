@@ -8,11 +8,11 @@
       <template v-if="languageChange">
         <a-select v-model="mode" size="small" class="code-mode-select" placeholder="请选择主题" @change="changeMode">
           <a-select-option
-            v-for="m in modes"
-            :key="m.value"
-            :value="m.value"
+            v-for="mode in modes"
+            :key="mode.value"
+            :value="mode.value"
           >
-            {{ m.label }}
+            {{ mode.label }}
           </a-select-option>
         </a-select>
       </template>

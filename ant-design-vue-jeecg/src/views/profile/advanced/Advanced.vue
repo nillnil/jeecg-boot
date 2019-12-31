@@ -85,7 +85,7 @@
       :bordered="false"
       :tab-list="tabList"
       :active-tab-key="activeTabKey"
-      @tabChange="(key) => {activeTabKey = key}"
+      @tabChange="(key) => {this.activeTabKey = key}"
     >
       <a-table
         v-if="activeTabKey === '1'"
@@ -331,9 +331,9 @@ export default {
     .detail-layout {
       margin-left: unset;
     }
-    // .text {
+    .text {
 
-    // }
+    }
     .status-list {
       text-align: left;
     }

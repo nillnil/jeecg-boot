@@ -89,11 +89,15 @@
 </template>
 
 <script>
+import PageLayout from '@/components/page/PageLayout'
+import RouteView from '@/components/layouts/RouteView'
 import { AppPage, ArticlePage, ProjectPage } from './page'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
+    RouteView,
+    PageLayout,
     AppPage,
     ArticlePage,
     ProjectPage
@@ -143,7 +147,7 @@ export default {
     },
 
     handleTagClose(removeTag) {
-      const tags = this.tags.filter(tag => tag !== removeTag)
+      const tags = this.tags.filter(tag => tag != removeTag)
       this.tags = tags
     },
 

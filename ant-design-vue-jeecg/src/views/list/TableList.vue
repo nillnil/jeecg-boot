@@ -62,7 +62,7 @@
     </div>
 
     <div class="table-operator">
-      <a-button type="primary" icon="plus" @click="() => handleModalVisible(true)">新建</a-button>
+      <a-button type="primary" icon="plus" @click="() => this.handleModalVisible(true)">新建</a-button>
       <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">
           <a-menu-item key="1"><a-icon type="delete" />删除</a-menu-item>
@@ -111,7 +111,7 @@
       :width="800"
       @ok="handleOk"
     >
-      <a-form :auto-form-create="(form)=>{form = form}">
+      <a-form :auto-form-create="(form)=>{this.form = form}">
 
         <a-form-item
           :label-col="labelCol"
@@ -177,7 +177,7 @@
 
     <a-modal title="新建规则" destroy-on-close :visible="visibleCreateModal" @ok="handleCreateModalOk" @cancel="handleCreateModalCancel">
       <!---->
-      <a-form style="margin-top: 8px" :auto-form-create="(form)=>{createForm = form}">
+      <a-form style="margin-top: 8px" :auto-form-create="(form)=>{this.createForm = form}">
         <a-form-item :label-col="{ span: 5 }" :wrapper-col="{ span: 15 }" label="描述" field-decorator-id="description" :field-decorator-options="{rules: [{ required: true, message: '请输入至少五个字符的规则描述！', min: 5 }]}">
           <a-input placeholder="请输入" />
         </a-form-item>
