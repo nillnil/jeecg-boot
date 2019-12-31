@@ -4,55 +4,59 @@
     <template v-if="layoutMode === 'sidemenu'">
       <a-drawer
         v-if="device === 'mobile'"
-        :wrapClassName="'drawer-sider ' + navTheme"
+        :wrap-class-name="'drawer-sider ' + navTheme"
         placement="left"
-        @close="() => this.collapsed = false"
         :closable="false"
         :visible="collapsed"
         width="200px"
+        @close="() => collapsed = false"
       >
         <side-menu
           mode="inline"
           :menus="menus"
-          @menuSelect="menuSelect"
           :theme="navTheme"
           :collapsed="false"
-          :collapsible="true"></side-menu>
+          :collapsible="true"
+          @menuSelect="menuSelect"
+        />
       </a-drawer>
 
       <side-menu
         v-else
         mode="inline"
         :menus="menus"
-        @menuSelect="myMenuSelect"
         :theme="navTheme"
         :collapsed="collapsed"
-        :collapsible="true"></side-menu>
+        :collapsible="true"
+        @menuSelect="myMenuSelect"
+      />
     </template>
     <!-- 下次优化这些代码 -->
     <template v-else>
       <a-drawer
         v-if="device === 'mobile'"
-        :wrapClassName="'drawer-sider ' + navTheme"
+        :wrap-class-name="'drawer-sider ' + navTheme"
         placement="left"
-        @close="() => this.collapsed = false"
         :closable="false"
         :visible="collapsed"
         width="200px"
+        @close="() => collapsed = false"
       >
         <side-menu
           mode="inline"
           :menus="menus"
-          @menuSelect="menuSelect"
           :theme="navTheme"
           :collapsed="false"
-          :collapsible="true"></side-menu>
+          :collapsible="true"
+          @menuSelect="menuSelect"
+        />
       </a-drawer>
     </template>
 
     <a-layout
       :class="[layoutMode, `content-width-${contentWidth}`]"
-      :style="{ paddingLeft: fixSiderbar && isDesktop() ? `${sidebarOpened ? 200 : 80}px` : '0' }">
+      :style="{ paddingLeft: fixSiderbar && isDesktop() ? `${sidebarOpened ? 200 : 80}px` : '0' }"
+    >
       <!-- layout header -->
       <global-header
         :mode="layoutMode"
@@ -65,12 +69,12 @@
 
       <!-- layout content -->
       <a-layout-content :style="{ height: '100%', paddingTop: fixedHeader ? '59px' : '0' }">
-        <slot></slot>
+        <slot />
       </a-layout-content>
 
       <!-- layout footer -->
       <a-layout-footer style="padding: 0px">
-        <global-footer/>
+        <global-footer />
       </a-layout-footer>
     </a-layout>
 
@@ -81,92 +85,92 @@
 </template>
 
 <script>
-  import SideMenu from '@/components/menu/SideMenu'
-  import GlobalHeader from '@/components/page/GlobalHeader'
-  import GlobalFooter from '@/components/page/GlobalFooter'
-  // update-start---- author:os_chengtgen -- date:20190830 --  for:issues/463 -编译主题颜色已生效，但还一直转圈，显示主题 正在编译 ------
-  // import SettingDrawer from '@/components/setting/SettingDrawer'
-  // 注释这个因为在个人设置模块已经加载了SettingDrawer页面
-  // update-end ---- author:os_chengtgen -- date:20190830 --  for:issues/463 -编译主题颜色已生效，但还一直转圈，显示主题 正在编译 ------
+import SideMenu from '@/components/menu/SideMenu'
+import GlobalHeader from '@/components/page/GlobalHeader'
+import GlobalFooter from '@/components/page/GlobalFooter'
+// update-start---- author:os_chengtgen -- date:20190830 --  for:issues/463 -编译主题颜色已生效，但还一直转圈，显示主题 正在编译 ------
+// import SettingDrawer from '@/components/setting/SettingDrawer'
+// 注释这个因为在个人设置模块已经加载了SettingDrawer页面
+// update-end ---- author:os_chengtgen -- date:20190830 --  for:issues/463 -编译主题颜色已生效，但还一直转圈，显示主题 正在编译 ------
 
-  import { triggerWindowResizeEvent } from '@/utils/util'
-  import { mapState, mapActions } from 'vuex'
-  import { mixin, mixinDevice } from '@/utils/mixin.js'
+import { triggerWindowResizeEvent } from '@/utils/util'
+import { mapState, mapActions } from 'vuex'
+import { mixin, mixinDevice } from '@/utils/mixin.js'
 
-  export default {
-    name: 'GlobalLayout',
-    components: {
-      SideMenu,
-      GlobalHeader,
-      GlobalFooter,
-      // update-start---- author:os_chengtgen -- date:20190830 --  for:issues/463 -编译主题颜色已生效，但还一直转圈，显示主题 正在编译 ------
-      // // SettingDrawer
-      // 注释这个因为在个人设置模块已经加载了SettingDrawer页面
-      // update-end ---- author:os_chengtgen -- date:20190830 --  for:issues/463 -编译主题颜色已生效，但还一直转圈，显示主题 正在编译 ------
+export default {
+  name: 'GlobalLayout',
+  components: {
+    SideMenu,
+    GlobalHeader,
+    GlobalFooter
+    // update-start---- author:os_chengtgen -- date:20190830 --  for:issues/463 -编译主题颜色已生效，但还一直转圈，显示主题 正在编译 ------
+    // // SettingDrawer
+    // 注释这个因为在个人设置模块已经加载了SettingDrawer页面
+    // update-end ---- author:os_chengtgen -- date:20190830 --  for:issues/463 -编译主题颜色已生效，但还一直转圈，显示主题 正在编译 ------
 
-    },
-    mixins: [mixin, mixinDevice],
-    data() {
-      return {
-        collapsed: false,
-        activeMenu:{},
-        menus: []
-      }
-    },
-    computed: {
-      ...mapState({
-        // 主路由
-        mainRouters: state => state.permission.addRouters,
-        // 后台菜单
-        permissionMenuList: state => state.user.permissionList
-      })
-    },
-    watch: {
-      sidebarOpened(val) {
-        this.collapsed = !val
-      }
-    },
-    created() {
-      //--update-begin----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
-      //this.menus = this.mainRouters.find((item) => item.path === '/').children;
-      this.menus = this.permissionMenuList
-      // 根据后台配置菜单，重新排序加载路由信息
-      console.log('----加载菜单逻辑----')
-      console.log(this.mainRouters)
-      console.log(this.permissionMenuList)
-      console.log('----navTheme------'+this.navTheme)
-      //--update-end----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
-    },
-    methods: {
-      ...mapActions(['setSidebar']),
-      toggle() {
-        this.collapsed = !this.collapsed
-        this.setSidebar(!this.collapsed)
-        triggerWindowResizeEvent()
-      },
-      menuSelect() {
-        if (!this.isDesktop()) {
-          this.collapsed = false
-        }
-      },
-      //update-begin-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
-      myMenuSelect(value){
-        //此处触发动态路由被点击事件
-        this.findMenuBykey(this.menus,value.key)
-        this.$emit("dynamicRouterShow",value.key,this.activeMenu.meta.title)
-      },
-      findMenuBykey(menus,key){
-        for(let i of menus){
-          if(i.path==key){
-            this.activeMenu = {...i}
-          }else if(i.children && i.children.length>0){
-            this.findMenuBykey(i.children,key)
-          }
-        }
-      }
-      //update-end-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
+  },
+  mixins: [mixin, mixinDevice],
+  data() {
+    return {
+      collapsed: false,
+      activeMenu: {},
+      menus: []
     }
+  },
+  computed: {
+    ...mapState({
+      // 主路由
+      mainRouters: state => state.permission.addRouters,
+      // 后台菜单
+      permissionMenuList: state => state.user.permissionList
+    })
+  },
+  watch: {
+    sidebarOpened(val) {
+      this.collapsed = !val
+    }
+  },
+  created() {
+    // --update-begin----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
+    // this.menus = this.mainRouters.find((item) => item.path === '/').children;
+    this.menus = this.permissionMenuList
+    // 根据后台配置菜单，重新排序加载路由信息
+    console.log('----加载菜单逻辑----')
+    console.log(this.mainRouters)
+    console.log(this.permissionMenuList)
+    console.log('----navTheme------' + this.navTheme)
+    // --update-end----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
+  },
+  methods: {
+    ...mapActions(['setSidebar']),
+    toggle() {
+      this.collapsed = !this.collapsed
+      this.setSidebar(!this.collapsed)
+      triggerWindowResizeEvent()
+    },
+    menuSelect() {
+      if (!this.isDesktop()) {
+        this.collapsed = false
+      }
+    },
+    // update-begin-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
+    myMenuSelect(value) {
+      // 此处触发动态路由被点击事件
+      this.findMenuBykey(this.menus, value.key)
+      this.$emit('dynamicRouterShow', value.key, this.activeMenu.meta.title)
+    },
+    findMenuBykey(menus, key) {
+      for (const i of menus) {
+        if (i.path === key) {
+          this.activeMenu = { ...i }
+        } else if (i.children && i.children.length > 0) {
+          this.findMenuBykey(i.children, key)
+        }
+      }
+    }
+    // update-end-author:taoyan date:20190430 for:动态路由title显示配置的菜单title而不是其对应路由的title
   }
+}
 
 </script>
 

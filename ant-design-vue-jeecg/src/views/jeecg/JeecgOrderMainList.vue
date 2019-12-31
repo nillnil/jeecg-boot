@@ -8,22 +8,22 @@
 
           <a-col :md="6" :sm="24">
             <a-form-item label="订单号">
-              <a-input placeholder="请输入订单号" v-model="queryParam.orderCode"></a-input>
+              <a-input v-model="queryParam.orderCode" placeholder="请输入订单号" />
             </a-form-item>
           </a-col>
           <a-col :md="6" :sm="24">
             <a-form-item label="订单类型">
-              <a-select placeholder="请输入订单类型"  v-model="queryParam.ctype">
+              <a-select v-model="queryParam.ctype" placeholder="请输入订单类型">
                 <a-select-option value="1">国内订单</a-select-option>
                 <a-select-option value="2">国际订单</a-select-option>
               </a-select>
             </a-form-item>
           </a-col>
 
-          <a-col :md="6" :sm="24" >
+          <a-col :md="6" :sm="24">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
-              <a-button type="primary" @click="searchQuery" icon="search">查询</a-button>
-              <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
+              <a-button type="primary" icon="search" @click="searchQuery">查询</a-button>
+              <a-button type="primary" icon="reload" style="margin-left: 8px" @click="searchReset">重置</a-button>
             </span>
           </a-col>
 
@@ -33,15 +33,15 @@
 
     <!-- 操作按钮区域 -->
     <div class="table-operator">
-      <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
+      <a-button type="primary" icon="plus" @click="handleAdd">新增</a-button>
       <a-button type="primary" icon="download" @click="handleExportXls('一对多示例')">导出</a-button>
-      <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
+      <a-upload name="file" :show-upload-list="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
       </a-upload>
 
       <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">
-          <a-menu-item key="1" @click="batchDel"><a-icon type="delete"/>删除</a-menu-item>
+          <a-menu-item key="1" @click="batchDel"><a-icon type="delete" />删除</a-menu-item>
         </a-menu>
         <a-button style="margin-left: 8px"> 批量操作 <a-icon type="down" /></a-button>
       </a-dropdown>
@@ -50,7 +50,7 @@
     <!-- table区域-begin -->
     <div>
       <div class="ant-alert ant-alert-info" style="margin-bottom: 16px;">
-        <i class="anticon anticon-info-circle ant-alert-icon"></i> 已选择 <a style="font-weight: 600">{{ selectedRowKeys.length }}</a>项
+        <i class="anticon anticon-info-circle ant-alert-icon" /> 已选择 <a style="font-weight: 600">{{ selectedRowKeys.length }}</a>项
         <a style="margin-left: 24px" @click="onClearSelected">清空</a>
       </div>
 
@@ -58,13 +58,14 @@
         ref="table"
         size="middle"
         bordered
-        rowKey="id"
+        row-key="id"
         :columns="columns"
-        :dataSource="dataSource"
+        :data-source="dataSource"
         :pagination="ipagination"
         :loading="loading"
-        :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
-        @change="handleTableChange">
+        :row-selection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
+        @change="handleTableChange"
+      >
 
         <span slot="action" slot-scope="text, record">
           <a @click="handleEdit(record)">编辑</a>
@@ -87,89 +88,89 @@
     <!-- table区域-end -->
 
     <!-- 表单区域 -->
-    <jeecgOrderMain-modal ref="modalForm" @ok="modalFormOk"></jeecgOrderMain-modal>
+    <jeecgOrderMain-modal ref="modalForm" @ok="modalFormOk" />
   </a-card>
 </template>
 
 <script>
-  import JeecgOrderMainModal from './modules/JeecgOrderMainModal'
-  import { JeecgListMixin } from '@/mixins/JeecgListMixin'
+import JeecgOrderMainModal from './modules/JeecgOrderMainModal'
+import { JeecgListMixin } from '@/mixins/JeecgListMixin'
 
-  export default {
-    name: "JeecgOrderMainList",
-    mixins: [JeecgListMixin],
-    components: {
-      JeecgOrderMainModal
-    },
-    data () {
-      return {
-        description: '订单管理页面',
-        importExcelUrl:`${window._CONFIG['domianURL']}/test/jeecgOrderMain/importExcel`,
-        // 表头
-        columns: [
-          {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
-            width:60,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
-          },
-          {
-            title: '订单号',
-            align:"center",
-            dataIndex: 'orderCode'
-          },
-          {
-            title: '订单类型',
-            align:"center",
-            dataIndex: 'ctype',
-            customRender: (text, record, index) => {
-              let re = "";
-              if (text === '1') {
-                re = "国内订单";
-              } else if (text === '2') {
-                re = "国际订单";
-              }
-              return re;
-            }
-          },
-          {
-            title: '订单日期',
-            align:"center",
-            dataIndex: 'orderDate'
-          },
-          {
-            title: '订单金额',
-            align:"center",
-            dataIndex: 'orderMoney'
-          },
-          {
-            title: '订单备注',
-            align:"center",
-            dataIndex: 'content'
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            scopedSlots: { customRender: 'action' },
+export default {
+  name: 'JeecgOrderMainList',
+  components: {
+    JeecgOrderMainModal
+  },
+  mixins: [JeecgListMixin],
+  data() {
+    return {
+      description: '订单管理页面',
+      importExcelUrl: `${window._CONFIG['domianURL']}/test/jeecgOrderMain/importExcel`,
+      // 表头
+      columns: [
+        {
+          title: '#',
+          dataIndex: '',
+          key: 'rowIndex',
+          width: 60,
+          align: 'center',
+          customRender: function(t, r, index) {
+            return parseInt(index) + 1
           }
-        ],
-
-		url: {
-          list: "/test/jeecgOrderMain/list",
-          delete: "/test/jeecgOrderMain/delete",
-          deleteBatch: "/test/jeecgOrderMain/deleteBatch",
-          exportXlsUrl: "/test/jeecgOrderMain/exportXls",
+        },
+        {
+          title: '订单号',
+          align: 'center',
+          dataIndex: 'orderCode'
+        },
+        {
+          title: '订单类型',
+          align: 'center',
+          dataIndex: 'ctype',
+          customRender: (text, record, index) => {
+            let re = ''
+            if (text === '1') {
+              re = '国内订单'
+            } else if (text === '2') {
+              re = '国际订单'
+            }
+            return re
+          }
+        },
+        {
+          title: '订单日期',
+          align: 'center',
+          dataIndex: 'orderDate'
+        },
+        {
+          title: '订单金额',
+          align: 'center',
+          dataIndex: 'orderMoney'
+        },
+        {
+          title: '订单备注',
+          align: 'center',
+          dataIndex: 'content'
+        },
+        {
+          title: '操作',
+          dataIndex: 'action',
+          align: 'center',
+          scopedSlots: { customRender: 'action' }
         }
+      ],
+
+      url: {
+        list: '/test/jeecgOrderMain/list',
+        delete: '/test/jeecgOrderMain/delete',
+        deleteBatch: '/test/jeecgOrderMain/deleteBatch',
+        exportXlsUrl: '/test/jeecgOrderMain/exportXls'
       }
-    },
-    methods: {
     }
+  },
+  methods: {
   }
+}
 </script>
 <style scoped>
   /** Button按钮间距 */

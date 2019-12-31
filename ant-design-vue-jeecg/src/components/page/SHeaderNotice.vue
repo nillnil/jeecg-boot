@@ -1,15 +1,13 @@
 <template>
-  <a-popover trigger="click" placement="bottomRight" :overlayStyle="{ width: '300px' }">
+  <a-popover trigger="click" placement="bottomRight" :overlay-style="{ width: '300px' }">
     <template slot="content">
       <a-spin :spinning="loadding">
         <a-tabs>
-          <a-tab-pane v-for="(tab, k) in tabs" :tab="tab.title" :key="k">
-
-          </a-tab-pane>
+          <a-tab-pane v-for="(tab, k) in tabs" :key="k" :tab="tab.title" />
         </a-tabs>
       </a-spin>
     </template>
-    <span @click="fetchNotice" class="header-notice">
+    <span class="header-notice" @click="fetchNotice">
       <a-badge count="12">
         <a-icon style="font-size: 16px; padding: 4px" type="bell" />
       </a-badge>
@@ -18,33 +16,33 @@
 </template>
 
 <script>
-  export default {
-    name: "HeaderNotice",
-    props: {
-      tabs: {
-        type: Array,
-        default: null,
-        required: true
+export default {
+  name: 'HeaderNotice',
+  props: {
+    tabs: {
+      type: Array,
+      default: null,
+      required: true
+    }
+  },
+  data() {
+    return {
+      loadding: false
+    }
+  },
+  methods: {
+    fetchNotice() {
+      if (this.loadding) {
+        this.loadding = false
+        return
       }
-    },
-    data () {
-      return {
-        loadding: false
-      }
-    },
-    methods: {
-      fetchNotice () {
-        if (this.loadding) {
-          this.loadding = false
-          return
-        }
-        this.loadding = true
-        setTimeout(() => {
-          this.loadding = false
-        }, 2000)
-      }
+      this.loadding = true
+      setTimeout(() => {
+        this.loadding = false
+      }, 2000)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

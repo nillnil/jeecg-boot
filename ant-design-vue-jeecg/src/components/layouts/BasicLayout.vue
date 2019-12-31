@@ -10,27 +10,27 @@
 </template>
 
 <script>
-  import GlobalLayout from '@/components/page/GlobalLayout'
+import GlobalLayout from '@/components/page/GlobalLayout'
 
-  export default {
-    name: "BasicLayout",
-    components: {
-      GlobalLayout
-    },
-    data () {
-      return {
+export default {
+  name: 'BasicLayout',
+  components: {
+    GlobalLayout
+  },
+  data() {
+    return {
 
-      }
-    },
-    computed: {
-      keepAlive () {
-        return this.$route.meta.keepAlive
-      }
-    },
-    methods: {
+    }
+  },
+  computed: {
+    keepAlive() {
+      return this.$route.meta.keepAlive
+    }
+  },
+  methods: {
 
-    },
   }
+}
 </script>
 
 <style lang="scss">

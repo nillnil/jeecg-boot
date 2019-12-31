@@ -1,12 +1,12 @@
 import enquireJs from 'enquire.js'
 
-const enquireScreen = function (call) {
+const enquireScreen = function(call) {
   // tablet
   const handler = {
-    match: function () {
+    match: function() {
       call && call(0)
     },
-    unmatch: function () {
+    unmatch: function() {
       call && call(-1)
     }
   }

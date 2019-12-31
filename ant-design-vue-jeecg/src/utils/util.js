@@ -9,7 +9,7 @@ export function timeFix() {
 
 export function welcome() {
   const arr = ['休息一会儿吧', '准备吃什么呢?', '要不要打一把 DOTA', '我猜你可能累了']
-  let index = Math.floor((Math.random()*arr.length))
+  const index = Math.floor((Math.random() * arr.length))
   return arr[index]
 }
 
@@ -17,7 +17,7 @@ export function welcome() {
  * 触发 window.resize
  */
 export function triggerWindowResizeEvent() {
-  let event = document.createEvent('HTMLEvents')
+  const event = document.createEvent('HTMLEvents')
   event.initEvent('resize', true, true)
   event.eventType = 'message'
   window.dispatchEvent(event)
@@ -29,17 +29,17 @@ export function triggerWindowResizeEvent() {
  * @returns {*}
  */
 export function filterObj(obj) {
-  if (!(typeof obj == 'object')) {
-    return;
+  if (!(typeof obj === 'object')) {
+    return
   }
 
-  for ( var key in obj) {
-    if (obj.hasOwnProperty(key)
-      && (obj[key] == null || obj[key] == undefined || obj[key] === '')) {
-      delete obj[key];
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key) &&
+      (obj[key] == null || obj[key] === undefined || obj[key] === '')) {
+      delete obj[key]
     }
   }
-  return obj;
+  return obj
 }
 
 /**
@@ -49,11 +49,11 @@ export function filterObj(obj) {
  * @returns {*}
  */
 export function formatDate(value, fmt) {
-  var regPos = /^\d+(\.\d+)?$/;
-  if(regPos.test(value)){
-    //如果是数字
-    let getDate = new Date(value);
-    let o = {
+  var regPos = /^\d+(\.\d+)?$/
+  if (regPos.test(value)) {
+    // 如果是数字
+    const getDate = new Date(value)
+    const o = {
       'M+': getDate.getMonth() + 1,
       'd+': getDate.getDate(),
       'h+': getDate.getHours(),
@@ -61,93 +61,93 @@ export function formatDate(value, fmt) {
       's+': getDate.getSeconds(),
       'q+': Math.floor((getDate.getMonth() + 3) / 3),
       'S': getDate.getMilliseconds()
-    };
+    }
     if (/(y+)/.test(fmt)) {
       fmt = fmt.replace(RegExp.$1, (getDate.getFullYear() + '').substr(4 - RegExp.$1.length))
     }
-    for (let k in o) {
+    for (const k in o) {
       if (new RegExp('(' + k + ')').test(fmt)) {
         fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
       }
     }
-    return fmt;
-  }else{
-    //TODO
-    value = value.trim();
-    return value.substr(0,fmt.length);
+    return fmt
+  } else {
+    // TODO
+    value = value.trim()
+    return value.substr(0, fmt.length)
   }
 }
 
 // 生成首页路由
 export function generateIndexRouter(data) {
-let indexRouter = [{
-          path: '/',
-          name: 'dashboard',
-          //component: () => import('@/components/layouts/BasicLayout'),
-          component: resolve => require(['@/components/layouts/TabLayout'], resolve),
-          meta: { title: '首页' },
-          redirect: '/dashboard/analysis',
-          children: [
-            ...generateChildRouters(data)
-          ]
-        },{
-          "path": "*", "redirect": "/404", "hidden": true
-        }]
-  return indexRouter;
+  const indexRouter = [{
+    path: '/',
+    name: 'dashboard',
+    // component: () => import('@/components/layouts/BasicLayout'),
+    component: resolve => require(['@/components/layouts/TabLayout'], resolve),
+    meta: { title: '首页' },
+    redirect: '/dashboard/analysis',
+    children: [
+      ...generateChildRouters(data)
+    ]
+  }, {
+    'path': '*', 'redirect': '/404', 'hidden': true
+  }]
+  return indexRouter
 }
 
 // 生成嵌套路由（子路由）
 
-function  generateChildRouters (data) {
-  const routers = [];
+function generateChildRouters(data) {
+  const routers = []
   for (var item of data) {
-    let component = "";
-    if(item.component.indexOf("layouts")>=0){
-       component = "components/"+item.component;
-    }else{
-       component = "views/"+item.component;
+    let component = ''
+    if (item.component.indexOf('layouts') >= 0) {
+      component = 'components/' + item.component
+    } else {
+      component = 'views/' + item.component
     }
 
     // eslint-disable-next-line
     let URL = (item.meta.url|| '').replace(/{{([^}}]+)?}}/g, (s1, s2) => eval(s2)) // URL支持{{ window.xxx }}占位符变量
     if (isURL(URL)) {
-      item.meta.url = URL;
+      item.meta.url = URL
     }
 
-    let menu =  {
+    const menu = {
       path: item.path,
       name: item.name,
-      redirect:item.redirect,
-      component: resolve => require(['@/' + component+'.vue'], resolve),
-      hidden:item.hidden,
-      //component:()=> import(`@/views/${item.component}.vue`),
+      redirect: item.redirect,
+      component: resolve => require(['@/' + component + '.vue'], resolve),
+      hidden: item.hidden,
+      // component:()=> import(`@/views/${item.component}.vue`),
       meta: {
-        title:item.meta.title ,
+        title: item.meta.title,
         icon: item.meta.icon,
-        url:item.meta.url ,
-        permissionList:item.meta.permissionList,
-        keepAlive:item.meta.keepAlive,
-        /*update_begin author:wuxianquan date:20190908 for:赋值 */
-        internalOrExternal:item.meta.internalOrExternal
-        /*update_end author:wuxianquan date:20190908 for:赋值 */
+        url: item.meta.url,
+        permissionList: item.meta.permissionList,
+        keepAlive: item.meta.keepAlive,
+        /* update_begin author:wuxianquan date:20190908 for:赋值 */
+        internalOrExternal: item.meta.internalOrExternal
+        /* update_end author:wuxianquan date:20190908 for:赋值 */
       }
     }
-    if(item.alwaysShow){
-      menu.alwaysShow = true;
-      menu.redirect = menu.path;
+    if (item.alwaysShow) {
+      menu.alwaysShow = true
+      menu.redirect = menu.path
     }
     if (item.children && item.children.length > 0) {
-      menu.children = [...generateChildRouters( item.children)];
+      menu.children = [...generateChildRouters(item.children)]
     }
-    //--update-begin----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
-    //判断是否生成路由
-    if(item.route && item.route === '0'){
-      //console.log(' 不生成路由 item.route：  '+item.route);
-      //console.log(' 不生成路由 item.path：  '+item.path);
-    }else{
-      routers.push(menu);
+    // --update-begin----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
+    // 判断是否生成路由
+    if (item.route && item.route === '0') {
+      // console.log(' 不生成路由 item.route：  '+item.route);
+      // console.log(' 不生成路由 item.path：  '+item.path);
+    } else {
+      routers.push(menu)
     }
-    //--update-end----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
+    // --update-end----author:scott---date:20190320------for:根据后台菜单配置，判断是否路由菜单字段，动态选择是否生成路由（为了支持参数URL菜单）------
   }
   return routers
 }
@@ -177,12 +177,12 @@ export function randomNumber() {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
   if (arguments.length === 1) {
-    let [length] = arguments
-  // 生成指定长度的随机数字，首位一定不是 0
-    let nums = [...Array(length).keys()].map((i) => (i > 0 ? random(0, 9) : random(1, 9)))
+    const [length] = arguments
+    // 生成指定长度的随机数字，首位一定不是 0
+    const nums = [...Array(length).keys()].map((i) => (i > 0 ? random(0, 9) : random(1, 9)))
     return parseInt(nums.join(''))
   } else if (arguments.length >= 2) {
-    let [min, max] = arguments
+    const [min, max] = arguments
     return random(min, max)
   } else {
     return Number.NaN
@@ -200,7 +200,7 @@ export function randomString(length, chats) {
   if (!chats) chats = '0123456789qwertyuioplkjhgfdsazxcvbnm'
   let str = ''
   for (let i = 0; i < length; i++) {
-    let num = randomNumber(0, chats.length - 1)
+    const num = randomNumber(0, chats.length - 1)
     str += chats[num]
   }
   return str
@@ -211,7 +211,7 @@ export function randomString(length, chats) {
  * @return string 生成的uuid
  */
 export function randomUUID() {
-  let chats = '0123456789abcdef'
+  const chats = '0123456789abcdef'
   return randomString(32, chats)
 }
 
@@ -220,10 +220,10 @@ export function randomUUID() {
  * @param string
  * @returns {*}
  */
-export function underLine2CamelCase(string){
-  return string.replace( /_([a-z])/g, function( all, letter ) {
-    return letter.toUpperCase();
-  });
+export function underLine2CamelCase(string) {
+  return string.replace(/_([a-z])/g, function(all, letter) {
+    return letter.toUpperCase()
+  })
 }
 
 /**
@@ -231,11 +231,11 @@ export function underLine2CamelCase(string){
  * @param bpmStatus
  * @returns {*}
  */
-export function showDealBtn(bpmStatus){
-  if(bpmStatus!="1"&&bpmStatus!="3"&&bpmStatus!="4"){
-    return true;
+export function showDealBtn(bpmStatus) {
+  if (bpmStatus !== '1' && bpmStatus !== '3' && bpmStatus !== '4') {
+    return true
   }
-  return false;
+  return false
 }
 
 /**
@@ -244,12 +244,12 @@ export function showDealBtn(bpmStatus){
  * @param id style标签的id，可以用来清除旧样式
  */
 export function cssExpand(css, id) {
-  let style = document.createElement('style')
-  style.type = "text/css"
+  const style = document.createElement('style')
+  style.type = 'text/css'
   style.innerHTML = `@charset "UTF-8"; ${css}`
   // 清除旧样式
   if (id) {
-    let $style = document.getElementById(id)
+    const $style = document.getElementById(id)
     if ($style != null) $style.outerHTML = ''
     style.id = id
   }
@@ -270,7 +270,7 @@ export function cssExpand(css, id) {
  * @param callback
  */
 export function validateDuplicateValue(tableName, fieldName, fieldVal, dataId, callback) {
-  let params = { tableName, fieldName, fieldVal, dataId }
+  const params = { tableName, fieldName, fieldVal, dataId }
   api.duplicateCheck(params).then(res => {
     res['success'] ? callback() : callback(res['message'])
   }).catch(err => {
@@ -286,7 +286,7 @@ export function validateDuplicateValue(tableName, fieldName, fieldVal, dataId, c
  * @returns {boolean} 成功 push 返回 true，不处理返回 false
  */
 export function pushIfNotExist(array, value, key) {
-  for (let item of array) {
+  for (const item of array) {
     if (key && (item[key] === value[key])) {
       return false
     } else if (item === value) {

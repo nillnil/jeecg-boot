@@ -1,37 +1,37 @@
 <template>
   <div class="chart-mini-progress">
     <div class="target" :style="{ left: target + '%'}">
-      <span :style="{ backgroundColor: color }"/>
-      <span :style="{ backgroundColor: color }"/>
+      <span :style="{ backgroundColor: color }" />
+      <span :style="{ backgroundColor: color }" />
     </div>
     <div class="progress-wrapper">
-      <div class="progress" :style="{ backgroundColor: color, width: percentage + '%', height: height+'px' }"></div>
+      <div class="progress" :style="{ backgroundColor: color, width: percentage + '%', height: height+'px' }" />
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'MiniProgress',
-    props: {
-      target: {
-        type: Number,
-        default: 0
-      },
-      height: {
-        type: Number,
-        default: 10
-      },
-      color: {
-        type: String,
-        default: '#13C2C2'
-      },
-      percentage: {
-        type: Number,
-        default: 0
-      }
+export default {
+  name: 'MiniProgress',
+  props: {
+    target: {
+      type: Number,
+      default: 0
+    },
+    height: {
+      type: Number,
+      default: 10
+    },
+    color: {
+      type: String,
+      default: '#13C2C2'
+    },
+    percentage: {
+      type: Number,
+      default: 0
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

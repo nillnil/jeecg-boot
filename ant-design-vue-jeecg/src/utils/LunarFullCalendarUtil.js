@@ -11,10 +11,10 @@ import { getRefPromise } from '@/utils/JEditableTableUtil'
 /* 日历的视图类型 */
 const calendarViewType = {
   month: 'month', // 月视图
-  basicWeek: 'basicWeek',  // 基础周视图
-  basicDay: 'basicDay',//  基础天视图
+  basicWeek: 'basicWeek', // 基础周视图
+  basicDay: 'basicDay', //  基础天视图
   agendaWeek: 'agendaWeek', // 议程周视图
-  agendaDay: 'agendaDay', // 议程天视图
+  agendaDay: 'agendaDay' // 议程天视图
 }
 
 /* 定义默认视图 */
@@ -36,7 +36,7 @@ const defaultSettings = {
     center: 'title',
     right: 'hide, custom, month,agendaWeek,agendaDay'
   },
-  //点击今天日列表图
+  // 点击今天日列表图
   eventLimitClick: 'day',
   // 隐藏超出的事件
   eventLimit: true,
@@ -55,7 +55,7 @@ const defaultSettings = {
   // 周视图和日视同的左侧时间显示
   slotLabelFormat: 'HH:mm',
   // 设置第二天阈值
-  nextDayThreshold: '00:00:00',
+  nextDayThreshold: '00:00:00'
 }
 
 /** 提供了一些增强方法 */
@@ -71,9 +71,9 @@ const CalendarMixins = {
       return {
         // 处理 view changed 事件
         viewRender: (view, element) => {
-          let { type } = view
+          const { type } = view
 
-          let lastViewType = this.calenderCurrentViewType
+          const lastViewType = this.calenderCurrentViewType
           this.calenderCurrentViewType = type
 
           if (typeof this.handleViewRender === 'function') {
@@ -83,8 +83,7 @@ const CalendarMixins = {
           if (lastViewType !== this.calenderCurrentViewType && typeof this.handleViewChanged === 'function') {
             this.handleViewChanged(type, view, element)
           }
-
-        },
+        }
       }
     },
 

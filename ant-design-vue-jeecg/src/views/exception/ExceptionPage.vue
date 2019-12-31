@@ -1,7 +1,7 @@
 <template>
   <div class="exception">
     <div class="img">
-      <img :src="config[type].img"/>
+      <img :src="config[type].img">
     </div>
     <div class="content">
       <h1>{{ config[type].title }}</h1>
@@ -14,27 +14,27 @@
 </template>
 
 <script>
-  import types from './type'
+import types from './type'
 
-  export default {
-    name: "Exception",
-    props: {
-      type: {
-        type: String,
-        default: '404'
-      }
-    },
-    data() {
-      return {
-        config: types
-      }
-    },
-    methods: {
-      handleToHome () {
-        this.$router.push({ name: 'dashboard' })
-      }
+export default {
+  name: 'Exception',
+  props: {
+    type: {
+      type: String,
+      default: '404'
+    }
+  },
+  data() {
+    return {
+      config: types
+    }
+  },
+  methods: {
+    handleToHome() {
+      this.$router.push({ name: 'dashboard' })
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

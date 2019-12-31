@@ -3,15 +3,14 @@
     <!-- 左侧文件树 -->
     <a-col :span="4" class="clName">
       <a-tree
-        :treeData="treeData"
-        :defaultExpandAll="defaultExpandAll"
-        @select="this.onSelect"
+        :tree-data="treeData"
+        :default-expand-all="defaultExpandAll"
         style="height: 500px;overflow-y: auto;"
-      >
-      </a-tree>
+        @select="onSelect"
+      />
     </a-col>
     <!-- 中间面板 -->
-    <a-col :span="2"/>
+    <a-col :span="2" />
     <!--右侧缩略图-->
     <a-col :span="18">
       <a-spin tip="Loading..." :spinning="spinning">
@@ -35,86 +34,86 @@
         </div>
       </a-spin>
     </a-col>
-    <pdf-preview-modal ref="pdfmodal"></pdf-preview-modal >
+    <pdf-preview-modal ref="pdfmodal" />
   </a-card>
 </template>
 
 <script>
 
-  import { getAction } from '@/api/manage'
-  import { ACCESS_TOKEN } from "@/store/mutation-types"
-  import Vue from 'vue'
-  import PdfPreviewModal from './modules/PdfPreviewModal'
-  const mockdata=[{
-    "id": "1",
-    "key": "1",
-    "title": "实例.pdf",
-    "fileCode": "shili",
-    "fileName": "实例",
-    "filePdfPath": "实例"
-  }]
+import { getAction } from '@/api/manage'
+import { ACCESS_TOKEN } from '@/store/mutation-types'
+import Vue from 'vue'
+import PdfPreviewModal from './modules/PdfPreviewModal'
+const mockdata = [{
+  'id': '1',
+  'key': '1',
+  'title': '实例.pdf',
+  'fileCode': 'shili',
+  'fileName': '实例',
+  'filePdfPath': '实例'
+}]
 
-  export default {
-    name: "JeecgPdfView",
-    components:{
-      PdfPreviewModal
-    },
-    data () {
-      return {
-        description: 'PDF预览页面',
-        // 文件类型集
-        treeData:[{
-          title: '所有PDF电子档',
-          key: '0-0',
-          children: mockdata }],
-        // 文件数据集
-        dataSource: mockdata,
-        allData:mockdata,
-        // 上传文件集
-        defaultExpandAll: true,
-        // 加载中
-        spinning:false,
-        url: {
-          pdfList: "/api/pdfList",
-        },
+export default {
+  name: 'JeecgPdfView',
+  components: {
+    PdfPreviewModal
+  },
+  data() {
+    return {
+      description: 'PDF预览页面',
+      // 文件类型集
+      treeData: [{
+        title: '所有PDF电子档',
+        key: '0-0',
+        children: mockdata }],
+      // 文件数据集
+      dataSource: mockdata,
+      allData: mockdata,
+      // 上传文件集
+      defaultExpandAll: true,
+      // 加载中
+      spinning: false,
+      url: {
+        pdfList: '/api/pdfList'
       }
-    },
-    created() {
-      //this.loadData();
-    },
-    methods: {
-      loadData (){
-        this.spinning = false;
-        getAction(this.url.pdfList).then((res)=>{
-          if(res.length>0){
-            this.allData = res;
-            this.dataSource = res;
-            this.treeData[0].children = res;
-          }
-          this.spinning = false;
-        })
-      },
-      pdfPreview:function(title){
-        const token = Vue.ls.get(ACCESS_TOKEN);
-        this.headers = {"X-Access-Token":token}
-        this.$refs.pdfmodal.previewFiles(title,token);
-      },
-      // 选择文件类型
-      onSelect (selectedKeys, info) {
-        this.dataSource = [];
-        if(selectedKeys[0] === undefined || selectedKeys[0] === '0-0'){
-          this.dataSource = this.allData;
-        }else{
-          this.dataSource.push(info.node._props.dataRef);
+    }
+  },
+  created() {
+    // this.loadData();
+  },
+  methods: {
+    loadData() {
+      this.spinning = false
+      getAction(this.url.pdfList).then((res) => {
+        if (res.length > 0) {
+          this.allData = res
+          this.dataSource = res
+          this.treeData[0].children = res
         }
-        console.log("SELECT-->dataSource",this.dataSource );
-      },
-      // model回调
-      modalFormOk () {
-        this.loadData();
-      },
+        this.spinning = false
+      })
     },
+    pdfPreview: function(title) {
+      const token = Vue.ls.get(ACCESS_TOKEN)
+      this.headers = { 'X-Access-Token': token }
+      this.$refs.pdfmodal.previewFiles(title, token)
+    },
+    // 选择文件类型
+    onSelect(selectedKeys, info) {
+      this.dataSource = []
+      if (selectedKeys[0] === undefined || selectedKeys[0] === '0-0') {
+        this.dataSource = this.allData
+      } else {
+        this.dataSource.push(info.node._props.dataRef)
+      }
+      console.log('SELECT-->dataSource', this.dataSource)
+    },
+    // model回调
+    modalFormOk() {
+      this.loadData()
+    }
   }
+}
 </script>
 
 <style scoped>

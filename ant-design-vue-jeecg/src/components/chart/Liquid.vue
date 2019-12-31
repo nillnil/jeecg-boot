@@ -1,13 +1,14 @@
 <template>
   <div>
     <v-chart
-      :forceFit="true"
+      :force-fit="true"
       :height="height"
       :width="width"
       :data="data"
       :scale="scale"
-      :padding="0">
-      <v-tooltip/>
+      :padding="0"
+    >
+      <v-tooltip />
       <v-interval
         :shape="['liquid-fill-gauge']"
         position="transfer*value"
@@ -25,7 +26,7 @@
             };
           },
         ]"
-      ></v-interval>
+      />
       <v-guide
         v-for="(row, index) in data"
         :key="index"
@@ -48,31 +49,31 @@
 
 <script>
 
-  const sourceDataConst = [
-    { transfer: '一月', value: 813 },
-    { transfer: '二月', value: 233 },
-    { transfer: '三月', value: 561 }
-  ]
+const sourceDataConst = [
+  { transfer: '一月', value: 813 },
+  { transfer: '二月', value: 233 },
+  { transfer: '三月', value: 561 }
+]
 
-  export default {
-    name: 'Liquid',
-    props: {
-      height: {
-        type: Number,
-        default: 0
-      },
-      width: {
-        type: Number,
-        default: 0
-      }
+export default {
+  name: 'Liquid',
+  props: {
+    height: {
+      type: Number,
+      default: 0
     },
-    data() {
-      return {
-        data: sourceDataConst,
-        scale: []
-      }
+    width: {
+      type: Number,
+      default: 0
+    }
+  },
+  data() {
+    return {
+      data: sourceDataConst,
+      scale: []
     }
   }
+}
 </script>
 
 <style scoped>

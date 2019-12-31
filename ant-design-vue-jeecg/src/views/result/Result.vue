@@ -1,42 +1,42 @@
 <template>
   <div class="result">
     <div>
-      <a-icon :class="[isSuccess ? 'success' : 'error' ,'icon']" :type="isSuccess ? 'check-circle' : 'close-circle'"/>
+      <a-icon :class="[isSuccess ? 'success' : 'error' ,'icon']" :type="isSuccess ? 'check-circle' : 'close-circle'" />
     </div>
-    <div class="title" v-if="title">{{ title }}</div>
-    <div class="description" v-if="description">{{ description }}</div>
-    <div class="content" v-if="content">
-      <slot></slot>
+    <div v-if="title" class="title">{{ title }}</div>
+    <div v-if="description" class="description">{{ description }}</div>
+    <div v-if="content" class="content">
+      <slot />
     </div>
     <div class="action">
-      <slot name="action"></slot>
+      <slot name="action" />
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "Result",
-    // 'isSuccess', 'title', 'description'
-    props: {
-      isSuccess: {
-        type: Boolean,
-        default: false
-      },
-      title: {
-        type: String,
-        default: ''
-      },
-      description: {
-        type: String,
-        default: ''
-      },
-      content: {
-        type: Boolean,
-        default: true
-      }
+export default {
+  name: 'Result',
+  // 'isSuccess', 'title', 'description'
+  props: {
+    isSuccess: {
+      type: Boolean,
+      default: false
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    content: {
+      type: Boolean,
+      default: true
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

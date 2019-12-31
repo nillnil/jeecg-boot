@@ -1,17 +1,17 @@
 <template>
   <div :class="disabled?'jeecg-form-container-disabled':''">
     <fieldset disabled>
-      <slot name="detail"></slot>
+      <slot name="detail" />
     </fieldset>
-    <slot name="edit"></slot>
+    <slot name="edit" />
     <fieldset disabled>
-      <slot></slot>
+      <slot />
     </fieldset>
   </div>
 </template>
 
 <script>
-  /**
+/**
    * 使用方法
    * 在form下直接写这个组件就行了，
    *<a-form layout="inline" :form="form" >
@@ -20,19 +20,19 @@
    *     </j-form-container>
    *</a-form>
    */
-  export default {
-    name: 'JFormContainer',
-    props:{
-      disabled:{
-        type:Boolean,
-        default:false,
-        required:false
-      }
-    },
-    mounted(){
-      console.log("我是表单禁用专用组件,但是我并不支持表单中iframe的内容禁用")
+export default {
+  name: 'JFormContainer',
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+      required: false
     }
+  },
+  mounted() {
+    console.log('我是表单禁用专用组件,但是我并不支持表单中iframe的内容禁用')
   }
+}
 </script>
 <style>
   .jeecg-form-container-disabled{

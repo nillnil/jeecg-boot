@@ -30,7 +30,7 @@ export const JEditableTableMixin = {
       if (!(this.refKeys instanceof Array)) {
         throw this.throwNotArray('refKeys')
       }
-      let values = this.refKeys.map(key => getRefPromise(this, key))
+      const values = this.refKeys.map(key => getRefPromise(this, key))
       return Promise.all(values)
     },
 
@@ -91,7 +91,7 @@ export const JEditableTableMixin = {
     },
     /** 发起请求，自动判断是执行新增还是修改操作 */
     request(formData) {
-      let url = this.url.add, method = 'post'
+      let url = this.url.add; let method = 'post'
       if (this.model.id) {
         url = this.url.edit
         method = 'put'
@@ -133,7 +133,7 @@ export const JEditableTableMixin = {
         if (typeof this.classifyIntoFormData !== 'function') {
           throw this.throwNotFunction('classifyIntoFormData')
         }
-        let formData = this.classifyIntoFormData(allValues)
+        const formData = this.classifyIntoFormData(allValues)
         // 发起请求
         return this.request(formData)
       }).catch(e => {

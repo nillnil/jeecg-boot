@@ -3,23 +3,23 @@
     <div class="links">
       <a href="http://www.jeecg.org" target="_blank">JEECG 首页</a>
       <a href="https://github.com/zhangdaiscott/jeecg-boot" target="_blank">
-        <a-icon type="github"/>
+        <a-icon type="github" />
       </a>
       <a href="https://ant.design/">Ant Design</a>
       <a href="https://vuecomponent.github.io/ant-design-vue/docs/vue/introduce-cn/">Vue Antd</a>
     </div>
     <div class="copyright">
       Copyright
-      <a-icon type="copyright"/>
+      <a-icon type="copyright" />
       2019 <span>JEECG开源社区 出品</span>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "LayoutFooter"
-  }
+export default {
+  name: 'LayoutFooter'
+}
 </script>
 
 <style lang="scss" scoped>

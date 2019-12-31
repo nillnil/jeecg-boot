@@ -10,7 +10,7 @@ import {
   DEFAULT_FIXED_HEADER_HIDDEN,
   DEFAULT_CONTENT_WIDTH_TYPE,
   DEFAULT_MULTI_PAGE
-} from "@/store/mutation-types"
+} from '@/store/mutation-types'
 
 const app = {
   state: {
@@ -27,7 +27,7 @@ const app = {
     autoHideHeader: false,
     color: null,
     weak: false,
-    multipage: true //默认多页签模式
+    multipage: true // 默认多页签模式
   },
   mutations: {
     SET_SIDEBAR_TYPE: (state, type) => {
@@ -75,7 +75,7 @@ const app = {
       Vue.ls.set(DEFAULT_COLOR_WEAK, flag)
       state.weak = flag
     },
-    SET_MULTI_PAGE (state, multipageFlag) {
+    SET_MULTI_PAGE(state, multipageFlag) {
       Vue.ls.set(DEFAULT_MULTI_PAGE, multipageFlag)
       state.multipage = multipageFlag
     }
@@ -103,7 +103,7 @@ const app = {
       commit('TOGGLE_FIXED_HEADER', fixedHeader)
     },
     ToggleFixSiderbar({ commit }, fixSiderbar) {
-      commit( 'TOGGLE_FIXED_SIDERBAR', fixSiderbar)
+      commit('TOGGLE_FIXED_SIDERBAR', fixSiderbar)
     },
     ToggleFixedHeaderHidden({ commit }, show) {
       commit('TOGGLE_FIXED_HEADER_HIDDEN', show)

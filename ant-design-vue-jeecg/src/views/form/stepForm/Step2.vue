@@ -8,37 +8,37 @@
       />
       <a-form-item
         label="付款账户"
-        :labelCol="{span: 5}"
-        :wrapperCol="{span: 19}"
+        :label-col="{span: 5}"
+        :wrapper-col="{span: 19}"
         class="stepFormText"
       >
         ant-design@alipay.com
       </a-form-item>
       <a-form-item
         label="收款账户"
-        :labelCol="{span: 5}"
-        :wrapperCol="{span: 19}"
+        :label-col="{span: 5}"
+        :wrapper-col="{span: 19}"
         class="stepFormText"
       >
         test@example.com
       </a-form-item>
       <a-form-item
         label="收款人姓名"
-        :labelCol="{span: 5}"
-        :wrapperCol="{span: 19}"
+        :label-col="{span: 5}"
+        :wrapper-col="{span: 19}"
         class="stepFormText"
       >
         Alex
       </a-form-item>
       <a-form-item
         label="转账金额"
-        :labelCol="{span: 5}"
-        :wrapperCol="{span: 19}"
+        :label-col="{span: 5}"
+        :wrapper-col="{span: 19}"
         class="stepFormText"
       >
         ￥ 5,000.00
       </a-form-item>
-      <a-form-item :wrapperCol="{span: 19, offset: 5}">
+      <a-form-item :wrapper-col="{span: 19, offset: 5}">
         <a-button :loading="loading" type="primary" @click="nextStep">提交</a-button>
         <a-button style="margin-left: 8px" @click="prevStep">上一步</a-button>
       </a-form-item>
@@ -47,26 +47,26 @@
 </template>
 
 <script>
-  export default {
-    name: "Step2",
-    data () {
-      return {
-        loading: false
-      }
+export default {
+  name: 'Step2',
+  data() {
+    return {
+      loading: false
+    }
+  },
+  methods: {
+    nextStep() {
+      const that = this
+      that.loading = true
+      setTimeout(function() {
+        that.$emit('nextStep')
+      }, 1500)
     },
-    methods: {
-      nextStep () {
-        let that = this
-        that.loading = true
-        setTimeout(function () {
-          that.$emit('nextStep')
-        }, 1500)
-      },
-      prevStep () {
-        this.$emit('prevStep')
-      }
+    prevStep() {
+      this.$emit('prevStep')
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

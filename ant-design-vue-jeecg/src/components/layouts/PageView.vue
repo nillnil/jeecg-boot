@@ -1,63 +1,63 @@
 <template>
   <page-layout :desc="description" :title="getTitle" :link-list="linkList" :search="search" :tabs="tabs">
     <div slot="extra" class="extra-img">
-      <img :src="extraImage"/>
+      <img :src="extraImage">
     </div>
     <!-- keep-alive  -->
-    <route-view ref="content"></route-view>
+    <route-view ref="content" />
   </page-layout>
 </template>
 
 <script>
-  import PageLayout from '../page/PageLayout'
-  import RouteView from './RouteView'
+import PageLayout from '../page/PageLayout'
+import RouteView from './RouteView'
 
-  export default {
-    name: "PageContent",
-    components: {
-      RouteView,
-      PageLayout
-    },
-    data () {
-      return {
-        title: '',
-        description: '',
-        linkList: [],
-        extraImage: '',
-        search: false,
-        tabs: {}
-      }
-    },
-    mounted () {
-      this.getPageHeaderInfo()
-    },
-    updated () {
-      this.getPageHeaderInfo()
-    },
-    computed: {
+export default {
+  name: 'PageContent',
+  components: {
+    RouteView,
+    PageLayout
+  },
+  data() {
+    return {
+      title: '',
+      description: '',
+      linkList: [],
+      extraImage: '',
+      search: false,
+      tabs: {}
+    }
+  },
+  computed: {
 
-      getTitle () {
-        return this.$route.meta.title
-      }
+    getTitle() {
+      return this.$route.meta.title
+    }
 
-    },
-    methods: {
-      getPageHeaderInfo () {
-        // eslint-disable-next-line
+  },
+  mounted() {
+    this.getPageHeaderInfo()
+  },
+  updated() {
+    this.getPageHeaderInfo()
+  },
+  methods: {
+    getPageHeaderInfo() {
+      // eslint-disable-next-line
         this.title = this.$route.meta.title
-        // 因为套用了一层 route-view 所以要取 ref 对象下的子节点的第一个对象
-        const content = this.$refs.content && this.$refs.content.$children[0]
+      // 因为套用了一层 route-view 所以要取 ref 对象下的子节点的第一个对象
+      const content = this.$refs.content && this.$refs.content.$children[0]
 
-        if (content) {
-          this.description = content.description
-          this.linkList = content.linkList
-          this.extraImage = content.extraImage
-          this.search = content.search == true ? true : false
-          this.tabs = content.tabs
-        }
+      if (content) {
+        this.description = content.description
+        this.linkList = content.linkList
+        this.extraImage = content.extraImage
+        this.search = content.search === true
+        this.tabs = content.tabs
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

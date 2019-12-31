@@ -2,86 +2,86 @@
   <div :style="!$route.meta.pageHeader ? 'margin: -10px -24px 0;' : null">
     <!-- pageHeader , route meta hideHeader:true on hide -->
     <page-header v-if="!$route.meta.pageHeader" :title="title" :logo="logo" :avatar="avatar">
-      <slot slot="action" name="action"></slot>
-      <slot slot="content" name="headerContent"></slot>
-      <div slot="content" v-if="!this.$slots.headerContent && desc">
+      <slot slot="action" name="action" />
+      <slot slot="content" name="headerContent" />
+      <div v-if="!this.$slots.headerContent && desc" slot="content">
         <p style="font-size: 14px;color: rgba(0,0,0,.65)">{{ desc }}</p>
         <div class="link">
           <template v-for="(link, index) in linkList">
             <a :key="index" :href="link.href">
-              <a-icon :type="link.icon"/>
+              <a-icon :type="link.icon" />
               <span>{{ link.title }}</span>
             </a>
           </template>
         </div>
       </div>
-      <slot slot="extra" name="extra"></slot>
+      <slot slot="extra" name="extra" />
       <div slot="pageMenu">
-        <div class="page-menu-search" v-if="search">
-          <a-input-search style="width: 80%; max-width: 522px;" placeholder="请输入..." size="large" enterButton="搜索" />
+        <div v-if="search" class="page-menu-search">
+          <a-input-search style="width: 80%; max-width: 522px;" placeholder="请输入..." size="large" enter-button="搜索" />
         </div>
-        <div class="page-menu-tabs" v-if="tabs && tabs.items">
+        <div v-if="tabs && tabs.items" class="page-menu-tabs">
           <!-- @change="callback" :activeKey="activeKey" -->
-          <a-tabs :tabBarStyle="{margin: 0}" @change="tabs.callback" :activeKey="tabs.active()">
-            <a-tab-pane v-for="item in tabs.items" :tab="item.title" :key="item.key"></a-tab-pane>
+          <a-tabs :tab-bar-style="{margin: 0}" :active-key="tabs.active()" @change="tabs.callback">
+            <a-tab-pane v-for="item in tabs.items" :key="item.key" :tab="item.title" />
           </a-tabs>
         </div>
       </div>
     </page-header>
     <div class="content">
       <div :class="['page-header-index-wide']">
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import PageHeader from './PageHeader'
+import PageHeader from './PageHeader'
 
-  export default {
-    name: "LayoutContent",
-    components: {
-      PageHeader
+export default {
+  name: 'LayoutContent',
+  components: {
+    PageHeader
+  },
+  // ['desc', 'logo', 'title', 'avatar', 'linkList', 'extraImage']
+  props: {
+    desc: {
+      type: String,
+      default: null
     },
-    // ['desc', 'logo', 'title', 'avatar', 'linkList', 'extraImage']
-    props: {
-      desc: {
-        type: String,
-        default: null
-      },
-      logo: {
-        type: String,
-        default: null
-      },
-      title: {
-        type: String,
-        default: null
-      },
-      avatar: {
-        type: String,
-        default: null
-      },
-      linkList: {
-        type: Array,
-        default: null
-      },
-      extraImage: {
-        type: String,
-        default: null
-      },
-      search: {
-        type: Boolean,
-        default: false
-      },
-      tabs: {
-        type: Object,
-        default: () => {}
-      }
+    logo: {
+      type: String,
+      default: null
     },
-    methods: {
+    title: {
+      type: String,
+      default: null
+    },
+    avatar: {
+      type: String,
+      default: null
+    },
+    linkList: {
+      type: Array,
+      default: null
+    },
+    extraImage: {
+      type: String,
+      default: null
+    },
+    search: {
+      type: Boolean,
+      default: false
+    },
+    tabs: {
+      type: Object,
+      default: () => {}
     }
+  },
+  methods: {
   }
+}
 </script>
 
 <style lang="scss" scoped>

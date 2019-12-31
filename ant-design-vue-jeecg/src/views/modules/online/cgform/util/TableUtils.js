@@ -4,27 +4,24 @@
  * */
 export function syncAllTable(vm, table1) {
   vm.$refs.editableTable.resetScrollTop()
-  let deleteIds = table1.$refs.editableTable.getDeleteIds()
+  const deleteIds = table1.$refs.editableTable.getDeleteIds()
   let table1Value
   table1.$refs.editableTable.getValuesPromise(false).then((values) => {
     table1Value = values
     return vm.$refs.editableTable.getValuesPromise(false)
   }).then((values) => {
-
     table1Value.forEach(value => {
       let flag = false
       values.forEach((thisValue) => {
         if (value.id === thisValue.id) {
-
           // 判断是否修改了值
-          let dbFieldName = thisValue['dbFieldName']
-          let dbFieldTxt = thisValue['dbFieldTxt']
+          const dbFieldName = thisValue['dbFieldName']
+          const dbFieldTxt = thisValue['dbFieldTxt']
 
           // return
 
-          if (value.dbFieldName !== dbFieldName
-            || value.dbFieldTxt !== dbFieldTxt) {
-
+          if (value.dbFieldName !== dbFieldName ||
+            value.dbFieldTxt !== dbFieldTxt) {
             // 修改了
             vm.$refs.editableTable.setValues([{
               rowKey: thisValue.id,
@@ -33,7 +30,6 @@ export function syncAllTable(vm, table1) {
                 dbFieldTxt: value.dbFieldTxt
               }
             }])
-
           }
           flag = true
         } else {
@@ -51,7 +47,7 @@ export function syncAllTable(vm, table1) {
       // return
       // 判断是否操作了该条数据，若没有操作则代表要执行新增操作
       if (!flag) {
-        let record = Object.assign({}, value)
+        const record = Object.assign({}, value)
         vm.columns.forEach(column => {
           if (
             column.dataIndex !== 'dbFieldName' &&
@@ -64,7 +60,6 @@ export function syncAllTable(vm, table1) {
       }
     })
   })
-
 }
 
 /**
@@ -72,13 +67,12 @@ export function syncAllTable(vm, table1) {
  * @author sunjianlei
  **/
 export function setDataSource(vm, queryData) {
-  let dataSource = []
+  const dataSource = []
   // 遍历查询出来的数据
   queryData.forEach(value => {
-
-    let data = { id: value['id'] }
+    const data = { id: value['id'] }
     vm.columns.forEach(column => {
-      let key = column.key
+      const key = column.key
       if (key) {
         data[key] = value[key]
 
@@ -86,7 +80,6 @@ export function setDataSource(vm, queryData) {
         // if (key === 'indexField') {
         //   data[key] = value[key].split(',')
         // }
-
       }
     })
     dataSource.push(data)
@@ -181,7 +174,7 @@ export function getMasterTableInitialData() {
       fieldLength: '120',
       queryMode: 'single',
       orderNum: 5
-    },{
+    }, {
       dbFieldName: 'sys_org_code',
       dbFieldTxt: '所属部门',
       dbLength: 64,
@@ -246,7 +239,7 @@ export function getTreeNeedFields() {
     fieldLength: '120',
     queryMode: 'single',
     orderNum: 7
-  },{
+  }, {
     dbFieldName: 'has_child',
     dbFieldTxt: '是否有子节点',
     dbLength: 3,
@@ -263,6 +256,6 @@ export function getTreeNeedFields() {
     queryMode: 'single',
     orderNum: 8,
     // table3
-    dictField:"yn"
+    dictField: 'yn'
   }]
 }

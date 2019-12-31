@@ -6,20 +6,20 @@
         <a-card :bordered="false">
           <div class="account-center-avatarHolder">
             <div class="avatar">
-              <img :src="getAvatar()"/>
+              <img :src="getAvatar()">
             </div>
             <div class="username">{{ nickname() }}</div>
             <div class="bio">海纳百川，有容乃大</div>
           </div>
           <div class="account-center-detail">
             <p>
-              <i class="title"></i>交互专家
+              <i class="title" />交互专家
             </p>
             <p>
-              <i class="group"></i>蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED
+              <i class="group" />蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED
             </p>
             <p>
-              <i class="address"></i><span>浙江省</span><span>杭州市</span>
+              <i class="address" /><span>浙江省</span><span>杭州市</span>
             </p>
           </div>
           <a-divider />
@@ -29,11 +29,11 @@
             <div>
               <template v-for="(tag, index) in tags">
                 <a-tooltip v-if="tag.length > 20" :key="tag" :title="tag">
-                  <a-tag :key="tag" :closable="index !== 0" :afterClose="() => handleTagClose(tag)">
+                  <a-tag :key="tag" :closable="index !== 0" :after-close="() => handleTagClose(tag)">
                     {{ `${tag.slice(0, 20)}...` }}
                   </a-tag>
                 </a-tooltip>
-                <a-tag v-else :key="tag" :closable="index !== 0" :afterClose="() => handleTagClose(tag)">{{ tag }}</a-tag>
+                <a-tag v-else :key="tag" :closable="index !== 0" :after-close="() => handleTagClose(tag)">{{ tag }}</a-tag>
               </template>
               <a-input
                 v-if="tagInputVisible"
@@ -46,7 +46,7 @@
                 @blur="handleTagInputConfirm"
                 @keyup.enter="handleTagInputConfirm"
               />
-              <a-tag v-else @click="showTagInput" style="background: #fff; borderStyle: dashed;">
+              <a-tag v-else style="background: #fff; borderStyle: dashed;" @click="showTagInput">
                 <a-icon type="plus" /> New Tag
               </a-tag>
             </div>
@@ -58,7 +58,7 @@
             <a-spin :spinning="teamSpinning">
               <div class="members">
                 <a-row>
-                  <a-col :span="12" v-for="(item, index) in teams" :key="index">
+                  <a-col v-for="(item, index) in teams" :key="index" :span="12">
                     <a>
                       <a-avatar size="small" :src="item.avatar" />
                       <span class="member">{{ item.name }}</span>
@@ -74,110 +74,105 @@
         <a-card
           style="width:100%"
           :bordered="false"
-          :tabList="tabListNoTitle"
-          :activeTabKey="noTitleKey"
+          :tab-list="tabListNoTitle"
+          :active-tab-key="noTitleKey"
           @tabChange="key => handleTabChange(key, 'noTitleKey')"
         >
-          <article-page v-if="noTitleKey === 'article'"></article-page>
-          <app-page v-else-if="noTitleKey === 'app'"></app-page>
-          <project-page v-else-if="noTitleKey === 'project'"></project-page>
+          <article-page v-if="noTitleKey === 'article'" />
+          <app-page v-else-if="noTitleKey === 'app'" />
+          <project-page v-else-if="noTitleKey === 'project'" />
         </a-card>
       </a-col>
     </a-row>
-
 
   </div>
 </template>
 
 <script>
-  import PageLayout from '@/components/page/PageLayout'
-  import RouteView from "@/components/layouts/RouteView"
-  import { AppPage, ArticlePage, ProjectPage } from './page'
-  import { mapGetters } from 'vuex'
+import { AppPage, ArticlePage, ProjectPage } from './page'
+import { mapGetters } from 'vuex'
 
-  export default {
-    components: {
-      RouteView,
-      PageLayout,
-      AppPage,
-      ArticlePage,
-      ProjectPage
+export default {
+  components: {
+    AppPage,
+    ArticlePage,
+    ProjectPage
+  },
+  data() {
+    return {
+      tags: ['很有想法的', '专注设计', '辣~', '大长腿', '川妹子', '海纳百川'],
+
+      tagInputVisible: false,
+      tagInputValue: '',
+
+      teams: [],
+      teamSpinning: true,
+
+      tabListNoTitle: [{
+        key: 'article',
+        tab: '文章(8)'
+      }, {
+        key: 'app',
+        tab: '应用(8)'
+      }, {
+        key: 'project',
+        tab: '项目(8)'
+      }
+      ],
+      noTitleKey: 'app'
+    }
+  },
+  mounted() {
+    this.getTeams()
+  },
+  methods: {
+    ...mapGetters(['nickname', 'avatar']),
+    getAvatar() {
+      return window._CONFIG['imgDomainURL'] + '/' + this.avatar()
     },
-    data() {
-      return {
-        tags: ['很有想法的', '专注设计', '辣~', '大长腿', '川妹子', '海纳百川'],
+    getTeams() {
+      this.$http.get('/api/workplace/teams')
+        .then(res => {
+          this.teams = res.result
+          this.teamSpinning = false
+        })
+    },
 
+    handleTabChange(key, type) {
+      this[type] = key
+    },
+
+    handleTagClose(removeTag) {
+      const tags = this.tags.filter(tag => tag !== removeTag)
+      this.tags = tags
+    },
+
+    showTagInput() {
+      this.tagInputVisible = true
+      this.$nextTick(() => {
+        this.$refs.tagInput.focus()
+      })
+    },
+
+    handleInputChange(e) {
+      this.tagInputValue = e.target.value
+    },
+
+    handleTagInputConfirm() {
+      const inputValue = this.tagInputValue
+      let tags = this.tags
+      if (inputValue && tags.indexOf(inputValue) === -1) {
+        tags = [...tags, inputValue]
+      }
+
+      Object.assign(this, {
+        tags,
         tagInputVisible: false,
-        tagInputValue: '',
-
-        teams: [],
-        teamSpinning: true,
-
-        tabListNoTitle: [{
-            key: 'article',
-            tab: '文章(8)',
-          }, {
-            key: 'app',
-            tab: '应用(8)',
-          }, {
-            key: 'project',
-            tab: '项目(8)',
-          }
-        ],
-        noTitleKey: 'app',
-      }
-    },
-    mounted () {
-      this.getTeams()
-    },
-    methods: {
-      ...mapGetters(["nickname", "avatar"]),
-      getAvatar(){
-          return window._CONFIG['imgDomainURL']+"/"+this.avatar();
-      },
-      getTeams() {
-        this.$http.get('/api/workplace/teams')
-          .then(res => {
-            this.teams = res.result
-            this.teamSpinning = false
-          })
-      },
-
-      handleTabChange (key, type) {
-        this[type] = key
-      },
-
-      handleTagClose (removeTag) {
-        const tags = this.tags.filter(tag => tag != removeTag)
-        this.tags = tags
-      },
-
-      showTagInput () {
-        this.tagInputVisible = true
-        this.$nextTick(() => {
-          this.$refs.tagInput.focus()
-        })
-      },
-
-      handleInputChange (e) {
-        this.tagInputValue = e.target.value
-      },
-
-      handleTagInputConfirm () {
-        const inputValue = this.tagInputValue
-        let tags = this.tags
-        if (inputValue && tags.indexOf(inputValue) === -1) {
-          tags = [...tags, inputValue]
-        }
-
-        Object.assign(this, {
-          tags,
-          tagInputVisible: false,
-          tagInputValue: ''
-        })
-      }
-    },
+        tagInputValue: ''
+      })
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

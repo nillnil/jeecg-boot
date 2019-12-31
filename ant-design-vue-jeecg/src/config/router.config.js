@@ -1,4 +1,4 @@
-import { UserLayout, TabLayout, RouteView, BlankLayout, PageView } from '@/components/layouts'
+import { UserLayout, TabLayout, BlankLayout } from '@/components/layouts'
 
 /**
  * 走菜单，走权限控制
@@ -319,7 +319,7 @@ export const constantRouterMap = [
         path: 'alteration',
         name: 'alteration',
         component: () => import(/* webpackChunkName: "user" */ '@/views/user/Alteration')
-      },
+      }
     ]
   },
 
@@ -362,6 +362,6 @@ export const constantRouterMap = [
   {
     path: '/404',
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
-  },
+  }
 
 ]

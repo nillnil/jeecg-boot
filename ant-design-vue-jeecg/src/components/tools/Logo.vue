@@ -13,24 +13,24 @@
 </template>
 
 <script>
-  import { mixin } from '@/utils/mixin.js'
+import { mixin } from '@/utils/mixin.js'
 
-  export default {
-    name: 'Logo',
-    mixins: [mixin],
-    props: {
-      title: {
-        type: String,
-        default: 'Jeecg-Boot Pro',
-        required: false
-      },
-      showTitle: {
-        type: Boolean,
-        default: true,
-        required: false
-      }
+export default {
+  name: 'Logo',
+  mixins: [mixin],
+  props: {
+    title: {
+      type: String,
+      default: 'Jeecg-Boot Pro',
+      required: false
+    },
+    showTitle: {
+      type: Boolean,
+      default: true,
+      required: false
     }
   }
+}
 </script>
 <style lang="less" scoped>
   /*缩小首页布 局顶部的高度*/

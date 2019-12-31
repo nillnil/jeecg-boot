@@ -1,11 +1,11 @@
-import Vue from "vue";
-import * as dayjs from "dayjs";
+import Vue from 'vue'
+import * as dayjs from 'dayjs'
 
-Vue.filter('NumberFormat', function (value) {
+Vue.filter('NumberFormat', function(value) {
   if (!value) {
     return '0'
   }
-  let intPartFormat = value.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') //将整数部分逢三一断
+  const intPartFormat = value.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') // 将整数部分逢三一断
   return intPartFormat
 })
 
@@ -18,11 +18,11 @@ Vue.filter('moment', function(dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
 })
 
 /** 字符串超长截取省略号显示 */
-Vue.filter('ellipsis', function (value, vlength = 25) {
-  if(!value){
-    return "";
+Vue.filter('ellipsis', function(value, vlength = 25) {
+  if (!value) {
+    return ''
   }
-  console.log('vlength: '+ vlength);
+  console.log('vlength: ' + vlength)
   if (value.length > vlength) {
     return value.slice(0, vlength) + '...'
   }

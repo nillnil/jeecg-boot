@@ -11,27 +11,27 @@
       </a-breadcrumb>
 
       <div class="detail">
-        <div class="main" v-if="!$route.meta.hiddenHeaderContent">
+        <div v-if="!$route.meta.hiddenHeaderContent" class="main">
           <div class="row">
-            <img v-if="logo" :src="logo" class="logo"/>
+            <img v-if="logo" :src="logo" class="logo">
             <h1 v-if="title" class="title">{{ title }}</h1>
             <div class="action">
-              <slot name="action"></slot>
+              <slot name="action" />
             </div>
           </div>
           <div class="row">
             <div v-if="avatar" class="avatar">
-              <a-avatar :src="avatar"/>
+              <a-avatar :src="avatar" />
             </div>
             <div v-if="this.$slots.content" class="headerContent">
-              <slot name="content"></slot>
+              <slot name="content" />
             </div>
             <div v-if="this.$slots.extra" class="extra">
-              <slot name="extra"></slot>
+              <slot name="extra" />
             </div>
           </div>
           <div>
-            <slot name="pageMenu"></slot>
+            <slot name="pageMenu" />
           </div>
         </div>
 
@@ -41,63 +41,62 @@
 </template>
 
 <script>
-  import Breadcrumb from '@/components/tools/Breadcrumb'
+import Breadcrumb from '@/components/tools/Breadcrumb'
 
-  export default {
-    name: "PageHeader",
-    components: {
-      "s-breadcrumb": Breadcrumb
+export default {
+  name: 'PageHeader',
+  components: {
+    's-breadcrumb': Breadcrumb
+  },
+  props: {
+    title: {
+      type: String,
+      default: '',
+      required: false
     },
-    props: {
-      title: {
-        type: String,
-        default: '',
-        required: false
-      },
-      breadcrumb: {
-        type: Array,
-        default: null,
-        required: false
-      },
-      logo: {
-        type: String,
-        default: '',
-        required: false
-      },
-      avatar: {
-        type: String,
-        default: '',
-        required: false
-      }
+    breadcrumb: {
+      type: Array,
+      default: null,
+      required: false
     },
-    data() {
-      return {
-        name: '',
-        breadList: [],
-      }
+    logo: {
+      type: String,
+      default: '',
+      required: false
     },
-    created() {
+    avatar: {
+      type: String,
+      default: '',
+      required: false
+    }
+  },
+  data() {
+    return {
+      name: '',
+      breadList: []
+    }
+  },
+  watch: {
+    $route() {
       this.getBreadcrumb()
-    },
-    methods: {
-      getBreadcrumb() {
+    }
+  },
+  created() {
+    this.getBreadcrumb()
+  },
+  methods: {
+    getBreadcrumb() {
+      this.breadList = []
+      // this.breadList.push({name: 'index', path: '/dashboard/', meta: {title: '首页'}})
 
-        this.breadList = []
-        // this.breadList.push({name: 'index', path: '/dashboard/', meta: {title: '首页'}})
-
-        this.name = this.$route.name
-        this.$route.matched.forEach((item) => {
-          // item.name !== 'index' && this.breadList.push(item)
-          this.breadList.push(item)
-        })
-      }
-    },
-    watch: {
-      $route() {
-        this.getBreadcrumb()
-      }
+      this.name = this.$route.name
+      this.$route.matched.forEach((item) => {
+        // item.name !== 'index' && this.breadList.push(item)
+        this.breadList.push(item)
+      })
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

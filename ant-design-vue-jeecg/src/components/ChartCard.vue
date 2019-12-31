@@ -4,42 +4,42 @@
       <div class="meta">
         <span class="chart-card-title">{{ title }}</span>
         <span class="chart-card-action">
-          <slot name="action"></slot>
+          <slot name="action" />
         </span>
       </div>
       <div class="total"><span>{{ total }}</span></div>
     </div>
     <div class="chart-card-content">
       <div class="content-fix">
-        <slot></slot>
+        <slot />
       </div>
     </div>
     <div class="chart-card-footer">
       <div class="field">
-        <slot name="footer"></slot>
+        <slot name="footer" />
       </div>
     </div>
   </a-card>
 </template>
 
 <script>
-  export default {
-    name: "ChartCard",
-    props: {
-      title: {
-        type: String,
-        default: ''
-      },
-      total: {
-        type: String,
-        default: ''
-      },
-      loading: {
-        type: Boolean,
-        default: false
-      }
+export default {
+  name: 'ChartCard',
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    total: {
+      type: String,
+      default: ''
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -3,16 +3,16 @@
 
     <a-tabs>
 
-      <a-tab-pane tab="普通列表" key="1">
-        <default-table/>
+      <a-tab-pane key="1" tab="普通列表">
+        <default-table />
       </a-tab-pane>
 
-      <a-tab-pane tab="只读列表" key="2">
-        <read-only-table/>
+      <a-tab-pane key="2" tab="只读列表">
+        <read-only-table />
       </a-tab-pane>
 
-      <a-tab-pane tab="三级联动" key="3">
-        <three-linkage/>
+      <a-tab-pane key="3" tab="三级联动">
+        <three-linkage />
       </a-tab-pane>
 
     </a-tabs>
@@ -21,18 +21,18 @@
 </template>
 
 <script>
-  import DefaultTable from './modules/JEditableTable/DefaultTable'
-  import ReadOnlyTable from './modules/JEditableTable/ReadOnlyTable'
-  import ThreeLinkage from './modules/JEditableTable/ThreeLinkage'
+import DefaultTable from './modules/JEditableTable/DefaultTable'
+import ReadOnlyTable from './modules/JEditableTable/ReadOnlyTable'
+import ThreeLinkage from './modules/JEditableTable/ThreeLinkage'
 
-  export default {
-    name: 'JeecgEditableTableExample',
-    components: { DefaultTable, ReadOnlyTable, ThreeLinkage },
-    data() {
-      return {}
-    },
-    methods: {}
-  }
+export default {
+  name: 'JeecgEditableTableExample',
+  components: { DefaultTable, ReadOnlyTable, ThreeLinkage },
+  data() {
+    return {}
+  },
+  methods: {}
+}
 </script>
 
 <style scoped>

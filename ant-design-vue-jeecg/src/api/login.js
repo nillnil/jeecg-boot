@@ -52,7 +52,7 @@ export function logout(logoutToken) {
     method: 'post',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
-      'X-Access-Token':  logoutToken
+      'X-Access-Token': logoutToken
     }
   })
 }

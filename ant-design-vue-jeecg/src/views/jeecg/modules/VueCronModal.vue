@@ -3,10 +3,11 @@
     title="corn表达式"
     :width="modalWidth"
     :visible="visible"
-    :confirmLoading="confirmLoading"
+    :confirm-loading="confirmLoading"
+    cancel-text="关闭"
     @ok="change"
     @cancel="close"
-    cancelText="关闭">
+  >
     <div class="card-container">
       <a-tabs type="card">
         <a-tab-pane key="1" type="card">
@@ -17,23 +18,23 @@
             </a-row>
             <a-row>
               <a-radio value="2">每隔
-                <a-input-number size="small" v-model="result.second.incrementIncrement" :min="1" :max="60"></a-input-number>
+                <a-input-number v-model="result.second.incrementIncrement" size="small" :min="1" :max="60" />
                 秒执行 从
-                <a-input-number size="small" v-model="result.second.incrementStart" :min="0" :max="59"></a-input-number>
+                <a-input-number v-model="result.second.incrementStart" size="small" :min="0" :max="59" />
                 秒开始
               </a-radio>
             </a-row>
             <a-row>
               <a-radio value="3">具体秒数(可多选)</a-radio>
-              <a-select style="width:354px;" size="small" mode="multiple" v-model="result.second.specificSpecific">
+              <a-select v-model="result.second.specificSpecific" style="width:354px;" size="small" mode="multiple">
                 <a-select-option v-for="(val,index) in 60" :key="index" :value="index">{{ index }}</a-select-option>
               </a-select>
             </a-row>
             <a-row>
               <a-radio value="4">周期从
-                <a-input-number size="small" v-model="result.second.rangeStart" :min="1" :max="60"></a-input-number>
+                <a-input-number v-model="result.second.rangeStart" size="small" :min="1" :max="60" />
                 到
-                <a-input-number size="small" v-model="result.second.rangeEnd" :min="0" :max="59"></a-input-number>
+                <a-input-number v-model="result.second.rangeEnd" size="small" :min="0" :max="59" />
                 秒
               </a-radio>
             </a-row>
@@ -48,23 +49,23 @@
               </a-row>
               <a-row>
                 <a-radio value="2">每隔
-                  <a-input-number size="small" v-model="result.minute.incrementIncrement" :min="1" :max="60"></a-input-number>
+                  <a-input-number v-model="result.minute.incrementIncrement" size="small" :min="1" :max="60" />
                   分执行 从
-                  <a-input-number size="small" v-model="result.minute.incrementStart" :min="0" :max="59"></a-input-number>
+                  <a-input-number v-model="result.minute.incrementStart" size="small" :min="0" :max="59" />
                   分开始
                 </a-radio>
               </a-row>
               <a-row>
                 <a-radio value="3">具体分钟数(可多选)</a-radio>
-                <a-select style="width:340px;" size="small" mode="multiple" v-model="result.minute.specificSpecific">
+                <a-select v-model="result.minute.specificSpecific" style="width:340px;" size="small" mode="multiple">
                   <a-select-option v-for="(val,index) in Array(60)" :key="index" :value="index"> {{ index }}</a-select-option>
                 </a-select>
               </a-row>
               <a-row>
                 <a-radio value="4">周期从
-                  <a-input-number size="small" v-model="result.minute.rangeStart" :min="1" :max="60"></a-input-number>
+                  <a-input-number v-model="result.minute.rangeStart" size="small" :min="1" :max="60" />
                   到
-                  <a-input-number size="small" v-model="result.minute.rangeEnd" :min="0" :max="59"></a-input-number>
+                  <a-input-number v-model="result.minute.rangeEnd" size="small" :min="0" :max="59" />
                   分
                 </a-radio>
               </a-row>
@@ -80,23 +81,23 @@
               </a-row>
               <a-row>
                 <a-radio value="2">每隔
-                  <a-input-number size="small" v-model="result.hour.incrementIncrement" :min="0" :max="23"></a-input-number>
+                  <a-input-number v-model="result.hour.incrementIncrement" size="small" :min="0" :max="23" />
                   小时执行 从
-                  <a-input-number size="small" v-model="result.hour.incrementStart" :min="0" :max="23"></a-input-number>
+                  <a-input-number v-model="result.hour.incrementStart" size="small" :min="0" :max="23" />
                   小时开始
                 </a-radio>
               </a-row>
               <a-row>
                 <a-radio class="long" value="3">具体小时数(可多选)</a-radio>
-                <a-select style="width:340px;" size="small" mode="multiple" v-model="result.hour.specificSpecific">
-                  <a-select-option v-for="(val,index) in Array(24)" :key="index" >{{ index }}</a-select-option>
+                <a-select v-model="result.hour.specificSpecific" style="width:340px;" size="small" mode="multiple">
+                  <a-select-option v-for="(val,index) in Array(24)" :key="index">{{ index }}</a-select-option>
                 </a-select>
               </a-row>
               <a-row>
                 <a-radio value="4">周期从
-                  <a-input-number size="small" v-model="result.hour.rangeStart" :min="0" :max="23"></a-input-number>
+                  <a-input-number v-model="result.hour.rangeStart" size="small" :min="0" :max="23" />
                   到
-                  <a-input-number size="small" v-model="result.hour.rangeEnd" :min="0" :max="23"></a-input-number>
+                  <a-input-number v-model="result.hour.rangeEnd" size="small" :min="0" :max="23" />
                   小时
                 </a-radio>
               </a-row>
@@ -112,9 +113,9 @@
               </a-row>
               <a-row>
                 <a-radio value="2">每隔
-                  <a-input-number size="small" v-model="result.week.incrementIncrement" :min="1" :max="7"></a-input-number>
+                  <a-input-number v-model="result.week.incrementIncrement" size="small" :min="1" :max="7" />
                   周执行 从
-                  <a-select size="small" v-model="result.week.incrementStart">
+                  <a-select v-model="result.week.incrementStart" size="small">
                     <a-select-option v-for="(val,index) in Array(7)" :key="index" :value="index+1">{{ weekDays[index] }}</a-select-option>
                   </a-select>
                   开始
@@ -122,21 +123,21 @@
               </a-row>
               <a-row>
                 <a-radio value="3">每隔
-                  <a-input-number size="small" v-model="result.day.incrementIncrement" :min="1" :max="31"></a-input-number>
+                  <a-input-number v-model="result.day.incrementIncrement" size="small" :min="1" :max="31" />
                   天执行 从
-                  <a-input-number size="small" v-model="result.day.incrementStart" :min="1" :max="31"></a-input-number>
+                  <a-input-number v-model="result.day.incrementStart" size="small" :min="1" :max="31" />
                   天开始
                 </a-radio>
               </a-row>
               <a-row>
                 <a-radio class="long" value="4">具体星期几(可多选)</a-radio>
-                <a-select style="width:340px;" size="small" mode="multiple" v-model="result.week.specificSpecific">
+                <a-select v-model="result.week.specificSpecific" style="width:340px;" size="small" mode="multiple">
                   <a-select-option v-for="(val,index) in Array(7)" :key="index" :value="index+1">{{ weekDays[index] }}</a-select-option>
                 </a-select>
               </a-row>
               <a-row>
                 <a-radio class="long" value="5">具体天数(可多选)</a-radio>
-                <a-select style="width:354px;" size="small" mode="multiple" v-model="result.day.specificSpecific">
+                <a-select v-model="result.day.specificSpecific" style="width:354px;" size="small" mode="multiple">
                   <a-select-option v-for="(val,index) in Array(31)" :key="index" :value="index">{{ index+1 }}</a-select-option>
                 </a-select>
               </a-row>
@@ -148,28 +149,28 @@
               </a-row>
               <a-row>
                 <a-radio value="8">在这个月的最后一个
-                  <a-select size="small" v-model="result.day.cronLastSpecificDomDay">
+                  <a-select v-model="result.day.cronLastSpecificDomDay" size="small">
                     <a-select-option v-for="(val,index) in Array(7)" :key="index" :value="index+1">{{ weekDays[index] }}</a-select-option>
                   </a-select>
                 </a-radio>
               </a-row>
               <a-row>
                 <a-radio value="9">
-                  <a-input-number size="small" v-model="result.day.cronDaysBeforeEomMinus" :min="1" :max="31"></a-input-number>
+                  <a-input-number v-model="result.day.cronDaysBeforeEomMinus" size="small" :min="1" :max="31" />
                   在本月底前
                 </a-radio>
               </a-row>
               <a-row>
                 <a-radio value="10">最近的工作日（周一至周五）至本月
-                  <a-input-number size="small" v-model="result.day.cronDaysNearestWeekday" :min="1" :max="31"></a-input-number>
+                  <a-input-number v-model="result.day.cronDaysNearestWeekday" size="small" :min="1" :max="31" />
                   日
                 </a-radio>
               </a-row>
               <a-row>
                 <a-radio value="11">在这个月的第
-                  <a-input-number size="small" v-model="result.week.cronNthDayNth" :min="1" :max="5"></a-input-number>
+                  <a-input-number v-model="result.week.cronNthDayNth" size="small" :min="1" :max="5" />
                   个
-                  <a-select size="small" v-model="result.week.cronNthDayDay">
+                  <a-select v-model="result.week.cronNthDayDay" size="small">
                     <a-select-option v-for="(val,index) in Array(7)" :key="index" :value="index+1">{{ weekDays[index] }}</a-select-option>
                   </a-select>
 
@@ -187,23 +188,23 @@
               </a-row>
               <a-row>
                 <a-radio value="2">每隔
-                  <a-input-number size="small" v-model="result.month.incrementIncrement" :min="0" :max="12"></a-input-number>
+                  <a-input-number v-model="result.month.incrementIncrement" size="small" :min="0" :max="12" />
                   月执行 从
-                  <a-input-number size="small" v-model="result.month.incrementStart" :min="0" :max="12"></a-input-number>
+                  <a-input-number v-model="result.month.incrementStart" size="small" :min="0" :max="12" />
                   月开始
                 </a-radio>
               </a-row>
               <a-row>
                 <a-radio class="long" value="3">具体月数(可多选)</a-radio>
-                <a-select style="width:354px;" size="small" filterable mode="multiple" v-model="result.month.specificSpecific">
-                  <a-select-option v-for="(val,index) in Array(12)" :key="index"  :value="index">{{ index+1 }}</a-select-option>
+                <a-select v-model="result.month.specificSpecific" style="width:354px;" size="small" filterable mode="multiple">
+                  <a-select-option v-for="(val,index) in Array(12)" :key="index" :value="index">{{ index+1 }}</a-select-option>
                 </a-select>
               </a-row>
               <a-row>
                 <a-radio value="4">从
-                  <a-input-number size="small" v-model="result.month.rangeStart" :min="1" :max="12"></a-input-number>
+                  <a-input-number v-model="result.month.rangeStart" size="small" :min="1" :max="12" />
                   到
-                  <a-input-number size="small" v-model="result.month.rangeEnd" :min="1" :max="12"></a-input-number>
+                  <a-input-number v-model="result.month.rangeEnd" size="small" :min="1" :max="12" />
                   月之间的每个月
                 </a-radio>
               </a-row>
@@ -219,23 +220,23 @@
               </a-row>
               <a-row>
                 <a-radio value="2">每隔
-                  <a-input-number size="small" v-model="result.year.incrementIncrement" :min="1" :max="99"></a-input-number>
+                  <a-input-number v-model="result.year.incrementIncrement" size="small" :min="1" :max="99" />
                   年执行 从
-                  <a-input-number size="small" v-model="result.year.incrementStart" :min="2019" :max="2119"></a-input-number>
+                  <a-input-number v-model="result.year.incrementStart" size="small" :min="2019" :max="2119" />
                   年开始
                 </a-radio>
               </a-row>
               <a-row>
                 <a-radio class="long" value="3">具体年份(可多选)</a-radio>
-                <a-select style="width:354px;" size="small" filterable mode="multiple" v-model="result.year.specificSpecific">
+                <a-select v-model="result.year.specificSpecific" style="width:354px;" size="small" filterable mode="multiple">
                   <a-select-option v-for="(val,index) in Array(100)" :key="index" :value="2019+index">{{ 2019+index }}</a-select-option>
                 </a-select>
               </a-row>
               <a-row>
                 <a-radio value="4">从
-                  <a-input-number size="small" v-model="result.year.rangeStart" :min="2019" :max="2119"></a-input-number>
+                  <a-input-number v-model="result.year.rangeStart" size="small" :min="2019" :max="2119" />
                   到
-                  <a-input-number size="small" v-model="result.year.rangeEnd" :min="2019" :max="2119"></a-input-number>
+                  <a-input-number v-model="result.year.rangeEnd" size="small" :min="2019" :max="2119" />
                   年之间的每一年
                 </a-radio>
               </a-row>
@@ -244,390 +245,389 @@
         </a-tab-pane>
       </a-tabs>
       <div class="bottom">
-        <span class="value">{{this.cron.label }}</span>
+        <span class="value">{{ cron.label }}</span>
       </div>
     </div>
   </a-modal>
 </template>
 <script>
-    import pick from 'lodash.pick'
-    export default {
-        name:'VueCron',
-        props:['data','i18n'],
-        data(){
-            return {
-                visible: false,
-                confirmLoading:false,
-                size:'large',
-                weekDays:['天','一','二','三','四','五','六'].map(val=>'星期'+val),
-                result: {
-                  second:{
-                    cronEvery:'',
-                    incrementStart:3,
-                    incrementIncrement:5,
-                    rangeStart:1,
-                    rangeEnd:0,
-                    specificSpecific:[],
-                  },
-                  minute:{
-                    cronEvery:'',
-                    incrementStart:3,
-                    incrementIncrement:5,
-                    rangeStart:1,
-                    rangeEnd:'0',
-                    specificSpecific:[],
-                  },
-                  hour:{
-                    cronEvery:'',
-                    incrementStart:3,
-                    incrementIncrement:5,
-                    rangeStart:'0',
-                    rangeEnd:'0',
-                    specificSpecific:[],
-                  },
-                  day:{
-                    cronEvery:'',
-                    incrementStart:1,
-                    incrementIncrement:'1',
-                    rangeStart:'',
-                    rangeEnd:'',
-                    specificSpecific:[],
-                    cronLastSpecificDomDay:1,
-                    cronDaysBeforeEomMinus:'',
-                    cronDaysNearestWeekday:'',
-                  },
-                  week:{
-                    cronEvery:'',
-                    incrementStart:1,
-                    incrementIncrement:'1',
-                    specificSpecific:[],
-                    cronNthDayDay:1,
-                    cronNthDayNth:'1',
-                  },
-                  month:{
-                    cronEvery:'',
-                    incrementStart:3,
-                    incrementIncrement:5,
-                    rangeStart:1,
-                    rangeEnd:1,
-                    specificSpecific:[],
-                  },
-                  year:{
-                    cronEvery:'',
-                    incrementStart:2017,
-                    incrementIncrement:1,
-                    rangeStart:2019,
-                    rangeEnd: 2019,
-                    specificSpecific:[],
-                  },
-                  label:''
-                },
-                output:{
-                  second:{
-                    cronEvery:'',
-                    incrementStart:'',
-                    incrementIncrement:'',
-                    rangeStart:'',
-                    rangeEnd:'',
-                    specificSpecific:[],
-                  },
-                  minute:{
-                    cronEvery:'',
-                    incrementStart:'',
-                    incrementIncrement:'',
-                    rangeStart:'',
-                    rangeEnd:'',
-                    specificSpecific:[],
-                  },
-                  hour:{
-                    cronEvery:'',
-                    incrementStart:'',
-                    incrementIncrement:'',
-                    rangeStart:'',
-                    rangeEnd:'',
-                    specificSpecific:[],
-                  },
-                  day:{
-                    cronEvery:'',
-                    incrementStart:'',
-                    incrementIncrement:'',
-                    rangeStart:'',
-                    rangeEnd:'',
-                    specificSpecific:[],
-                    cronLastSpecificDomDay:'',
-                    cronDaysBeforeEomMinus:'',
-                    cronDaysNearestWeekday:'',
-                  },
-                  week:{
-                    cronEvery:'',
-                    incrementStart:'',
-                    incrementIncrement:'',
-                    specificSpecific:[],
-                    cronNthDayDay:'',
-                    cronNthDayNth:'',
-                  },
-                  month:{
-                    cronEvery:'',
-                    incrementStart:'',
-                    incrementIncrement:'',
-                    rangeStart:'',
-                    rangeEnd:'',
-                    specificSpecific:[],
-                  },
-                  year:{
-                    cronEvery:'',
-                    incrementStart:'',
-                    incrementIncrement:'',
-                    rangeStart:'',
-                    rangeEnd:'',
-                    specificSpecific:[],
-                  }
-                }
-            }
+export default {
+  name: 'VueCron',
+  props: ['data', 'i18n'],
+  data() {
+    return {
+      visible: false,
+      confirmLoading: false,
+      size: 'large',
+      weekDays: ['天', '一', '二', '三', '四', '五', '六'].map(val => '星期' + val),
+      result: {
+        second: {
+          cronEvery: '',
+          incrementStart: 3,
+          incrementIncrement: 5,
+          rangeStart: 1,
+          rangeEnd: 0,
+          specificSpecific: []
         },
-        computed: {
-            modalWidth(){
-                return 608;
-            },
-            text(){
-                return Language['cn']
-            },
-            secondsText() {
-                let seconds = '';
-                let cronEvery=this.result.second.cronEvery;
-                switch (cronEvery.toString()){
-                    case '1':
-                        seconds = '*';
-                        break;
-                    case '2':
-                        seconds = this.result.second.incrementStart+'/'+this.result.second.incrementIncrement;
-                        break;
-                    case '3':
-                        this.result.second.specificSpecific.map(val=> {seconds += val+','});
-                        seconds = seconds.slice(0, -1);
-                        break;
-                    case '4':
-                        seconds = this.result.second.rangeStart+'-'+this.result.second.rangeEnd;
-                        break;
-                }
-                return seconds;
-            },
-            minutesText() {
-                let minutes = '';
-                let cronEvery=this.result.minute.cronEvery;
-                switch (cronEvery.toString()){
-                    case '1':
-                        minutes = '*';
-                        break;
-                    case '2':
-                        minutes = this.result.minute.incrementStart+'/'+this.result.minute.incrementIncrement;
-                        break;
-                    case '3':
-                        this.result.minute.specificSpecific.map(val=> {
-                            minutes += val+','
-                        });
-                        minutes = minutes.slice(0, -1);
-                        break;
-                    case '4':
-                        minutes = this.result.minute.rangeStart+'-'+this.result.minute.rangeEnd;
-                        break;
-                }
-                return minutes;
-            },
-            hoursText() {
-                let hours = '';
-                let cronEvery=this.result.hour.cronEvery;
-                switch (cronEvery.toString()){
-                    case '1':
-                        hours = '*';
-                        break;
-                    case '2':
-                        hours = this.result.hour.incrementStart+'/'+this.result.hour.incrementIncrement;
-                        break;
-                    case '3':
-                        this.result.hour.specificSpecific.map(val=> {
-                            hours += val+','
-                        });
-                        hours = hours.slice(0, -1);
-                        break;
-                    case '4':
-                        hours = this.result.hour.rangeStart+'-'+this.result.hour.rangeEnd;
-                        break;
-                }
-                return hours;
-            },
-            daysText() {
-                let days='';
-                let cronEvery=this.result.day.cronEvery;
-                switch (cronEvery.toString()){
-                    case '1':
-                        break;
-                    case '2':
-                    case '4':
-                    case '11':
-                        days = '?';
-                        break;
-                    case '3':
-                        days = this.result.day.incrementStart+'/'+this.result.day.incrementIncrement;
-                        break;
-                    case '5':
-                        this.result.day.specificSpecific.map(val=> {
-                            days += val+','
-                        });
-                        days = days.slice(0, -1);
-                        break;
-                    case '6':
-                        days = "L";
-                        break;
-                    case '7':
-                        days = "LW";
-                        break;
-                    case '8':
-                        days = this.result.day.cronLastSpecificDomDay + 'L';
-                        break;
-                    case '9':
-                        days = 'L-' + this.result.day.cronDaysBeforeEomMinus;
-                        break;
-                    case '10':
-                        days = this.result.day.cronDaysNearestWeekday+"W";
-                        break
-                }
-                return days;
-            },
-            weeksText() {
-                let weeks = '';
-                let cronEvery=this.result.day.cronEvery;
-                switch (cronEvery.toString()){
-                    case '1':
-                    case '3':
-                    case '5':
-                        weeks = '?';
-                        break;
-                    case '2':
-                        weeks = this.result.week.incrementStart+'/'+this.result.week.incrementIncrement;
-                        break;
-                    case '4':
-                        this.result.week.specificSpecific.map(val=> {
-                            weeks += val+','
-                        });
-                        weeks = weeks.slice(0, -1);
-                        break;
-                    case '6':
-                    case '7':
-                    case '8':
-                    case '9':
-                    case '10':
-                        weeks = "?";
-                        break;
-                    case '11':
-                        weeks = this.result.week.cronNthDayDay+"#"+this.result.week.cronNthDayNth;
-                        break;
-                }
-                return weeks;
-            },
-            monthsText() {
-                let months = '';
-                let cronEvery=this.result.month.cronEvery;
-                switch (cronEvery.toString()){
-                    case '1':
-                        months = '*';
-                        break;
-                    case '2':
-                        months = this.result.month.incrementStart+'/'+this.result.month.incrementIncrement;
-                        break;
-                    case '3':
-                        this.result.month.specificSpecific.map(val=> {
-                            months += val+','
-                        });
-                        months = months.slice(0, -1);
-                        break;
-                    case '4':
-                        months = this.result.month.rangeStart+'-'+this.result.month.rangeEnd;
-                        break;
-                }
-                return months;
-            },
-            yearsText() {
-                let years = '';
-                let cronEvery=this.result.year.cronEvery;
-                switch (cronEvery.toString()){
-                    case '1':
-                        years = '*';
-                        break;
-                    case '2':
-                        years = this.result.year.incrementStart+'/'+this.result.year.incrementIncrement;
-                        break;
-                    case '3':
-                        this.result.year.specificSpecific.map(val=> {
-                            years += val+','
-                        });
-                        years = years.slice(0, -1);
-                        break;
-                    case '4':
-                        years = this.result.year.rangeStart+'-'+this.result.year.rangeEnd;
-                        break;
-                }
-                return years;
-            },
-            cron(){
-                return {
-                  value: this.result,
-                  label:`${this.secondsText||'*'} ${this.minutesText||'*'} ${this.hoursText||'*'} ${this.daysText||'*'} ${this.monthsText||'*'} ${this.weeksText||'*'} ${this.yearsText||'*'}`
-                }
-            },
+        minute: {
+          cronEvery: '',
+          incrementStart: 3,
+          incrementIncrement: 5,
+          rangeStart: 1,
+          rangeEnd: '0',
+          specificSpecific: []
         },
-        watch:{
-          data(){
-            //this.rest(this.data);
-          }
+        hour: {
+          cronEvery: '',
+          incrementStart: 3,
+          incrementIncrement: 5,
+          rangeStart: '0',
+          rangeEnd: '0',
+          specificSpecific: []
         },
-        methods: {
-            show(){
-              //this.rest(pick(this.data.value,'second','minute','hour','day','week','month','year'));
-              //this.rest(this.data.value);
-              Object.assign(this.data.value,this.result);
-              console.log('data初始化',this.data);
-              //this.result = this.data.value;
-              this.visible=true;
-            },
-            getValue(){
-                return this.cron;
-            },
-            change(){
-                console.log('返回前',this.cron);
-                this.$emit('change',this.cron);
-                this.close();
-                this.visible = false;
-            },
-            close(){
-                this.visible = false;
-                //this.$emit('close')
-            },
-            rest(data){
-                for(let i in data){
-                  console.log(data[i]);
-                    if(data[i] instanceof Object){
-                        this.rest(data[i])
-                    }else {
-                      switch(typeof data[i]) {
-                        case 'object':
-                          data[i] = [];
-                          break;
-                        case 'string':
-                          data[i] = '';
-                          break;
-                        case 'number':
-                          data[i] = null;
-                          break;
-                      }
-                    }
-                }
-            },
-            callback (key) {
-                console.log(key)
-            }
+        day: {
+          cronEvery: '',
+          incrementStart: 1,
+          incrementIncrement: '1',
+          rangeStart: '',
+          rangeEnd: '',
+          specificSpecific: [],
+          cronLastSpecificDomDay: 1,
+          cronDaysBeforeEomMinus: '',
+          cronDaysNearestWeekday: ''
+        },
+        week: {
+          cronEvery: '',
+          incrementStart: 1,
+          incrementIncrement: '1',
+          specificSpecific: [],
+          cronNthDayDay: 1,
+          cronNthDayNth: '1'
+        },
+        month: {
+          cronEvery: '',
+          incrementStart: 3,
+          incrementIncrement: 5,
+          rangeStart: 1,
+          rangeEnd: 1,
+          specificSpecific: []
+        },
+        year: {
+          cronEvery: '',
+          incrementStart: 2017,
+          incrementIncrement: 1,
+          rangeStart: 2019,
+          rangeEnd: 2019,
+          specificSpecific: []
+        },
+        label: ''
+      },
+      output: {
+        second: {
+          cronEvery: '',
+          incrementStart: '',
+          incrementIncrement: '',
+          rangeStart: '',
+          rangeEnd: '',
+          specificSpecific: []
+        },
+        minute: {
+          cronEvery: '',
+          incrementStart: '',
+          incrementIncrement: '',
+          rangeStart: '',
+          rangeEnd: '',
+          specificSpecific: []
+        },
+        hour: {
+          cronEvery: '',
+          incrementStart: '',
+          incrementIncrement: '',
+          rangeStart: '',
+          rangeEnd: '',
+          specificSpecific: []
+        },
+        day: {
+          cronEvery: '',
+          incrementStart: '',
+          incrementIncrement: '',
+          rangeStart: '',
+          rangeEnd: '',
+          specificSpecific: [],
+          cronLastSpecificDomDay: '',
+          cronDaysBeforeEomMinus: '',
+          cronDaysNearestWeekday: ''
+        },
+        week: {
+          cronEvery: '',
+          incrementStart: '',
+          incrementIncrement: '',
+          specificSpecific: [],
+          cronNthDayDay: '',
+          cronNthDayNth: ''
+        },
+        month: {
+          cronEvery: '',
+          incrementStart: '',
+          incrementIncrement: '',
+          rangeStart: '',
+          rangeEnd: '',
+          specificSpecific: []
+        },
+        year: {
+          cronEvery: '',
+          incrementStart: '',
+          incrementIncrement: '',
+          rangeStart: '',
+          rangeEnd: '',
+          specificSpecific: []
         }
+      }
     }
+  },
+  computed: {
+    modalWidth() {
+      return 608
+    },
+    text() {
+      return Language['cn']
+    },
+    secondsText() {
+      let seconds = ''
+      const cronEvery = this.result.second.cronEvery
+      switch (cronEvery.toString()) {
+        case '1':
+          seconds = '*'
+          break
+        case '2':
+          seconds = this.result.second.incrementStart + '/' + this.result.second.incrementIncrement
+          break
+        case '3':
+          this.result.second.specificSpecific.map(val => { seconds += val + ',' })
+          seconds = seconds.slice(0, -1)
+          break
+        case '4':
+          seconds = this.result.second.rangeStart + '-' + this.result.second.rangeEnd
+          break
+      }
+      return seconds
+    },
+    minutesText() {
+      let minutes = ''
+      const cronEvery = this.result.minute.cronEvery
+      switch (cronEvery.toString()) {
+        case '1':
+          minutes = '*'
+          break
+        case '2':
+          minutes = this.result.minute.incrementStart + '/' + this.result.minute.incrementIncrement
+          break
+        case '3':
+          this.result.minute.specificSpecific.map(val => {
+            minutes += val + ','
+          })
+          minutes = minutes.slice(0, -1)
+          break
+        case '4':
+          minutes = this.result.minute.rangeStart + '-' + this.result.minute.rangeEnd
+          break
+      }
+      return minutes
+    },
+    hoursText() {
+      let hours = ''
+      const cronEvery = this.result.hour.cronEvery
+      switch (cronEvery.toString()) {
+        case '1':
+          hours = '*'
+          break
+        case '2':
+          hours = this.result.hour.incrementStart + '/' + this.result.hour.incrementIncrement
+          break
+        case '3':
+          this.result.hour.specificSpecific.map(val => {
+            hours += val + ','
+          })
+          hours = hours.slice(0, -1)
+          break
+        case '4':
+          hours = this.result.hour.rangeStart + '-' + this.result.hour.rangeEnd
+          break
+      }
+      return hours
+    },
+    daysText() {
+      let days = ''
+      const cronEvery = this.result.day.cronEvery
+      switch (cronEvery.toString()) {
+        case '1':
+          break
+        case '2':
+        case '4':
+        case '11':
+          days = '?'
+          break
+        case '3':
+          days = this.result.day.incrementStart + '/' + this.result.day.incrementIncrement
+          break
+        case '5':
+          this.result.day.specificSpecific.map(val => {
+            days += val + ','
+          })
+          days = days.slice(0, -1)
+          break
+        case '6':
+          days = 'L'
+          break
+        case '7':
+          days = 'LW'
+          break
+        case '8':
+          days = this.result.day.cronLastSpecificDomDay + 'L'
+          break
+        case '9':
+          days = 'L-' + this.result.day.cronDaysBeforeEomMinus
+          break
+        case '10':
+          days = this.result.day.cronDaysNearestWeekday + 'W'
+          break
+      }
+      return days
+    },
+    weeksText() {
+      let weeks = ''
+      const cronEvery = this.result.day.cronEvery
+      switch (cronEvery.toString()) {
+        case '1':
+        case '3':
+        case '5':
+          weeks = '?'
+          break
+        case '2':
+          weeks = this.result.week.incrementStart + '/' + this.result.week.incrementIncrement
+          break
+        case '4':
+          this.result.week.specificSpecific.map(val => {
+            weeks += val + ','
+          })
+          weeks = weeks.slice(0, -1)
+          break
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '10':
+          weeks = '?'
+          break
+        case '11':
+          weeks = this.result.week.cronNthDayDay + '#' + this.result.week.cronNthDayNth
+          break
+      }
+      return weeks
+    },
+    monthsText() {
+      let months = ''
+      const cronEvery = this.result.month.cronEvery
+      switch (cronEvery.toString()) {
+        case '1':
+          months = '*'
+          break
+        case '2':
+          months = this.result.month.incrementStart + '/' + this.result.month.incrementIncrement
+          break
+        case '3':
+          this.result.month.specificSpecific.map(val => {
+            months += val + ','
+          })
+          months = months.slice(0, -1)
+          break
+        case '4':
+          months = this.result.month.rangeStart + '-' + this.result.month.rangeEnd
+          break
+      }
+      return months
+    },
+    yearsText() {
+      let years = ''
+      const cronEvery = this.result.year.cronEvery
+      switch (cronEvery.toString()) {
+        case '1':
+          years = '*'
+          break
+        case '2':
+          years = this.result.year.incrementStart + '/' + this.result.year.incrementIncrement
+          break
+        case '3':
+          this.result.year.specificSpecific.map(val => {
+            years += val + ','
+          })
+          years = years.slice(0, -1)
+          break
+        case '4':
+          years = this.result.year.rangeStart + '-' + this.result.year.rangeEnd
+          break
+      }
+      return years
+    },
+    cron() {
+      return {
+        value: this.result,
+        label: `${this.secondsText || '*'} ${this.minutesText || '*'} ${this.hoursText || '*'} ${this.daysText || '*'} ${this.monthsText || '*'} ${this.weeksText || '*'} ${this.yearsText || '*'}`
+      }
+    }
+  },
+  watch: {
+    data() {
+      // this.rest(this.data);
+    }
+  },
+  methods: {
+    show() {
+      // this.rest(pick(this.data.value,'second','minute','hour','day','week','month','year'));
+      // this.rest(this.data.value);
+      Object.assign(this.data.value, this.result)
+      console.log('data初始化', this.data)
+      // this.result = this.data.value;
+      this.visible = true
+    },
+    getValue() {
+      return this.cron
+    },
+    change() {
+      console.log('返回前', this.cron)
+      this.$emit('change', this.cron)
+      this.close()
+      this.visible = false
+    },
+    close() {
+      this.visible = false
+      // this.$emit('close')
+    },
+    rest(data) {
+      for (const i in data) {
+        console.log(data[i])
+        if (data[i] instanceof Object) {
+          this.rest(data[i])
+        } else {
+          switch (typeof data[i]) {
+            case 'object':
+              data[i] = []
+              break
+            case 'string':
+              data[i] = ''
+              break
+            case 'number':
+              data[i] = null
+              break
+          }
+        }
+      }
+    },
+    callback(key) {
+      console.log(key)
+    }
+  }
+}
 </script>
 
 <style lang="scss">

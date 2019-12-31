@@ -5,7 +5,7 @@
       <h3 style="margin-top: 1rem">Welcome to Your Vue.js App</h3>
     </div>
 
-    <br/>
+    <br>
 
     <h2># Trend 组件 </h2>
 
@@ -74,16 +74,16 @@
       <count-down
         style="font-size: 2rem"
         :target="new Date().getTime() + 3000000"
-        :on-end="onEndHandle">
-      </count-down>
+        :on-end="onEndHandle"
+      />
 
       <a-divider type="vertical" style="margin: 0 16px" />
 
       <count-down
         style="font-size: 2rem"
         :target="new Date().getTime() + 10000"
-        :on-end="onEndHandle2">
-      </count-down>
+        :on-end="onEndHandle2"
+      />
     </a-card>
 
     <h2># Ellipsis 组件 </h2>
@@ -104,49 +104,50 @@
         :sub-title="() => { return 'Visits this week' }"
         :total="12321"
         status="up"
-        :sub-total="17.1"></number-info>
+        :sub-total="17.1"
+      />
     </a-card>
   </div>
 </template>
 
 <script>
-  // @ is an alias to /src
+// @ is an alias to /src
 
-  import Trend from '@/components/Trend'
-  import AvatarList from '@/components/AvatarList'
-  import CountDown from '@/components/CountDown/CountDown'
-  import Ellipsis from '@/components/Ellipsis'
-  import NumberInfo from '@/components/NumberInfo'
+import Trend from '@/components/Trend'
+import AvatarList from '@/components/AvatarList'
+import CountDown from '@/components/CountDown/CountDown'
+import Ellipsis from '@/components/Ellipsis'
+import NumberInfo from '@/components/NumberInfo'
 
-  const AvatarListItem = AvatarList.AvatarItem
+const AvatarListItem = AvatarList.AvatarItem
 
-  export default {
-    name: 'Home',
-    components: {
-      NumberInfo,
-      Ellipsis,
-      CountDown,
-      Trend,
-      AvatarList,
-      AvatarListItem
+export default {
+  name: 'Home',
+  components: {
+    NumberInfo,
+    Ellipsis,
+    CountDown,
+    Trend,
+    AvatarList,
+    AvatarListItem
+  },
+  data() {
+    return {
+      targetTime: new Date().getTime() + 3900000
+    }
+  },
+  methods: {
+    onEndHandle() {
+      this.$message.success('CountDown callback!!!')
     },
-    data () {
-      return {
-        targetTime: new Date().getTime() + 3900000
-      }
-    },
-    methods: {
-      onEndHandle () {
-        this.$message.success('CountDown callback!!!')
-      },
-      onEndHandle2 () {
-        this.$notification.open({
-          message: 'Notification Title',
-          description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-        });
-      }
+    onEndHandle2() {
+      this.$notification.open({
+        message: 'Notification Title',
+        description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.'
+      })
     }
   }
+}
 </script>
 
 <style scoped>
