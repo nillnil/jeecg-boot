@@ -277,7 +277,6 @@ export default {
           return this
         },
         start: function() {
-          var self = this
           this.timeoutObj = setTimeout(function() {
             // 这里发送一个心跳，后端收到后，返回一个心跳消息，
             // onmessage拿到返回的心跳就说明连接正常

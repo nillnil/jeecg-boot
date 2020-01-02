@@ -9,6 +9,7 @@ try {
     return originalPush.call(this, location).catch(err => err)
   }
 } catch (e) {
+  console.error(e)
 }
 // update-end-author:taoyan date:20191011 for:TASK #3214 【优化】访问online功能测试 浏览器控制台抛出异常
 

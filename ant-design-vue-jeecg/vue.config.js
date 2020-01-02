@@ -1,4 +1,5 @@
 const path = require('path')
+const baseUrl = 'http://localhost:8090/jeecg-boot'
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -15,7 +16,7 @@ module.exports = {
   productionSourceMap: false,
 
   // 打包app时放开该配置
-  publicPath: '/',
+  // publicPath: './',
   configureWebpack: config => {
     // 生产环境取消 console.log
     if (process.env.NODE_ENV === 'production') {
@@ -51,14 +52,25 @@ module.exports = {
     port: 8091,
     proxy: {
       [process.env.VUE_APP_BASE_URL]: {
-        target: 'http://localhost:8090/jeecg-boot',
-        ws: true,
+        target: baseUrl,
         changeOrigin: true,
+        ws: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_URL]: ''
         }
+      },
+      // 如果 VUE_APP_BASE_URL != '/jeecg-boot'
+      // 删除该配置不能使用在线开发功能
+      '/jeecg-boot': {
+        target: baseUrl,
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/jeecg-boot': ''
+        }
       }
-    }
+    },
+    open: true
   },
 
   lintOnSave: process.env.NODE_ENV === 'development'

@@ -1,3 +1,5 @@
+/logs/
+/upload/
 /target/
 /.idea/
 *.iml

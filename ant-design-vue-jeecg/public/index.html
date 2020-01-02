@@ -239,15 +239,6 @@
     }
     /* 滚动条优化 end */
   </style>
-  <!-- 全局配置 -->
-  <script>
-    window._CONFIG = {};
-    window._CONFIG['domianURL'] = 'http://127.0.0.1:8090/jeecg-boot';
-    window._CONFIG['casPrefixUrl'] = 'http://cas.example.org:8443/cas';
-    window._CONFIG['imgDomainURL'] = window._CONFIG['domianURL'] + '/sys/common/view';
-    window._CONFIG['downloadUrl'] = window._CONFIG['domianURL'] + '/sys/common/download';
-    window._CONFIG['pdfDomainURL'] =  window._CONFIG['domianURL'] + '/sys/common/pdf/pdfPreviewIframe';
-  </script>
 </head>
 
 <body>
@@ -257,12 +248,24 @@
     <div id="loader"></div>
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
-    <div class="load_title">正在加载 Jeecg-Boot 快速开发平台,请耐心等待
-
-    </div>
+    <div class="load_title">正在加载 Jeecg-Boot 快速开发平台,请耐心等待</div>
   </div>
 </div>
-
+<input id="base-url" type="hidden" value="<%= VUE_APP_BASE_URL %>"></input>
 </body>
-
+<!-- 全局配置 -->
+<script>
+  var urlInp = document.getElementById('base-url')
+  var baseUrl = urlInp.value
+  if(!baseUrl.startsWith('http')) { 
+    baseUrl = 'http://' + location.host + baseUrl
+  }
+  urlInp.remove()
+  window._CONFIG = {};
+  window._CONFIG['domianURL'] = baseUrl;
+  window._CONFIG['casPrefixUrl'] = 'http://cas.example.org:8443/cas';
+  window._CONFIG['imgDomainURL'] = window._CONFIG['domianURL'] + '/sys/common/view';
+  window._CONFIG['downloadUrl'] = window._CONFIG['domianURL'] + '/sys/common/download';
+  window._CONFIG['pdfDomainURL'] =  window._CONFIG['domianURL'] + '/sys/common/pdf/pdfPreviewIframe';
+</script>
 </html>
