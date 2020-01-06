@@ -176,7 +176,6 @@
 <script>
 import UserModal from './modules/UserModal'
 import PasswordModal from './modules/PasswordModal'
-import { putAction } from '@/api/manage'
 import { frozenBatch } from '@/api/api'
 import { JeecgListMixin } from '@/mixins/JeecgListMixin'
 import SysUserAgentModal from './modules/SysUserAgentModal'

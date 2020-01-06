@@ -16,7 +16,7 @@
         @change="searchMethods"
         @blur="hiddenClick"
       >
-        <a-select-option v-for="site in search " :value="site.id">{{ site.meta.title }}</a-select-option>
+        <a-select-option v-for="(site, index) in search " :key="'user_menu_' + index" :value="site.id">{{ site.meta.title }}</a-select-option>
       </a-select>
     </span>
     <!-- update-end author:sunjianlei date:20191@20 for: 解决全局样式冲突的问题 -->

@@ -327,7 +327,7 @@ export default {
   .index-container-ty .ant-table-footer{text-align: right;padding:6px 12px 6px 6px;background: #fff;border-top: 2px solid #f7f1f1;}
 
   .index-md-title{
-    postion:relative;
+    /* position:relative; */
     padding-left:24px;
     width: 100%;
     color: #fff;

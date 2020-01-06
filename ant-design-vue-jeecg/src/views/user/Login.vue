@@ -175,7 +175,6 @@
 
 <script>
 // import md5 from "md5"
-import api from '@/api'
 import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
@@ -184,7 +183,7 @@ import { ACCESS_TOKEN, ENCRYPTED_STRING } from '@/store/mutation-types'
 import JGraphicCode from '@/components/jeecg/JGraphicCode'
 import { putAction } from '@/api/manage'
 import { postAction } from '@/api/manage'
-import { encryption, getEncryptedString } from '@/utils/encryption/aesEncrypt'
+import { getEncryptedString } from '@/utils/encryption/aesEncrypt'
 import store from '@/store/'
 import { USER_INFO } from '@/store/mutation-types'
 

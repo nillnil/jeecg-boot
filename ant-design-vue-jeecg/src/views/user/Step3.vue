@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { putAction, getAction } from '@/api/manage'
+import { getAction } from '@/api/manage'
 export default {
   name: 'Step3',
   //    components: {

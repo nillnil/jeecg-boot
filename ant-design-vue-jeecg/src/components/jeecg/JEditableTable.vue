@@ -36,7 +36,7 @@
     <div :id="`${caseId}inputTable`" class="input-table">
       <!-- 渲染表头 -->
       <div ref="thead" class="thead">
-        <div class="tr" :style="{width: this.realTrWidth}">
+        <div class="tr" :style="{width: realTrWidth}">
           <!-- 左侧固定td  -->
           <div v-if="dragSort" class="td td-ds" :style="style.tdLeftDs">
             <span />
@@ -246,13 +246,13 @@
                     </template>
 
                     <div v-else-if="col.type === formTypes.upload" :key="i">
-                      <template v-for="(file,fileKey) of [(uploadValues[id]||{})]" v-if="uploadValues[id] != null">
+                      <template v-for="(file,fileKey) of [(uploadValues[id]||{})]">
                         <a-input
+                          v-if="uploadValues[id] != null"
                           :key="fileKey"
                           :read-only="true"
                           :value="file.name"
                         >
-
                           <template slot="addonBefore" style="width: 30px">
                             <a-tooltip v-if="file.status==='uploading'" :title="`上传中(${Math.floor(file.percent)}%)`">
                               <a-icon type="loading" />
@@ -264,7 +264,6 @@
                               <a-icon type="exclamation-circle" style="color:red;" />
                             </a-tooltip>
                           </template>
-
                           <template v-if="col.allowDownload!==false || col.allowRemove!==false" slot="addonAfter" style="width: 30px">
                             <a-dropdown :trigger="['click']" placement="bottomRight" :get-popup-container="getParentContainer">
                               <a-tooltip title="操作" :get-popup-container="getParentContainer">
@@ -285,7 +284,6 @@
                               </a-menu>
                             </a-dropdown>
                           </template>
-
                         </a-input>
                       </template>
 
@@ -342,8 +340,9 @@
 
                     <!-- update-beign-author:taoyan date:0827 for：文件/图片逻辑新增 -->
                     <div v-else-if="col.type === formTypes.file" :key="i">
-                      <template v-for="(file,fileKey) of [(uploadValues[id]||{})]" v-if="uploadValues[id] != null">
+                      <template v-for="(file,fileKey) of [(uploadValues[id]||{})]">
                         <a-input
+                          v-if="uploadValues[id] != null"
                           :key="fileKey"
                           :read-only="true"
                           :value="file.name"
@@ -393,8 +392,8 @@
                     </div>
 
                     <div v-else-if="col.type === formTypes.image" :key="i">
-                      <template v-for="(file,fileKey) of [(uploadValues[id]||{})]" v-if="uploadValues[id] != null">
-                        <div :key="fileKey" style="position: relative;">
+                      <template v-for="(file,fileKey) of [(uploadValues[id]||{})]">
+                        <div v-if="uploadValues[id] != null" :key="fileKey" style="position: relative;">
                           <img :src="getCellImageView(id)" style="height:32px;max-width:100px !important;" alt="无图片">
                           <template slot="addonBefore" style="width: 30px">
                             <a-tooltip v-if="file.status==='uploading'" :title="`上传中(${Math.floor(file.percent)}%)`">

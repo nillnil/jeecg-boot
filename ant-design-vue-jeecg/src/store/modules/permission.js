@@ -67,8 +67,7 @@ const permission = {
       return new Promise(resolve => {
         const { roles } = data
         console.log('-----mutations---data----', data)
-        let accessedRouters
-        accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
+        const accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
         console.log('-----mutations---accessedRouters----', accessedRouters)
         commit('SET_ROUTERS', accessedRouters)
         resolve()

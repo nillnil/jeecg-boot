@@ -83,8 +83,8 @@
       :show-alert-info="true"
       @onSelect="onChange"
     >
-      <template v-for="(col, index) in columns" v-if="col.scopedSlots" :slot="col.dataIndex" slot-scope="text, record, index">
-        <div :key="index">
+      <template v-for="(col, index) in columns" :slot="col.dataIndex" slot-scope="text, record, index">
+        <div v-if="col.scopedSlots" :key="index">
           <a-input
             v-if="record.editable"
             style="margin: -5px 0"

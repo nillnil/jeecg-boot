@@ -193,8 +193,7 @@ export default {
     UserRoleModal,
     SelectUserModal,
     RoleModal,
-    UserModal,
-    moment
+    UserModal
   },
   mixins: [JeecgListMixin],
   data() {

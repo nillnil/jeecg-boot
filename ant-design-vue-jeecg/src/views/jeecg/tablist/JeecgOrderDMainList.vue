@@ -102,15 +102,11 @@ import JeecgOrderDMainModal from './form/JeecgOrderDMainModal'
 import JeecgOrderCustomerList from './JeecgOrderCustomerList'
 import JeecgOrderTicketList from './JeecgOrderTicketList'
 import { deleteAction } from '@/api/manage'
-import JeecgOrderCustomerModal from './form/JeecgOrderCustomerModal'
-import JeecgOrderTicketModal from './form/JeecgOrderTicketModal'
 import { JeecgListMixin } from '@/mixins/JeecgListMixin'
 
 export default {
   name: 'JeecgOrderDMainList',
   components: {
-    JeecgOrderTicketModal,
-    JeecgOrderCustomerModal,
     JeecgOrderDMainModal,
     JeecgOrderCustomerList,
     JeecgOrderTicketList

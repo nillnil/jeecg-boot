@@ -9,7 +9,7 @@
         :closable="false"
         :visible="collapsed"
         width="200px"
-        @close="() => this.collapsed = false"
+        @close="() => collapsed = false"
       >
         <side-menu
           mode="inline"

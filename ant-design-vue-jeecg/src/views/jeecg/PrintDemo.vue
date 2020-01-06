@@ -54,14 +54,10 @@
 </template>
 <script>
 import ACol from 'ant-design-vue/es/grid/Col'
-import ARow from 'ant-design-vue/es/grid/Row'
-import ATextarea from 'ant-design-vue/es/input/TextArea'
 
 export default {
   name: 'Printgzsld',
   components: {
-    ATextarea,
-    ARow,
     ACol
   },
   props: {

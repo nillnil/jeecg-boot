@@ -246,7 +246,7 @@
         </a-tab-pane>
       </a-tabs>
       <div class="bottom">
-        <span class="value">{{ this.cron }}</span>
+        <span class="value">{{ cron }}</span>
       </div>
     </div>
   </a-modal>
